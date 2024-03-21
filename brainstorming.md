@@ -17,7 +17,7 @@ Idea Evaluation
 
 1. **Video Game Explorer - A discovery app to find video games.**
 2. Invest Portfolio Manager - An app that manages your stocks, bonds, ETF, mutual funds, and other investment securities. 
-3. **Meal Prep Tracker - A tracker app that allows users to track their meal prep plans with their nutrition facts and expenses. **
+3. **Meal Prep Tracker - A tracker app that allows users to track their meal prep plans with their nutrition facts and expenses.**
 4. Expense Tracker - An app to track your expenses on food, transportation, entertainment, and other areas of your life. 
 5. Sleep Tracker - An app tracks how many hours of sleep you are getting per week, allowing the user to input their sleep time every day. 
 6. **Trivia App - A trivia app that challenges users to a Trivia game and can compete against other users.**
