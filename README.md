@@ -16,11 +16,21 @@
 
 [Evaluation of your app across the following attributes]
 - **Category:**
+    * Health and Finance.  It is in these categories because we are tracking the meals that the users make as well as how much they have spent for the ingredients of the meal.
 - **Mobile:**
+    * This app would allow users to easily access the meals they have been consuming as well as looking at past meals they have made in case they want to make it again.
+    * This app can include personalized push notifications regarding added meals, weekly food consumption summaries, and more
+    * Offline functionality: the app will data on the device for offline access, like preferences and most recently added meals
+    * Seamless use of camera: the user will be able to take optionally take a picture of what meal they made when logging it in the app
 - **Story:**
+    * This app would help users keep better track of their meal prep plans and understand more about their spending habits for meals and how much nutritional intake they are getting.
 - **Market:**
+    * This app would target an audience that is into meal prepping.
+    * It would allow users to easily track their meals.
 - **Habit:**
+    * This app would be used every time the user wants to enter a new meal, see their weekly statistics, or look at past meals they have made. This app would be able to be used at least weekly or more often.
 - **Scope:**
+    * This app covers a unique idea of creating a tracker for both meals with nutrition facts as well as money spent. Out of our three ideas, we felt this idea was the most complex and well defined with its features of adding meals, creating visuals, and a unique API.
 
 ## Product Spec
 
