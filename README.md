@@ -76,13 +76,20 @@
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<!-- [Add picture of your hand sketched wireframes in this section] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600> -->
+![20240321_162851](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/71194959/f345e081-fb29-486b-a67b-fc211db5a114)
+
 
 <br>
 
 <br>
 
 ### [BONUS] Digital Wireframes & Mockups
+![MealPrepTracker1](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/71194959/f6f644f4-4386-43b9-a149-a943d3e1bcca)
+![MealPrepTracker2](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/71194959/e90dfa14-8bfb-40d2-bb0b-3305d7ca6ef0)
+
+## Digital Wireframes with flows
+![MealPrepTracker3](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/71194959/4c81bc0d-109d-45a6-804a-51556c38f1b2)
 
 ### [BONUS] Interactive Prototype
 
