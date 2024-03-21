@@ -1,4 +1,4 @@
-# Milestone 1 - APP_NAME_HERE (Unit 7)
+# Milestone 1 - Meal Prep Tracker (Unit 7)
 
 ## Table of Contents
 
@@ -10,7 +10,26 @@
 
 ### Description
 
-[Description of your app]
+ * Users are able to keep track of meals they make each week. This app would allow users to add their meals to the app which includes the ingredients for the meal, how much did all the ingredients cost, and how many meals were made from the given ingredients. The CalorieNinja API would be used to obtain the nutrition facts of each inputted ingredient. Users would then be able to see their weekly spending and nutrition consumption habits.
+     * API: [https://calorieninjas.com/api](https://calorieninjas.com/api)
+     * Recycler View Details (Scrollable List):
+         * Meal Name
+         * Price of Meal
+         * Total Calories
+     * 4 responsive functionalities:
+         * Add meals
+         * Remove Meals
+         * Mark meals as favorite
+         * Edit Meals
+     * Navigation (Bottom Navigation)
+         * Dashboard
+         * Meals List
+         * Add Meal
+         * Profile
+         * Settings
+     * Data
+         * Local database to store user preferences, favorite meals and images
+         * Remote database to store past entered meal and user information.
 
 ### App Evaluation
 
@@ -38,34 +57,78 @@
 
 **Required Features**
 
-1. [fill in your required user features here]
-2. ...
-3. ...
+1. The user can **submit** meal prep meals that include ingredients, quantity of ingredients (grams), price of ingredients, and how many meals were made from the ingredients
+2. The user can **view **their money spent, calories consumed, nutrition consumed, and number of meals entered on their dashboard.
+3. The user can **review** past entered meals by viewing the meal in more detail in the Meal Detail View Activity
+4. The user can **edit** entered meals and their ingredients by pressing and holding on the meal to access the Meal Edit View Activity. 
 
 **Optional Features**
 
-1. [fill in your optional user features here]
-2. ...
-3. ...
+1. The user can add favorite meals by clicking the star on any specific meal on the Meals List View and this will be shown on the user’s profile.
 
 ### 2. Screen Archetypes
+* Dashboard
+    * Shows a summary of the user’s meals made per week/month using the following data visualizations
+        * Money spent per week/month (line chart)
+        * Calories consumed per week/month (line chart)
+        * Total number of meals entered (numeric value)
+        * Percentage of various macronutrients consumed (pie chart)
 
-- [list first screen here]
-  - [list associated required story here]
-  - ...
-- [list second screen here]
-  - [list associated required story here]
-  - ...
+* Meals List Screen
+    * Shows the list of entered meals that were prepped by the user
+    * Includes tile cards that show meal name, price of meal, and total calories
+    * Users can also remove meals or mark meals as favorite
+
+* Add Meal Activity
+    * A form that allows users to enter new meal prep recipes.
+    * Includes:
+        * Name of Meal
+        * Servings Made
+        * Picture of Meal (optional)
+
+* Edit Ingredient Activity
+    * A recycler view that shows added ingredients and allows users to edit/remove/add new ingredients
+    * Includes:
+        * Ingredient Name
+        * Quantity of ingredient (in grams)
+        * Price of ingredient
+
+* Meal View Detail
+    * Shows more details about a specifical meal prep meal that includes:
+        * Meal Name
+        * Price of meal
+        * Servings Made 
+        * Picture of meal
+        * Total Calories and other total nutrition facts
+        * Ingredients (Name and Quantity)
+
+* Profile Page
+    * Allows the user to view their profile, favorite meals, and a button that redirects them to the Update Profile Page
+
+* Update Profile Page
+    * Allows user to edit their information
+
+* Settings Page
+    * Allows the user to adjust their settings: Dark Mode and Notifications
+    * Allows user to logout
+
+* Login Page
+    * Allows user to log into their account or sign up
+
+* Register Page
+    * Allows user to register a new account
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* Dashboard
+* Meals List
+* Add Meal
+* Profile
+* Settings
 
-**Flow Navigation** (Screen to Screen)
+**Flow Navigation** (Screen to Screen) 
 
 - [list first screen here]
   - [list screen navigation here]
