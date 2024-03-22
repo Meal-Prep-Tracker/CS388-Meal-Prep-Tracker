@@ -58,13 +58,17 @@
 **Required Features**
 
 1. The user can **submit** meal prep meals that include ingredients, quantity of ingredients (grams), price of ingredients, and how many meals were made from the ingredients
-2. The user can **view **their money spent, calories consumed, nutrition consumed, and number of meals entered on their dashboard.
-3. The user can **review** past entered meals by viewing the meal in more detail in the Meal Detail View Activity
-4. The user can **edit** entered meals and their ingredients by pressing and holding on the meal to access the Meal Edit View Activity. 
+2. The user can **view** their money spent, calories consumed, nutrition consumed, and number of meals entered on their dashboard.
+3. The user can **review** past entered meals by viewing the meal in more detail in the Meal Detail View Activity.
+4. The user can **edit** entered meals and their ingredients by pressing and holding on the meal to access the Meal Edit View Activity.
+5. The user can **login** to a created account.
+6. The user can **register** an account. 
 
 **Optional Features**
 
-1. The user can add favorite meals by clicking the star on any specific meal on the Meals List View and this will be shown on the user’s profile.
+1. The user can **add favorite** meals by clicking the star on any specific meal on the Meals List View and this will be shown on the user’s profile.
+2. The user can **analyze** what their highest or lowest calorie meal made.
+3. The user can **reuse** a previously entered meal and add it as a duplicate meal without manually entering the values a second time. 
 
 ### 2. Screen Archetypes
 * Dashboard
