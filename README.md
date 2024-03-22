@@ -159,6 +159,7 @@
 ![MealPrepTracker3](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/71194959/4c81bc0d-109d-45a6-804a-51556c38f1b2)
 
 ### [BONUS] Interactive Prototype
+![MealPrepTrackerPrototype](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/71194959/0098d56d-a1a0-451d-839f-33f359baed9a)
 
 <br>
 
