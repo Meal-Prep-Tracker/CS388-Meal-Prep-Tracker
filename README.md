@@ -134,12 +134,26 @@
 
 **Flow Navigation** (Screen to Screen) 
 
-- [list first screen here]
-  - [list screen navigation here]
-  - ...
-- [list second screen here]
-  - [list screen navigation here]
-  - ...
+- Welcome Screen
+  - Clicking on 'Login' leads to Login Screen
+  - Clicking on 'Sign Up' leads to Sign Up Screen
+- Sign Up Screen
+  - Successful sign up leads to Dashboard Screen
+- Login Screen
+  - Successful login leads to Dashboard Screen
+- Add Meal Screen
+  - Logging a new meal leads to the Edit Ingredients Screen
+- Edit Ingredients Screen
+  - Clicking 'Done' leads to the Meals List Screen
+- Meal List Screen
+  - Clicking on a meal in the list will lead to the Meal View Detail Screen
+  - Pressing and holding on a meal in the list will lead to the Edit Meal Screen
+- Edit Meal Screen
+  - Confirming any changes will lead to the Edit Ingredients Screen
+- Profile Screen
+  - Pressing 'Update Profile' will lead to the Edit Profile Screen
+- Edit Profile Screen
+  - Pressing 'Update my Info' will lead to the Profile Screen
 
 ## Wireframes
 
