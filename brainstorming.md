@@ -66,7 +66,7 @@ Idea Evaluation
 * Habit: How habit-forming or addictive is this app? :
     * This app would be used if a user wants to find a new game to play or if a user wants to review a game.
 * Scope: How well-formed is the scope for this app?
-    * This app covered the basic idea for creating a scrollable list, having persistent data, and allowing users to add items. But we found this idea to be underwhelming, since it is no more than just a glorified normal website. It is also too similar to other videogame browsing platforms, like Epic Games and Steam.
+    * This app would allow users to search for games to identify games to purchase. Users would be able to review games they have played. Additionally, users may add games to a wishlist if they are interested in purchasing a game in the future. This app covered the basic idea for creating a scrollable list, having persistent data, and allowing users to add items. But we found this idea to be underwhelming, since it is no more than just a glorified normal website. It is also too similar to other videogame browsing platforms, like Epic Games and Steam.
 
 **Project Idea #2 - Meal Prep Tracker**
 
@@ -107,7 +107,7 @@ Idea Evaluation
 * Habit: How habit-forming or addictive is this app?
     * This app would be used every time the user wants to enter a new meal, see their weekly statistics, or look at past meals they have made. This app would be able to be used at least weekly or more often. 
 * Scope: How well-formed is the scope for this app?
-    * This app covers a unique idea of creating a tracker for both meals with nutrition facts as well as money spent. This idea is techneically challenging and well defined with its features of adding meals, creating visuals, and a unique API.
+    * This app would allow users to enter their meal prep plans to keep track of expenses and nutritional intake. Users would be able to review past-entered meals to see their ingredients. Additionally, users can favorite meals to quickly find them in the future. This app covers a unique idea of creating a tracker for both meals with nutrition facts as well as money spent. This idea is techneically challenging and well defined with its features of adding meals, creating visuals, and a unique API.
 
 **Project Idea #3 - Trivia App**
 
@@ -142,7 +142,7 @@ Idea Evaluation
 * Habit: How habit-forming or addictive is this app? :
     * This app could be used any time the user wants to do a new challenge. It can be a daily action of doing a daily trivia quiz. 
 * Scope: How well-formed is the scope for this app?
-    * This app covers the idea of trivia games and allows users to to play, create questions, and view past answered questions and leaderboard. This idea lacks the mobile specific features as well as being a fully unique idea.
+    * This app would provide a challenge to users to play a trivia game. Users can play the trivia game to score points with their results being displayed on a leaderboard. Finally, users can also enter their own trivia questions to be played by other users. This app covers the idea of trivia games and allows users to play, create questions, and view past answered questions and leaderboard. This idea lacks the mobile specific features as well as being a fully unique idea.
 
 ### Final App Idea Chosen
 We have decided to pursue the Meal Prep Tracker application as it was the most technically challenging, well developed, and provided a topic that would best suit for a mobile application out of our three ideas. 
