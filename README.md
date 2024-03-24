@@ -48,7 +48,7 @@
 - **Habit:**
     * This app would be used every time the user wants to enter a new meal, see their weekly statistics, or look at past meals they have made. This app would be able to be used at least weekly or more often.
 - **Scope:**
-    * This app covers a unique idea of creating a tracker for both meals with nutrition facts as well as money spent. Out of our three ideas, we felt this idea was the most complex and well defined with its features of adding meals, creating visuals, and a unique API.
+    * This app would allow users to enter their meal prep plans to keep track of expenses and nutritional intake. Users would be able to review past-entered meals to see their ingredients. Additionally, users can favorite meals to quickly find them in the future. This app covers a unique idea of creating a tracker for both meals with nutrition facts as well as money spent. This idea is techneically challenging and well defined with its features of adding meals, creating visuals, and a unique API.
 
 ## Product Spec
 
