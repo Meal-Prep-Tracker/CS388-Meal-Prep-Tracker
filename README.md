@@ -33,7 +33,6 @@
 
 ### App Evaluation
 
-[Evaluation of your app across the following attributes]
 - **Category:**
     * Health and Finance.  It is in these categories because we are tracking the meals that the users make as well as how much they have spent for the ingredients of the meal.
 - **Mobile:**
