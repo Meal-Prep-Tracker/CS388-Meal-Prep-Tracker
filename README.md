@@ -163,7 +163,8 @@
 ## Wireframes
 
 <!-- [Add picture of your hand sketched wireframes in this section] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600> -->
-![IMG_4454](https://github.com/jbq2/videogame_sales_dashboard/assets/98120760/4d9795e2-12bf-44bd-87bd-7a18cfa20f1f)
+![wireframe](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/71194959/1af60a5f-26b2-4a1c-901e-6e35be2aace4)
+
 
 
 <br>
