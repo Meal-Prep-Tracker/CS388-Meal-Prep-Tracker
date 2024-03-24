@@ -137,9 +137,9 @@
   - => Login (clicking on 'Login' leads to Login Screen)
   - => Sign Up (clicking on 'Sign Up' leads to Sign Up Screen)
 - Sign Up Screen
-  - => Dashboard (successful sign up leads to Dashboard Screen)
+  - => Meals List (successful sign up leads to Meals List Screen)
 - Login Screen
-  - => Dashboard (successful login leads to Dashboard Screen)
+  - => Meals List (successful login leads to Meals List Screen)
 - Add Meal Screen
   - => Edit Ingredients (logging a new meal leads to the Edit Ingredients Screen)
 - Edit Ingredients Screen
@@ -163,7 +163,7 @@
 ## Wireframes
 
 <!-- [Add picture of your hand sketched wireframes in this section] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600> -->
-![20240321_162851](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/71194959/f345e081-fb29-486b-a67b-fc211db5a114)
+![IMG_4454](https://github.com/jbq2/videogame_sales_dashboard/assets/98120760/4d9795e2-12bf-44bd-87bd-7a18cfa20f1f)
 
 
 <br>
