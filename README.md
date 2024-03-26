@@ -121,6 +121,15 @@
 * Register Page
     * Allows user to register a new account
 
+* Welcome Page
+    * Starting page for a non-logged-in or unregistered user
+    * Contains buttons that allow a user to login or register
+ 
+* Edit Meal Page
+    * For an already created meal, pressing and holding on it in the meals list will lead to the edit meal page
+    * Here, the user can edit the name, number of servings, and picture
+    * The user can click on "Edit Ingredients" to move to the Edit Ingredients Page
+
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
