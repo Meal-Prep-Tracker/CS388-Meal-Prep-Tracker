@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "129138494313",
+    "project_id": "cs388-meal-prep-tracker",
+    "storage_bucket": "cs388-meal-prep-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129138494313:android:6dded6b082dd1763ad0bf8",
+        "android_client_info": {
+          "package_name": "com.example.mealpreptracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129138494313-3lkttho0n0bg42h8891phnaes9l5m5b8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mealpreptracker",
+            "certificate_hash": "64e8c20b0422a98662802697a9f8ee7b60ff7510"
+          }
+        },
+        {
+          "client_id": "129138494313-djad82n1rlkhu1b1vtcj90c42qpob0kc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBODqhMYSDbIzFFSrzojegDqSwWlaA87L4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129138494313-djad82n1rlkhu1b1vtcj90c42qpob0kc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

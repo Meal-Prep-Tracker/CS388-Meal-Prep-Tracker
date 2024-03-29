@@ -1,0 +1,122 @@
+<!-- fragment_dashboard.xml -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AddMealFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<!--        android:fontFamily="@font/inter"-->
+
+        <!--        android:fontFamily="@font/inter"-->
+
+        <!--        android:fontFamily="@font/inter"-->
+        <ImageView
+            android:id="@+id/favoriteIcon"
+            android:layout_width="31.3dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="296dp"
+            android:src="@drawable/baseline_camera_alt_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addMealHeader" />
+
+        <TextView
+            android:id="@+id/addMealHeader"
+            android:layout_width="243dp"
+            android:layout_height="61dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center_horizontal"
+            android:shadowColor="#40000000"
+            android:shadowDx="0"
+            android:shadowDy="4"
+            android:fontFamily="@font/inter"
+            android:shadowRadius="4"
+            android:textColor="#000000"
+            android:textSize="48sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Add Meal" />
+
+        <!--        android:fontFamily="@font/inter"-->
+
+        <!--        android:fontFamily="@font/inter"-->
+
+        <TextView
+            android:id="@+id/mealNameLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="201dp"
+            tools:text="Name: " />
+
+        <!--        android:fontFamily="@font/inter"-->
+
+        <EditText
+            android:id="@+id/mealName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="120dp"
+            android:hint="Name"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="189dp" />
+
+        <TextView
+            android:id="@+id/mealServingsLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="264dp"
+            tools:text="Servings:" />
+
+        <EditText
+            android:id="@+id/mealServings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="150dp"
+            android:hint="4"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="254dp" />
+
+        <Button
+            android:id="@+id/addMealBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="200dp"
+            android:backgroundTint="@color/dark_teal"
+            android:text="Add Meal"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/favoriteIcon"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
