@@ -225,7 +225,7 @@ this section]
 from the original requirements
 
 [Add video/gif of your current application that shows build progress]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="M2_Progress.gif" width=600>
 
 ## App Demo Video
 
