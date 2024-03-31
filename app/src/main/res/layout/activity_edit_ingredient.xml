@@ -58,9 +58,10 @@
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ingredientPrice"
+        app:layout_constraintStart_toEndOf="@+id/ingredientName"
         app:layout_constraintTop_toBottomOf="@+id/mealIngredientsRv"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="179dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/ingredientPrice"
