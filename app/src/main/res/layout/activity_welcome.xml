@@ -51,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/dark_teal"
+            android:textColor="@color/black"
             android:text="Login"
             android:textSize="15sp" />
 
@@ -70,6 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/dark_teal"
+            android:textColor="@color/black"
             android:text="Sign Up"
             android:textSize="15sp" />
 
