@@ -210,7 +210,7 @@
                 android:text="Submit"
                 android:textSize="16dp"
                 android:textColor="@color/black"
-                android:backgroundTint="@color/primary"
+                android:backgroundTint="@color/dark_teal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/formConfirmPasswordText" />
