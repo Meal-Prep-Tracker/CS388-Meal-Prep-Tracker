@@ -198,12 +198,13 @@
 
 [Add screenshot of your Project Board with three milestones visible in
 this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+![Image](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/98120760/a8ea0a5d-473c-4a68-91d4-aeb16814ee71)
 
 ## Issue cards
-
+[Add screenshot of your Project Board with the issues that you've been working on for this unit's milestone]
 ![issues_worked_on_ms2](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/98120760/2cd1afbd-c8c4-4283-bedb-72c768872f8b)
-![issues_to_be_worked_on_ms2](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/98120760/05331671-7c42-4551-bc1d-d3a56868929e)
+[Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.]
+![issues_to_be_worked_on_ms2](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/98120760/3a198b11-968a-458b-8e3c-319c3c25e80f)
 
 ## Issues worked on this sprint
 
@@ -222,6 +223,8 @@ this section]
 - [x] Make edit meal layout
 - [x] Make meal view detail layout
 - [x] Create empty android project
+
+[Add video/gif of your current application that shows build progress]
 <img src="M2_Progress.gif" width=600>
 <br>
 
