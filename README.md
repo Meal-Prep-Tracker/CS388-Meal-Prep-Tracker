@@ -202,14 +202,27 @@ this section]
 
 ## Issue cards
 
-- [Add screenshot of your Project Board with the issues that you've been working on for this unit's milestone] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-- [Add screenshot of your Project Board with the issues that you're working on in the **NEXT sprint**. It should include issues for next unit with assigned owners.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+![issues_worked_on_ms2](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/98120760/2cd1afbd-c8c4-4283-bedb-72c768872f8b)
+![issues_to_be_worked_on_ms2](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/98120760/05331671-7c42-4551-bc1d-d3a56868929e)
 
 ## Issues worked on this sprint
 
-- List the issues you completed this sprint
-- [Add giphy that shows current build progress for Milestone 2. Note: We will be looking for progression of work between Milestone 2 and 3. Make sure your giphys are not duplicated and clearly show the change from Sprint 1 to 2.]
-
+- [x] Make sign up layout
+- [x] Make edit ingredient activity layout
+- [x] Make login layout
+- [x] Make welcome layout
+- [x] Make add meal activity layout
+- [x] Make meals list layout
+- [x] Make meal list recycler view tile layout
+- [x] Make dashboard layout
+- [x] Make profile page layout
+- [x] Make settings layout
+- [x] Make bottom navigation bar
+- [x] Make update profile layout
+- [x] Make edit meal layout
+- [x] Make meal view detail layout
+- [x] Create empty android project
+<img src="M2_Progress.gif" width=600>
 <br>
 
 # Milestone 3 - Build Sprint 2 (Unit 9)
@@ -225,7 +238,6 @@ this section]
 from the original requirements
 
 [Add video/gif of your current application that shows build progress]
-<img src="M2_Progress.gif" width=600>
 
 ## App Demo Video
 
