@@ -25,7 +25,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/MealPrepTrackerLogo_Transparent" />
+                app:srcCompat="@drawable/meal_prep_tracker_logo_transparent" />
 
             <TextView
                 android:id="@+id/title"
