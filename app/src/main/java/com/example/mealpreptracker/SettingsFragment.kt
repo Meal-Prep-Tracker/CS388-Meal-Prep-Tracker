@@ -48,7 +48,10 @@ class SettingsFragment : Fragment() {
                 putBoolean("darkMode", isChecked)
                 apply()
             }
+            // Apply the appropriate theme
+            applyTheme(isChecked)
         }
+
 
         // Notifications switch listener
         notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
@@ -72,5 +75,14 @@ class SettingsFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun applyTheme(isDarkMode: Boolean) {
+        val themeId = if (isDarkMode) {
+            R.style.mealPrepThemeDark
+        } else {
+            R.style.mealPrepTheme
+        }
+        requireActivity().setTheme(themeId)
     }
 }

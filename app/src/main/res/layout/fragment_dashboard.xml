@@ -33,7 +33,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Dashboard" />
+                android:text="Dashboard" />
 
             <FrameLayout
                 android:id="@+id/dashboardStats"
@@ -62,7 +62,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toTopOf="@+id/dashboardStats"
-                    tools:text="Number of Meals Entered:" />
+                    android:text="Number of Meals Entered:" />
                 <TextView
                     android:id="@+id/mealEnteredText"
                     android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                     android:textSize="24sp"
                     android:textColor="#000000"
                     android:gravity="center"
-                    tools:text="0"
+                    android:text="0"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/inter"
@@ -87,7 +87,7 @@
                 android:textSize="24sp"
                 android:textColor="#000000"
                 android:gravity="center"
-                tools:text="Calories This Month"
+                android:text="Calories This Month"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/inter"
@@ -109,7 +109,7 @@
                 android:textSize="24sp"
                 android:textColor="#000000"
                 android:gravity="center"
-                tools:text="Expenses This Month"
+                android:text="Expenses This Month"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/inter"
@@ -131,7 +131,7 @@
                 android:textSize="24sp"
                 android:textColor="#000000"
                 android:gravity="center"
-                tools:text="Food Groups This Month"
+                android:text="Food Groups This Month"
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/inter"

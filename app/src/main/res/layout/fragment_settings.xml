@@ -44,7 +44,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/logo"
-                tools:text="Settings" />
+                android:text="Settings" />
 
             <TextView
                 android:id="@+id/darkModeText"
@@ -53,7 +53,7 @@
                 android:textStyle="bold"
                 android:textSize="24sp"
                 android:textColor="#000000"
-                tools:text="Dark Mode"
+                android:text="Dark Mode"
                 android:layout_marginTop="36dp"
                 android:fontFamily="@font/inter"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -76,7 +76,7 @@
                 android:textStyle="bold"
                 android:textSize="24sp"
                 android:textColor="#000000"
-                tools:text="Notifications"
+                android:text="Notifications"
                 android:layout_marginTop="36dp"
                 android:fontFamily="@font/inter"
                 app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch" />

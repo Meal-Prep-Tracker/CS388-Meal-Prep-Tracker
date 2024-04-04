@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        bottomNavigationView.selectedItemId = R.id.action_profile
+        bottomNavigationView.selectedItemId = R.id.action_settings
     }
 
     private fun replaceFragment(mealFragment: Fragment) {

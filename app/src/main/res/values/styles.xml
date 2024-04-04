@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="mealPrepTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimary">@color/secondary</item>
+        <item name="colorPrimaryDark">@color/secondary</item>
+                <item name="android:navigationBarColor">@color/secondary</item>
+    </style>
+    <style name="mealPrepThemeDark" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/secondary</item>
         <item name="colorPrimaryDark">@color/secondary</item>
         <item name="android:navigationBarColor">@color/secondary</item>
     </style>
