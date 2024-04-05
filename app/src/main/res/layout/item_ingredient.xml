@@ -6,7 +6,7 @@
     android:background="@color/primary">
 
     <ImageView
-        android:id="@+id/favoriteIcon"
+        android:id="@+id/deleteIngredientIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="11.5dp"

@@ -7,23 +7,37 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class NutritionSummary (
     @SerialName("calories")
-    val calories: Double?,
+    val calories: Double?  = 0.0,
     @SerialName("protein_g")
-    val protein: Double?,
+    val protein: Double?  = 0.0,
     @SerialName("carbohydrates_total_g")
-    val carbohydrates: Double?,
+    val carbohydrates: Double? = 0.0,
     @SerialName("fat_total_g")
-    val fat: Double?,
+    val fat: Double? = 0.0,
     @SerialName("fat_saturated_g")
-    val saturated_fat: Double?,
+    val saturated_fat: Double? = 0.0,
     @SerialName("sodium_mg")
-    val sodium: Double?,
+    val sodium: Double? = 0.0,
     @SerialName("potassium_mg")
-    val potassium: Double?,
+    val potassium: Double? = 0.0,
     @SerialName("cholesterol_mg")
-    val cholesterol: Double?,
+    val cholesterol: Double? = 0.0,
     @SerialName("fiber_g")
-    val fiber: Double?,
+    val fiber: Double? = 0.0,
     @SerialName("sugar_g")
-    val sugar: Double?
+    val sugar: Double? = 0.0
 ):  java.io.Serializable
+
+//@Keep
+//@Serializable
+//data class IngredientResponse(
+//    @SerialName("response")
+//    val response: BaseResponse?
+//)
+
+@Serializable
+data class BaseResponse(
+    @SerialName("items")
+    val items: List<NutritionSummary>?
+)
+

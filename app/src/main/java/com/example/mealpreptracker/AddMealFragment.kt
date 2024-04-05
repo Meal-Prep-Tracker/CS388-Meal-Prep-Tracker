@@ -1,6 +1,7 @@
 package com.example.mealpreptracker
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,13 +47,23 @@ class AddMealFragment : Fragment() {
 
     private fun AddNewMeal()
     {
-        // Make a new meal and add it to the realtime DB
+        val key = database.child("Meals").push().key
+
+        // error log
+        if (key == null) {
+            Log.w(TAG, "Couldn't get push key for meals")
+            return
+        }
+
+
+        // Make a new meal, nutritionSummary and add it to the realtime DB
         val meal = Meal(
+            id = key,
             name = mealNameEditText.text.toString(),
             servings = servingsEditText.text.toString().toInt()
         )
-
-        database.child("Meals").push().setValue(meal)
+        // Add to the meals collection
+        database.child("Meals").child(key).setValue(meal)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

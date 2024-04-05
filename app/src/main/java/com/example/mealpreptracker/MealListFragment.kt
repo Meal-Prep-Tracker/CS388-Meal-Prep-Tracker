@@ -37,9 +37,10 @@ class MealListFragment: Fragment() {
         // Add these configurations for the recyclerView and to configure the adapter
         val layoutManager = LinearLayoutManager(context)
         mealsRecyclerView = view.findViewById(R.id.mealsRv)
+        database = Firebase.database.reference
         mealsRecyclerView.layoutManager = layoutManager
         mealsRecyclerView.setHasFixedSize(true)
-        mealAdapter = MealAdapter(view.context, meals)
+        mealAdapter = MealAdapter(view.context, meals, database)
         mealsRecyclerView.adapter = mealAdapter
 
         // Update the return statement to return the inflated view from above
@@ -54,7 +55,6 @@ class MealListFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        database = Firebase.database.reference
         // Call the new method within onViewCreated
         val mealsReference = database.child("Meals")
         fetchMeals(mealsReference)
@@ -69,13 +69,36 @@ class MealListFragment: Fragment() {
                 for(childSnapshot in dataSnapshot.children) {
                     meals.add(
                         Meal(
+                            id = childSnapshot.child("id").value.toString(),
                             name = childSnapshot.child("name").value.toString(),
                             price = childSnapshot.child("price").value.toString().toDoubleOrNull()
                                 ?: 0.0,
                             calories = childSnapshot.child("calories").value.toString().toDoubleOrNull()
                                 ?: 0.0,
                             servings = childSnapshot.child("servings").value.toString().toIntOrNull()
-                                ?: 0
+                                ?: 0,
+//                            nutritionSummary = NutritionSummary(
+//                                calories = childSnapshot.child("nutritionSummary").child("calories").value.toString().toDoubleOrNull()
+//                                    ?: 0.0,
+//                                protein = childSnapshot.child("nutritionSummary").child("protein").value.toString().toDoubleOrNull()
+//                                    ?: 0.0,
+//                                carbohydrates = childSnapshot.child("nutritionSummary").child("carbohydrates").value.toString().toDoubleOrNull()
+//                                    ?: 0.0,
+//                                fat = childSnapshot.child("nutritionSummary").child("fat").value.toString().toDoubleOrNull()
+//                                ?: 0.0,
+//                                saturated_fat = childSnapshot.child("nutritionSummary").child("saturated_fat").value.toString().toDoubleOrNull()
+//                                    ?: 0.0,
+//                                sodium = childSnapshot.child("nutritionSummary").child("sodium").value.toString().toDoubleOrNull()
+//                                    ?: 0.0,
+//                                potassium = childSnapshot.child("nutritionSummary").child("potassium").value.toString().toDoubleOrNull()
+//                                    ?: 0.0,
+//                                cholesterol = childSnapshot.child("nutritionSummary").child("cholesterol").value.toString().toDoubleOrNull()
+//                                    ?: 0.0,
+//                                fiber = childSnapshot.child("nutritionSummary").child("fiber").value.toString().toDoubleOrNull()
+//                                    ?: 0.0,
+//                                sugar = childSnapshot.child("nutritionSummary").child("sugar").value.toString().toDoubleOrNull()
+//                                    ?: 0.0,
+//                                )
                         )
                     )
                 }
@@ -84,6 +107,7 @@ class MealListFragment: Fragment() {
 //                Log.w(TAG, meals.toString())
 
             }
+
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Getting Post failed, log a message

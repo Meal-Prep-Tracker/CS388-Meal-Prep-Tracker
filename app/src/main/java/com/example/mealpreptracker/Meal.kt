@@ -6,11 +6,10 @@ import kotlinx.serialization.Serializable
 //@Serializable
 @IgnoreExtraProperties
 data class Meal (
-//    val id: Int,
+    val id: String = "",
 //    val user_id: String?,
     val name: String? = null,
-    val servings: Int? = null,
+    val servings: Int? = 0,
     val price: Double? = 0.0,
-    val calories: Double? = 0.0,
-    val nutritionSummary: NutritionSummary?  = null
+    val calories: Double? = 0.0
 ):  java.io.Serializable
