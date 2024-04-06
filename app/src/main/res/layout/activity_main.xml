@@ -23,7 +23,8 @@
         android:layout_gravity="bottom"
         app:itemIconSize="32dp"
         app:menu="@menu/menu_bottom_navigation"
-        app:backgroundTint="@color/primary"
+        app:backgroundTint="@color/secondary"
+        app:itemIconTint="@drawable/selector"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
