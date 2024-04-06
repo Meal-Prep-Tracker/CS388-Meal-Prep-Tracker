@@ -34,10 +34,10 @@ data class NutritionSummary (
 //    @SerialName("response")
 //    val response: BaseResponse?
 //)
-
+@Keep
 @Serializable
 data class BaseResponse(
     @SerialName("items")
-    val items: List<NutritionSummary>?
+    val items: List<NutritionSummary>
 )
 

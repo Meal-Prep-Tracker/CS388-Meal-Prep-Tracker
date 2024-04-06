@@ -9,6 +9,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestHeaders
 import com.codepath.asynchttpclient.RequestParams
@@ -20,11 +23,19 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.google.gson.Gson
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okhttp3.Headers
+import org.json.JSONArray
 import org.json.JSONException
+import org.json.JSONObject
 
+fun createJson() = Json {
+    isLenient = true
+    ignoreUnknownKeys = true
+    useAlternativeNames = false
+}
 
 private const val TAG = "EditIngredientActivity"
 //private const val SEARCH_API_KEY: String = BuildConfig.API_KEY
@@ -92,10 +103,13 @@ class EditIngredientActivity : AppCompatActivity(){
                 override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
                     Log.i(TAG, "Successfully fetched ingredient summaries: $json")
                     try {
-//                        // TODO: Create the parsedJSON
-//                        val parsedJson = Json.decodeFromString<BaseResponse>(json.jsonObject.toString())
-//
-//                        Log.w(TAG, parsedJson.items.toString())
+                        // TODO: Create the parsedJSON
+                        val summaryList = json.jsonObject.get("items") as JSONArray
+
+                        val summary = Gson().fromJson(summaryList.get(0).toString(),NutritionSummary::class.java)
+
+
+                        Log.w(TAG, "Fetched summary for $name: ${summary.toString()}")
                         // TODO: add a new ingredient to the Ingredients collection
                         val key = database.child("Ingredients").push().key
                         // error log
@@ -115,6 +129,39 @@ class EditIngredientActivity : AppCompatActivity(){
 
             })
 
+            /*
+            Dhruval's way
+            val queue = Volley.newRequestQueue(this@EditIngredientActivity)
+            val url = INGREDIENT_SEARCH_URL + "?query=" + "${quantity}g of ${name}"
+
+            val stringRequest = object : StringRequest(Method.GET, url,
+                Response.Listener { response ->
+
+                                  Log.e("CUSTOM---->",response)
+
+                    val jsonObj = JSONObject(response)
+                    val item = jsonObj.getJSONArray("items").get(0)
+
+                    val data = Gson().fromJson(item.toString(),NutritionSummary::class.java)
+
+                    Log.e("CUSTOM---->","calories: ${data.calories.toString()}")
+
+
+                },
+                Response.ErrorListener { e ->
+                    e.printStackTrace()
+                    Log.e("CUSTOM---->", e.message.toString())
+
+                }) {
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+//                    headers["accept"] = "application/json"
+                    headers["X-Api-Key"] = "kMmESaB5q81xKoBKO8BEVA==bXTUuChvmIaFY557"
+                    return headers
+                }
+            }
+            queue.add(stringRequest)
+             */
 
         }
 

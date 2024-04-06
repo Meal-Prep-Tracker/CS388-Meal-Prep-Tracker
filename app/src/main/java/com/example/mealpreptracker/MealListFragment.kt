@@ -76,29 +76,7 @@ class MealListFragment: Fragment() {
                             calories = childSnapshot.child("calories").value.toString().toDoubleOrNull()
                                 ?: 0.0,
                             servings = childSnapshot.child("servings").value.toString().toIntOrNull()
-                                ?: 0,
-//                            nutritionSummary = NutritionSummary(
-//                                calories = childSnapshot.child("nutritionSummary").child("calories").value.toString().toDoubleOrNull()
-//                                    ?: 0.0,
-//                                protein = childSnapshot.child("nutritionSummary").child("protein").value.toString().toDoubleOrNull()
-//                                    ?: 0.0,
-//                                carbohydrates = childSnapshot.child("nutritionSummary").child("carbohydrates").value.toString().toDoubleOrNull()
-//                                    ?: 0.0,
-//                                fat = childSnapshot.child("nutritionSummary").child("fat").value.toString().toDoubleOrNull()
-//                                ?: 0.0,
-//                                saturated_fat = childSnapshot.child("nutritionSummary").child("saturated_fat").value.toString().toDoubleOrNull()
-//                                    ?: 0.0,
-//                                sodium = childSnapshot.child("nutritionSummary").child("sodium").value.toString().toDoubleOrNull()
-//                                    ?: 0.0,
-//                                potassium = childSnapshot.child("nutritionSummary").child("potassium").value.toString().toDoubleOrNull()
-//                                    ?: 0.0,
-//                                cholesterol = childSnapshot.child("nutritionSummary").child("cholesterol").value.toString().toDoubleOrNull()
-//                                    ?: 0.0,
-//                                fiber = childSnapshot.child("nutritionSummary").child("fiber").value.toString().toDoubleOrNull()
-//                                    ?: 0.0,
-//                                sugar = childSnapshot.child("nutritionSummary").child("sugar").value.toString().toDoubleOrNull()
-//                                    ?: 0.0,
-//                                )
+                                ?: 0
                         )
                     )
                 }
