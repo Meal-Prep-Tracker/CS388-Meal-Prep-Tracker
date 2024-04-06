@@ -106,8 +106,9 @@ class EditIngredientActivity : AppCompatActivity(){
                         // TODO: Create the parsedJSON
                         val summaryList = json.jsonObject.get("items") as JSONArray
 
-                        val summary = Gson().fromJson(summaryList.get(0).toString(),NutritionSummary::class.java)
+                        // TODO: make a nutrition summary
 
+                        val summary = Gson().fromJson(summaryList.get(0).toString(),NutritionSummary::class.java)
 
                         Log.w(TAG, "Fetched summary for $name: ${summary.toString()}")
                         // TODO: add a new ingredient to the Ingredients collection
@@ -117,10 +118,9 @@ class EditIngredientActivity : AppCompatActivity(){
                             Log.w(TAG, "Couldn't get push key for ingredients")
                             return
                         }
-                        // TODO: make a nutrition summary
 
                         // add an ingredient
-                        addIngredient(key, selected_meal, name, quantity, price)
+                        addIngredient(key, selected_meal, name, quantity, price, summary)
 
                     } catch (e: JSONException) {
                         Log.e(TAG, "Exception: $e")
@@ -128,41 +128,6 @@ class EditIngredientActivity : AppCompatActivity(){
                 }
 
             })
-
-            /*
-            Dhruval's way
-            val queue = Volley.newRequestQueue(this@EditIngredientActivity)
-            val url = INGREDIENT_SEARCH_URL + "?query=" + "${quantity}g of ${name}"
-
-            val stringRequest = object : StringRequest(Method.GET, url,
-                Response.Listener { response ->
-
-                                  Log.e("CUSTOM---->",response)
-
-                    val jsonObj = JSONObject(response)
-                    val item = jsonObj.getJSONArray("items").get(0)
-
-                    val data = Gson().fromJson(item.toString(),NutritionSummary::class.java)
-
-                    Log.e("CUSTOM---->","calories: ${data.calories.toString()}")
-
-
-                },
-                Response.ErrorListener { e ->
-                    e.printStackTrace()
-                    Log.e("CUSTOM---->", e.message.toString())
-
-                }) {
-                override fun getHeaders(): MutableMap<String, String> {
-                    val headers = HashMap<String, String>()
-//                    headers["accept"] = "application/json"
-                    headers["X-Api-Key"] = "kMmESaB5q81xKoBKO8BEVA==bXTUuChvmIaFY557"
-                    return headers
-                }
-            }
-            queue.add(stringRequest)
-             */
-
         }
 
         // Set the add button onClickListener
@@ -208,7 +173,8 @@ class EditIngredientActivity : AppCompatActivity(){
         selected_meal: Meal,
         name: String,
         quantity: String,
-        price: String
+        price: String,
+        summary: NutritionSummary
     ) {
         // make nutritionSummary for the ingredient and add it to the ingredient object
 
@@ -218,7 +184,8 @@ class EditIngredientActivity : AppCompatActivity(){
             meal_id = selected_meal.id,
             name = name,
             quantity = quantity.toDouble(),
-            price = price.toDouble()
+            price = price.toDouble(),
+            nutritionSummary = summary
         )
 
         Log.w(TAG, ingredient.toString())

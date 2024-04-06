@@ -10,5 +10,5 @@ data class Ingredient (
     var name: String? = null,
     var quantity: Double? = null,
     var price: Double? = null,
-    val nutritionSummary: NutritionSummary? = null
+    var nutritionSummary: NutritionSummary? = null
 ):  java.io.Serializable

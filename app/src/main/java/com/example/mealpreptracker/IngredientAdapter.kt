@@ -11,9 +11,19 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.codepath.asynchttpclient.AsyncHttpClient
+import com.codepath.asynchttpclient.RequestHeaders
+import com.codepath.asynchttpclient.RequestParams
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import com.google.firebase.database.DatabaseReference
+import com.google.gson.Gson
+import okhttp3.Headers
+import org.json.JSONArray
+import org.json.JSONException
 
 private const val TAG = "IngredientAdapter"
+private const val INGREDIENT_SEARCH_URL =
+    "https://api.calorieninjas.com/v1/nutrition"
 class IngredientAdapter(private val context: Context, private val ingredients: List<Ingredient>, private val databaseReference: DatabaseReference) : RecyclerView.Adapter<IngredientAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredientAdapter.ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_ingredient, parent, false)
@@ -40,6 +50,9 @@ class IngredientAdapter(private val context: Context, private val ingredients: L
             ingredientNameEditText.setText(ingredient.name)
             ingredientQuantityEditText.setText(ingredient.quantity.toString())
             ingredientPriceEditText.setText(ingredient.price.toString())
+            val client = AsyncHttpClient()
+            val headers = RequestHeaders()
+            headers.put("X-Api-Key", "kMmESaB5q81xKoBKO8BEVA==bXTUuChvmIaFY557")
 
             // Set TextWatchers on all EditText
             ingredientNameEditText.addTextChangedListener(object : TextWatcher {
@@ -51,6 +64,36 @@ class IngredientAdapter(private val context: Context, private val ingredients: L
                     // Update the corresponding item in the list
                     ingredient.name = s.toString()
                     // Update the summary
+                    val params = RequestParams()
+                    params.put("query", "${ingredient.quantity}g of ${ingredient.name}")
+                    client.get(INGREDIENT_SEARCH_URL, headers, params, object : JsonHttpResponseHandler() {
+                        override fun onFailure(
+                            statusCode: Int,
+                            headers: Headers?,
+                            response: String?,
+                            throwable: Throwable?
+                        ) {
+                            Log.e(TAG, "Failed to fetch articles: $statusCode")
+                        }
+
+                        override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
+                            Log.i(TAG, "Successfully fetched ingredient summaries: $json")
+                            try {
+                                // TODO: Create the parsedJSON
+                                val summaryList = json.jsonObject.get("items") as JSONArray
+
+                                // TODO: make a nutrition summary
+                                val summary = Gson().fromJson(summaryList.get(0).toString(),NutritionSummary::class.java)
+                                // Set the new summary to the ingredient
+                                ingredient.nutritionSummary = summary
+
+                            } catch (e: JSONException) {
+                                Log.e(TAG, "Exception: $e")
+                            }
+                        }
+
+                    })
+
                 }
             })
 
@@ -63,6 +106,35 @@ class IngredientAdapter(private val context: Context, private val ingredients: L
                     // Update the corresponding item in the list
                     ingredient.quantity = s.toString().toDouble()
                     // Update the summary
+                    val params = RequestParams()
+                    params.put("query", "${ingredient.quantity}g of ${ingredient.name}")
+                    client.get(INGREDIENT_SEARCH_URL, headers, params, object : JsonHttpResponseHandler() {
+                        override fun onFailure(
+                            statusCode: Int,
+                            headers: Headers?,
+                            response: String?,
+                            throwable: Throwable?
+                        ) {
+                            Log.e(TAG, "Failed to fetch articles: $statusCode")
+                        }
+
+                        override fun onSuccess(statusCode: Int, headers: Headers, json: JSON) {
+                            Log.i(TAG, "Successfully fetched ingredient summaries: $json")
+                            try {
+                                // TODO: Create the parsedJSON
+                                val summaryList = json.jsonObject.get("items") as JSONArray
+
+                                // TODO: make a nutrition summary
+                                val summary = Gson().fromJson(summaryList.get(0).toString(),NutritionSummary::class.java)
+                                // Set the new summary to the ingredient
+                                ingredient.nutritionSummary = summary
+
+                            } catch (e: JSONException) {
+                                Log.e(TAG, "Exception: $e")
+                            }
+                        }
+
+                    })
                 }
             })
 
@@ -74,7 +146,6 @@ class IngredientAdapter(private val context: Context, private val ingredients: L
                 override fun afterTextChanged(s: Editable?) {
                     // Update the corresponding item in the list
                     ingredient.price = s.toString().toDouble()
-                    // Update the summary
                 }
             })
 
