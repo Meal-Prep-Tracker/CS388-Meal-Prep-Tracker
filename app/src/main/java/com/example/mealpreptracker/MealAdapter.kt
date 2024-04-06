@@ -50,25 +50,28 @@ class MealAdapter(private val context: Context, private val meals: List<Meal>, p
                 val mealToDelete = meals[absoluteAdapterPosition]
                 Log.w(TAG, mealToDelete.toString())
                 databaseReference.child("Meals").child(mealToDelete.id).removeValue()
-//                databaseReference.child("Meal_ingredients").child(mealToDelete.id).addListenerForSingleValueEvent(object :
-//                    ValueEventListener {
-//                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                        if (dataSnapshot.exists()) {
-//                            // The key exists
-//                            // Handle the case when the key exists
-//                            databaseReference.child("Meal_ingredients").child(mealToDelete.id).removeValue()
-//                        } else {
-//                            // The key doesn't exist
-//                            // Handle the case when the key doesn't exist
-//                            Log.w(TAG, "meal with id: ${mealToDelete.id} does not exist in Meal_ingredients")
-//                        }
-//                    }
-//
-//                    override fun onCancelled(databaseError: DatabaseError) {
-//                        // Handle errors here
-//                        Log.w(TAG, "Cannot delete Meal")
-//                    }
-//                })
+
+                // Query to find ingredients with matching meal_id
+                val deleteIngredientsQuery = databaseReference.child("Ingredients").orderByChild("meal_id").equalTo(mealToDelete.id)
+
+                deleteIngredientsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        // Loop through the results and delete each node
+                        for (ingredientSnapshot in dataSnapshot.children){
+                            ingredientSnapshot.ref.removeValue()
+                                .addOnSuccessListener {
+                                    println("Ingredient deleted successfully.")
+                                }
+                                .addOnFailureListener { error ->
+                                    println("Error deleting ingredient: $error")
+                                }
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        println("Error querying ingredients: $databaseError")
+                    }
+                })
             }
         }
 
@@ -76,10 +79,11 @@ class MealAdapter(private val context: Context, private val meals: List<Meal>, p
             // Get selected article
             val meal = meals[absoluteAdapterPosition]
 
-            // Navigate to Details screen and pass selected article
-            val intent = Intent(context, MealDetailActivity::class.java)
-            intent.putExtra(MEAL_EXTRA, meal)
-            context.startActivity(intent)
+//            // Navigate to Details screen and pass selected article
+//            val intent = Intent(context, MealDetailActivity::class.java)
+//            intent.putExtra(MEAL_EXTRA, meal)
+//            context.startActivity(intent)
+            Log.w(TAG, "Details of ${meal.toString()} will be shown...")
             return true
         }
 

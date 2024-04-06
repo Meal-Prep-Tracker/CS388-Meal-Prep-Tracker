@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,12 +48,16 @@ class EditIngredientActivity : AppCompatActivity(){
         mealIngredientsRv.adapter = ingredientAdapter
         // Set layout manager to position the items
         mealIngredientsRv.layoutManager = LinearLayoutManager(this)
-        // Get the submit button
+        // Get the buttons
         val add_button = findViewById<Button>(R.id.addBtn)
         val done_button = findViewById<Button>(R.id.doneBtn)
 
         // Get the extra from the Intent
         val selected_meal = intent.getSerializableExtra(MEAL_EXTRA) as Meal
+
+        // Set the header to the name of the meal
+        val mealNameHeaderTextView = findViewById<TextView>(R.id.mealNameHeader)
+        mealNameHeaderTextView.text = "${selected_meal.name}"
 
 //        Log.w(TAG, selected_meal.toString())
         // Set up the API request code
@@ -115,7 +120,10 @@ class EditIngredientActivity : AppCompatActivity(){
 
         // Set the add button onClickListener
         done_button.setOnClickListener{
-            TODO("Need to implement the done listener, which will update the edited ingredients")
+            // update all ingredients
+            val updates = ingredients.associateBy { it.id }
+            Log.w(TAG, updates.toString())
+            database.child("Ingredients").updateChildren(updates)
         }
 
     }

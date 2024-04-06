@@ -2,6 +2,8 @@ package com.example.mealpreptracker
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +40,44 @@ class IngredientAdapter(private val context: Context, private val ingredients: L
             ingredientNameEditText.setText(ingredient.name)
             ingredientQuantityEditText.setText(ingredient.quantity.toString())
             ingredientPriceEditText.setText(ingredient.price.toString())
+
+            // Set TextWatchers on all EditText
+            ingredientNameEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    // Update the corresponding item in the list
+                    ingredient.name = s.toString()
+                    // Update the summary
+                }
+            })
+
+            ingredientQuantityEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    // Update the corresponding item in the list
+                    ingredient.quantity = s.toString().toDouble()
+                    // Update the summary
+                }
+            })
+
+            ingredientPriceEditText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    // Update the corresponding item in the list
+                    ingredient.price = s.toString().toDouble()
+                    // Update the summary
+                }
+            })
+
             deleteIconImageView.setOnClickListener{
                 val ingredientToDelete = ingredients[absoluteAdapterPosition]
 //                Log.w(TAG, ingredientToDelete.toString())
