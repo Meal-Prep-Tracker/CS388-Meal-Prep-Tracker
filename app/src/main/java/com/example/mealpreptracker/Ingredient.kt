@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Ingredient (
     val id: String = "",
-    val meal_id: String,
+    val meal_id: String? = null,
     var name: String? = null,
     var quantity: Double? = null,
     var price: Double? = null,

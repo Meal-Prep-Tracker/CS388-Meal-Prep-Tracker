@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
         android:shadowColor="#40000000"
         android:shadowDx="0"
@@ -22,6 +23,7 @@
         android:textColor="#000000"
         android:textSize="48sp"
         android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/mealName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -114,6 +116,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintBottom_toTopOf="@id/calHeader"
         tools:text="Nutrition Summary" />
 
     <TextView

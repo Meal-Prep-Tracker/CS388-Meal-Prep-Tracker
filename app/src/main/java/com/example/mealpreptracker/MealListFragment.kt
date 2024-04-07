@@ -67,23 +67,14 @@ class MealListFragment: Fragment() {
                 meals.clear()
                 // Get Meal object and use the values to update the UI
                 for(childSnapshot in dataSnapshot.children) {
-                    meals.add(
-                        Meal(
-                            id = childSnapshot.child("id").value.toString(),
-                            name = childSnapshot.child("name").value.toString(),
-                            price = childSnapshot.child("price").value.toString().toDoubleOrNull()
-                                ?: 0.0,
-                            calories = childSnapshot.child("calories").value.toString().toDoubleOrNull()
-                                ?: 0.0,
-                            servings = childSnapshot.child("servings").value.toString().toIntOrNull()
-                                ?: 0
-                        )
-                    )
+                    childSnapshot.getValue(Meal::class.java)?.let {
+                            meals.add(
+                                it
+                            )
+                        }
                 }
-
                 mealAdapter.notifyDataSetChanged()
 //                Log.w(TAG, meals.toString())
-
             }
 
 

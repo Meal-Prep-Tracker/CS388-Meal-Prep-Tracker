@@ -24,12 +24,10 @@ import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.google.gson.Gson
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okhttp3.Headers
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 
 fun createJson() = Json {
     isLenient = true
@@ -147,18 +145,13 @@ class EditIngredientActivity : AppCompatActivity(){
                 ingredients.clear()
                 // Get Meal object and use the values to update the UI
                 for (childSnapshot in dataSnapshot.children) {
-                    ingredients.add(
-                        Ingredient(
-                            id = childSnapshot.child("id").value.toString(),
-                            meal_id = childSnapshot.child("meal_id").value.toString(),
-                            quantity = childSnapshot.child("quantity").value.toString().toDoubleOrNull() ?: 0.0,
-                            price = childSnapshot.child("price").value.toString().toDoubleOrNull() ?: 0.0,
-                            name = childSnapshot.child("name").value.toString()
+                    childSnapshot.getValue(Ingredient::class.java)?.let {
+                        ingredients.add(
+                            it
                         )
-                    )
+                    }
                 }
                 ingredientAdapter.notifyDataSetChanged()
-
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
