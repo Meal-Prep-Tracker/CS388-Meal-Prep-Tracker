@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         val darkMode = sharedpreferences.getBoolean("darkMode", false)
-        val notifications = sharedpreferences.getBoolean("notifications", true)
+        val notifications = sharedpreferences.getBoolean("notifications", false)
 
         if (darkMode) {
             // Apply dark theme
@@ -35,8 +35,6 @@ class MainActivity : AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
 
 //        val database = Firebase.database
 //        val myRef = database.getReference("message")

@@ -65,4 +65,5 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.google.firebase:firebase-messaging:23.4.1")
 }

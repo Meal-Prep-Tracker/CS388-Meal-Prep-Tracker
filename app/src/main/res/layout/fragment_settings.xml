@@ -78,28 +78,29 @@
                 android:fontFamily="@font/inter"
                 app:layout_constraintTop_toBottomOf="@+id/darkModeSwitch" />
 
-            <Switch
-                android:id="@+id/notificationSwitch"
+            <Button
+                android:id="@+id/notificationButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                android:padding="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/notificationText"
+                android:layout_marginTop="18dp"
+                android:text="Enable"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/dark_teal"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                app:layout_constraintTop_toBottomOf="@+id/notificationText" />
 
             <Button
                 android:id="@+id/logoutButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="96dp"
                 android:text="Logout"
                 android:textSize="16dp"
                 android:textColor="@color/black"
                 android:backgroundTint="@color/dark_teal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/notificationSwitch" />
+                app:layout_constraintTop_toBottomOf="@+id/notificationButton" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

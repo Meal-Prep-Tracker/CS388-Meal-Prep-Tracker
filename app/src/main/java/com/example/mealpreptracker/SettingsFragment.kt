@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,12 +13,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Switch
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import android.Manifest
+import android.widget.Toast
 
 
 class SettingsFragment : Fragment() {
     private lateinit var darkModeSwitch: Switch
-    private lateinit var notificationSwitch: Switch
+    private lateinit var notificationButton: Button
     private lateinit var logoutButton: Button
     lateinit var sharedpreferences: SharedPreferences
 
@@ -33,13 +39,12 @@ class SettingsFragment : Fragment() {
 
         sharedpreferences = requireActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         val darkMode = sharedpreferences.getBoolean("darkMode", false)
-        val notifications = sharedpreferences.getBoolean("notifications", true)
+        val notifications = sharedpreferences.getBoolean("notifications", false)
 
         val newThemeId = if (darkMode) R.style.mealPrepThemeDark else R.style.mealPrepTheme
         requireActivity().setTheme(newThemeId)
 
 //        Log.v("Settings", notifications.toString())
-
 
         return view
     }
@@ -53,22 +58,16 @@ class SettingsFragment : Fragment() {
 
 
         darkModeSwitch = view.findViewById(R.id.darkModeSwitch)
-        notificationSwitch = view.findViewById(R.id.notificationSwitch)
+        notificationButton = view.findViewById(R.id.notificationButton)
         logoutButton = view.findViewById(R.id.logoutButton)
 
         val darkMode = sharedpreferences.getBoolean("darkMode", false)
-        val notifications = sharedpreferences.getBoolean("notifications", true)
+        val notifications = sharedpreferences.getBoolean("notifications", false)
 
         if (darkMode) {
             darkModeSwitch.setChecked(true)
         } else {
             darkModeSwitch.setChecked(false)
-        }
-
-        if (notifications) {
-            notificationSwitch.setChecked(true)
-        } else {
-            notificationSwitch.setChecked(false)
         }
 
         // Dark mode switch listener
@@ -78,33 +77,71 @@ class SettingsFragment : Fragment() {
                 putBoolean("darkMode", isChecked)
                 apply()
             }
-            // Apply the appropriate theme
-            Log.v("Settings", "isCheckedVal $isChecked")
+            Log.v("Settings", "Dark Mode: $isChecked")
             if (isChecked) {
-                // Apply dark theme
                 requireActivity().setTheme(R.style.mealPrepThemeDark)
             } else {
-                // Apply light theme
                 requireActivity().setTheme(R.style.mealPrepTheme)
             }
-            requireActivity().recreate() //
+            requireActivity().recreate()
         }
 
-
-        // Notifications switch listener
-        notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
-            // Update shared preferences value
-            with(sharedpreferences.edit()) {
-                putBoolean("notifications", isChecked)
-                apply()
-            }
+        notificationButton.setOnClickListener {
+            askNotificationPermission()
         }
+
+//        // Notifications switch listener
+//        notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
+//            with(sharedpreferences.edit()) {
+//                putBoolean("notifications", isChecked)
+//                apply()
+//            }
+//            Log.v("Settings", "Notifications: $isChecked")
+//            if (isChecked) {
+//                askNotificationPermission()
+//            } else {
+//                Toast.makeText(requireActivity(), "Notifications are Disabled!", Toast.LENGTH_SHORT).show()
+//            }
+//
+//        }
 
         logoutButton.setOnClickListener {
 //            startActivity(Intent(this, WelcomeActivity::class.java))
         }
-
-
     }
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            sharedpreferences = requireActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+            val editor = sharedpreferences.edit()
+            editor.putBoolean("notifications", true)
+            editor.apply()
+            Log.v("Settings", "Notifications: True")
+        } else {
+            Toast.makeText(requireActivity(), "Notifications are disabled!", Toast.LENGTH_SHORT).show()
+            sharedpreferences = requireActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+            val editor = sharedpreferences.edit()
+            editor.putBoolean("notifications", false)
+            editor.apply()
+            Log.v("Settings", "Notifications: False")
+        }
+    }
+
+    private fun askNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.POST_NOTIFICATIONS) ==
+                PackageManager.PERMISSION_GRANTED
+            ) {
+                Toast.makeText(requireActivity(), "Notifications are Enabled!", Toast.LENGTH_SHORT).show()
+            } else if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                // When user already selected "Don't allow" for notifications. They must do it manually through device settings
+                Toast.makeText(requireActivity(), "Please enable notifications through device settings", Toast.LENGTH_SHORT).show()
+            } else {
+                // Asking for permission for notifications
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
+    }
 }
