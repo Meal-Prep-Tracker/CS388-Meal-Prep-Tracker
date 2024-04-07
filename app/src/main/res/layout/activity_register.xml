@@ -10,7 +10,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/MealPrepTrackerLogo_White"
+        android:src="@drawable/meal_prep_tracker_logo_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,26 +88,6 @@
         app:layout_constraintVertical_bias="0.021" />
 
     <EditText
-        android:id="@+id/username_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:autofillHints=""
-        android:background="@drawable/rounded_outline_text"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="text"
-        android:padding="10dp"
-        android:text=""
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email_input"
-        app:layout_constraintVertical_bias="0.025" />
-
-    <EditText
         android:id="@+id/password_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -124,7 +104,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username_input"
+        app:layout_constraintTop_toBottomOf="@id/email_input"
         app:layout_constraintVertical_bias="0.025" />
 
     <EditText
@@ -171,7 +151,7 @@
         app:layout_constraintTop_toBottomOf="@id/sign_up_button" />
 
     <ImageButton
-        android:id="@+id/login_continue_w_google_btn"
+        android:id="@+id/sign_up_btn_google"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"

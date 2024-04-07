@@ -7,7 +7,7 @@
     >
 
     <EditText
-        android:id="@+id/email_username_input"
+        android:id="@+id/login_email_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -45,7 +45,7 @@
         android:background="@drawable/rounded_outline_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_username_input" />
+        app:layout_constraintTop_toBottomOf="@+id/login_email_input" />
 
     <Button
         android:id="@+id/login_login_button"
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:text="@string/login_title_text"
         android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@+id/email_username_input"
+        app:layout_constraintBottom_toTopOf="@+id/login_email_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -96,7 +96,7 @@
         android:id="@+id/imageView2"
         android:layout_width="125dp"
         android:layout_height="125dp"
-        android:src="@drawable/MealPrepTrackerLogo_White"
+        android:src="@drawable/meal_prep_tracker_logo_white"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
