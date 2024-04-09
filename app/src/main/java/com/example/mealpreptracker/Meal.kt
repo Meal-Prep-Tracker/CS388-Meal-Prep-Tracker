@@ -11,5 +11,6 @@ data class Meal (
     val name: String? = null,
     val servings: Int? = 0,
     val price: Double? = 0.0,
-    val calories: Double? = 0.0
+    val calories: Double? = 0.0,
+    val date: Long? = 0L
 ):  java.io.Serializable

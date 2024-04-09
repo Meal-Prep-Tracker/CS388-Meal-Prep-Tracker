@@ -1,5 +1,6 @@
 package com.example.mealpreptracker
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,24 +9,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Firebase
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
-import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 private const val TAG = "AddMealFragment"
+@SuppressLint("SimpleDateFormat")
+val dateFormat = SimpleDateFormat("MM/dd/yyyy")
 
 class AddMealFragment : Fragment() {
     private lateinit var mealNameEditText: EditText
     private lateinit var servingsEditText: EditText
     private lateinit var addMealBtn: Button
     private lateinit var database: DatabaseReference
+
+    lateinit var mealDate: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -45,8 +46,7 @@ class AddMealFragment : Fragment() {
         }
     }
 
-    private fun AddNewMeal()
-    {
+    private fun AddNewMeal() {
         val key = database.child("Meals").push().key
 
         // error log
@@ -60,11 +60,13 @@ class AddMealFragment : Fragment() {
         val meal = Meal(
             id = key,
             name = mealNameEditText.text.toString(),
-            servings = servingsEditText.text.toString().toInt()
+            servings = servingsEditText.text.toString().toInt(),
+            date = dateFormat.parse(mealDate.text.toString())?.time
         )
         // Add to the meals collection
         database.child("Meals").child(key).setValue(meal)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // [START initialize_database_ref]
@@ -73,8 +75,19 @@ class AddMealFragment : Fragment() {
         mealNameEditText = view.findViewById(R.id.mealName)
         servingsEditText = view.findViewById(R.id.mealServings)
         addMealBtn = view.findViewById(R.id.addMealBtn)
-        addMealBtn.setOnClickListener{
+        mealDate = view.findViewById(R.id.mealDate)
+        addMealBtn.setOnClickListener {
             AddNewMeal()
+        }
+
+        view.findViewById<Button>(R.id.pickDate).setOnClickListener {
+            val cc = object : DatePickerFragment.OnDateSelectListener {
+                override fun onDateSelect(c: Calendar) {
+                    mealDate.text =  "${c.get(Calendar.MONTH) + 1}/${c.get(Calendar.DAY_OF_MONTH)}/${c.get(Calendar.YEAR)}"
+                }
+            }
+            val newFragment = DatePickerFragment(cc)
+            newFragment.show(parentFragmentManager, "datePicker")
         }
     }
 
