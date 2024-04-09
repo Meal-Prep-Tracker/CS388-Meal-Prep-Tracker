@@ -8,16 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Firebase
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
-import kotlinx.coroutines.launch
 
 private const val TAG = "AddMealFragment"
 
@@ -26,6 +20,8 @@ class AddMealFragment : Fragment() {
     private lateinit var servingsEditText: EditText
     private lateinit var addMealBtn: Button
     private lateinit var database: DatabaseReference
+
+    lateinit var mealDate: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -45,8 +41,7 @@ class AddMealFragment : Fragment() {
         }
     }
 
-    private fun AddNewMeal()
-    {
+    private fun AddNewMeal() {
         val key = database.child("Meals").push().key
 
         // error log
@@ -65,6 +60,7 @@ class AddMealFragment : Fragment() {
         // Add to the meals collection
         database.child("Meals").child(key).setValue(meal)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // [START initialize_database_ref]
@@ -73,12 +69,19 @@ class AddMealFragment : Fragment() {
         mealNameEditText = view.findViewById(R.id.mealName)
         servingsEditText = view.findViewById(R.id.mealServings)
         addMealBtn = view.findViewById(R.id.addMealBtn)
-        addMealBtn.setOnClickListener{
+        mealDate = view.findViewById(R.id.mealDate)
+        addMealBtn.setOnClickListener {
             AddNewMeal()
         }
 
         view.findViewById<Button>(R.id.pickDate).setOnClickListener {
-            val newFragment = DatePickerFragment()
+            val cc = object : DatePickerFragment.OnDateSelectListener {
+                override fun onDateSelect(month: Int, day: Int, year: Int) {
+                    val mo = month + 1
+                    mealDate.text =  "$mo/$day/$year"
+                }
+            }
+            val newFragment = DatePickerFragment(cc)
             newFragment.show(parentFragmentManager, "datePicker")
         }
     }
