@@ -76,6 +76,11 @@ class AddMealFragment : Fragment() {
         addMealBtn.setOnClickListener{
             AddNewMeal()
         }
+
+        view.findViewById<Button>(R.id.pickDate).setOnClickListener {
+            val newFragment = DatePickerFragment()
+            newFragment.show(parentFragmentManager, "datePicker")
+        }
     }
 
 }
