@@ -81,15 +81,15 @@ class MealDetailActivity : AppCompatActivity() {
 
                     // Calculate all the details of the meal
                     calHeaderTextView.text = "Calories: ${ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 }}"
-                    proteinHeaderTextView.text = "Protein: ${ingredients.sumOf { it?.nutritionSummary?.protein ?: 0.0 }}g"
-                    carbsHeaderTextView.text = "Carbs: ${ingredients.sumOf { it?.nutritionSummary?.carbohydrates ?: 0.0 }}g"
-                    fatHeaderTextView.text = "Fat: ${ingredients.sumOf { it?.nutritionSummary?.fat ?: 0.0 }}g"
-                    fiberHeaderTextView.text = "Fiber: ${ingredients.sumOf { it?.nutritionSummary?.fiber ?: 0.0 }}g"
-                    sugarHeaderTextView.text = "Sugar: ${ingredients.sumOf { it?.nutritionSummary?.sugar ?: 0.0 }}g"
-                    satFatHeaderTextView.text = "Saturated Fat: ${ingredients.sumOf { it?.nutritionSummary?.saturated_fat ?: 0.0 }}g"
-                    sodiumHeaderTextView.text = "Sodium: ${ingredients.sumOf { it?.nutritionSummary?.sodium ?: 0.0 }}mg"
-                    potassiumHeaderTextView.text = "Potassium: ${ingredients.sumOf { it?.nutritionSummary?.sodium ?: 0.0 }}mg"
-                    cholesterolHeaderTextView.text = "Cholesterol: ${ingredients.sumOf { it?.nutritionSummary?.cholesterol ?: 0.0 }}mg"
+                    proteinHeaderTextView.text = "Protein: ${ingredients.sumOf { it?.nutritionSummary?.protein_g ?: 0.0 }}g"
+                    carbsHeaderTextView.text = "Carbs: ${ingredients.sumOf { it?.nutritionSummary?.carbohydrates_total_g ?: 0.0 }}g"
+                    fatHeaderTextView.text = "Fat: ${ingredients.sumOf { it?.nutritionSummary?.fat_total_g ?: 0.0 }}g"
+                    fiberHeaderTextView.text = "Fiber: ${ingredients.sumOf { it?.nutritionSummary?.fiber_g ?: 0.0 }}g"
+                    sugarHeaderTextView.text = "Sugar: ${ingredients.sumOf { it?.nutritionSummary?.sugar_g ?: 0.0 }}g"
+                    satFatHeaderTextView.text = "Saturated Fat: ${ingredients.sumOf { it?.nutritionSummary?.fat_saturated_g ?: 0.0 }}g"
+                    sodiumHeaderTextView.text = "Sodium: ${ingredients.sumOf { it?.nutritionSummary?.sodium_mg ?: 0.0 }}mg"
+                    potassiumHeaderTextView.text = "Potassium: ${ingredients.sumOf { it?.nutritionSummary?.potassium_mg ?: 0.0 }}mg"
+                    cholesterolHeaderTextView.text = "Cholesterol: ${ingredients.sumOf { it?.nutritionSummary?.cholesterol_mg ?: 0.0 }}mg"
                     mealPriceTextView.text = "\$${ingredients.sumOf { it?.price ?: 0.0 }}"
             }
             .addOnFailureListener{
