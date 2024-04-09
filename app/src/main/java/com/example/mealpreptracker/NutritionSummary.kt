@@ -9,23 +9,23 @@ data class NutritionSummary (
     @SerialName("calories")
     val calories: Double?  = 0.0,
     @SerialName("protein_g")
-    val protein: Double?  = 0.0,
+    val protein_g: Double?  = 0.0,
     @SerialName("carbohydrates_total_g")
-    val carbohydrates: Double? = 0.0,
+    val carbohydrates_total_g: Double? = 0.0,
     @SerialName("fat_total_g")
-    val fat: Double? = 0.0,
+    val fat_total_g: Double? = 0.0,
     @SerialName("fat_saturated_g")
-    val saturated_fat: Double? = 0.0,
+    val fat_saturated_g: Double? = 0.0,
     @SerialName("sodium_mg")
-    val sodium: Double? = 0.0,
+    val sodium_mg: Double? = 0.0,
     @SerialName("potassium_mg")
-    val potassium: Double? = 0.0,
+    val potassium_mg: Double? = 0.0,
     @SerialName("cholesterol_mg")
-    val cholesterol: Double? = 0.0,
+    val cholesterol_mg: Double? = 0.0,
     @SerialName("fiber_g")
-    val fiber: Double? = 0.0,
+    val fiber_g: Double? = 0.0,
     @SerialName("sugar_g")
-    val sugar: Double? = 0.0
+    val sugar_g: Double? = 0.0
 ):  java.io.Serializable
 
 //@Keep
