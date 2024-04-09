@@ -82,6 +82,7 @@ class AddMealFragment : Fragment() {
 
         view.findViewById<Button>(R.id.pickDate).setOnClickListener {
             val cc = object : DatePickerFragment.OnDateSelectListener {
+                @SuppressLint("SetTextI18n")
                 override fun onDateSelect(c: Calendar) {
                     mealDate.text =  "${c.get(Calendar.MONTH) + 1}/${c.get(Calendar.DAY_OF_MONTH)}/${c.get(Calendar.YEAR)}"
                 }
