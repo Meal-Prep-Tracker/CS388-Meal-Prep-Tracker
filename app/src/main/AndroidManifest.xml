@@ -29,6 +29,12 @@
             android:name=".UpdateProfileActivity"
             android:exported="true"/>
         <activity
+            android:name=".EditIngredientActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".MealDetailActivity"
+            android:exported="true"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
