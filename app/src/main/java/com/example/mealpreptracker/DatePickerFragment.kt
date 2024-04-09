@@ -10,7 +10,7 @@ import java.util.Calendar
 class DatePickerFragment(val listener: OnDateSelectListener) : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
     interface OnDateSelectListener{
-        fun onDateSelect(month: Int, day: Int, year: Int);
+        fun onDateSelect(c: Calendar);
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -32,7 +32,7 @@ class DatePickerFragment(val listener: OnDateSelectListener) : DialogFragment(),
         c[Calendar.MONTH] = month
         c[Calendar.DAY_OF_MONTH] = day
 
-        listener.onDateSelect(month,day,year)
+        listener.onDateSelect(c)
 
     }
 }
