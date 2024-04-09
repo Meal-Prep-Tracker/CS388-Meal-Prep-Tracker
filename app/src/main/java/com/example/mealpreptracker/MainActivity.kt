@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         val darkMode = sharedpreferences.getBoolean("darkMode", false)
         val notifications = sharedpreferences.getBoolean("notifications", false)
 
-//        this.startActivity(Intent(this, WelcomeActivity::class.java))
+        this.startActivity(Intent(this, WelcomeActivity::class.java))
 
         if (darkMode) {
             // Apply dark theme
