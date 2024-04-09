@@ -7,7 +7,7 @@
     >
 
     <EditText
-        android:id="@+id/email_username_input"
+        android:id="@+id/login_email_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -45,7 +45,7 @@
         android:background="@drawable/rounded_outline_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_username_input" />
+        app:layout_constraintTop_toBottomOf="@+id/login_email_input" />
 
     <Button
         android:id="@+id/login_login_button"
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:text="@string/login_title_text"
         android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@+id/email_username_input"
+        app:layout_constraintBottom_toTopOf="@+id/login_email_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

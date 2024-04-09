@@ -1,5 +1,6 @@
 package com.example.mealpreptracker
 
+import android.content.Intent
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         val darkMode = sharedpreferences.getBoolean("darkMode", false)
         val notifications = sharedpreferences.getBoolean("notifications", false)
+
+        this.startActivity(Intent(this, WelcomeActivity::class.java))
 
         if (darkMode) {
             // Apply dark theme
