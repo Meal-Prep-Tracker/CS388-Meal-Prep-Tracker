@@ -62,8 +62,8 @@ class MainActivity : AppCompatActivity() {
 //        })
 
         val dashboardFragment: Fragment = DashboardFragment()
-//        val mealsListFragment: Fragment = MealListFragment()
-//        val addMealFragment: Fragment = AddMealFragment()
+        val mealsListFragment: Fragment = MealListFragment()
+        val addMealFragment: Fragment = AddMealFragment()
         val profileFragment: Fragment = ProfileFragment()
         val settingsFragment: Fragment = SettingsFragment()
 
@@ -75,8 +75,8 @@ class MainActivity : AppCompatActivity() {
             lateinit var fragment: Fragment
             when (item.itemId) {
                 R.id.action_dashboard -> fragment = dashboardFragment
-//                R.id.action_meals_list -> fragment = mealsListFragment
-//                R.id.action_add_meal -> fragment = addMealFragment
+                R.id.action_meals_list -> fragment = mealsListFragment
+                R.id.action_add_meal -> fragment = addMealFragment
                 R.id.action_profile -> fragment = profileFragment
                 R.id.action_settings -> fragment = settingsFragment
 

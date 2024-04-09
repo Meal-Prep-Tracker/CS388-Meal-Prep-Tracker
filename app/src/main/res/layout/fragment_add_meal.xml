@@ -55,9 +55,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
+            android:layout_marginEnd="26dp"
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/mealName"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="201dp"
             tools:text="Name: " />
@@ -68,6 +70,7 @@
             android:id="@+id/mealName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
             android:layout_marginEnd="120dp"
             android:hint="Name"
             android:inputType="text"
@@ -75,6 +78,7 @@
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mealNameLbl"
             tools:layout_editor_absoluteY="189dp" />
 
         <TextView
@@ -82,9 +86,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
+            android:layout_marginEnd="22dp"
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/mealServings"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="264dp"
             tools:text="Servings:" />
@@ -93,6 +99,7 @@
             android:id="@+id/mealServings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
             android:layout_marginEnd="150dp"
             android:hint="4"
             android:inputType="numberDecimal"
@@ -100,6 +107,7 @@
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mealServingsLbl"
             tools:layout_editor_absoluteY="254dp" />
 
         <Button

@@ -37,7 +37,7 @@
 <!--    android:fontFamily="@font/inter"-->
 <!--    android:textColor="#c7c7c7"-->
     <EditText
-        android:id="@+id/ingredientName"
+        android:id="@+id/ingredientNameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -58,13 +58,13 @@
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ingredientPrice"
-        app:layout_constraintStart_toEndOf="@+id/ingredientName"
+        app:layout_constraintEnd_toStartOf="@+id/ingredientPriceField"
+        app:layout_constraintStart_toEndOf="@+id/ingredientNameField"
         app:layout_constraintTop_toBottomOf="@+id/mealIngredientsRv"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/ingredientPrice"
+        android:id="@+id/ingredientPriceField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -90,7 +90,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredientPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/ingredientPriceField" />
 
     <Button
         android:id="@+id/doneBtn"
@@ -99,13 +99,14 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/dark_teal"
         android:text="Done"
         android:textColor="@color/black"
-        android:backgroundTint="@color/dark_teal"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredientName" />
+        app:layout_constraintTop_toBottomOf="@+id/ingredientNameField"
+        app:layout_constraintVertical_bias="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
