@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
         android:allowBackup="true"
@@ -12,17 +13,27 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-
-        android:theme="@style/Theme.MealPrepTracker"
+        android:theme="@style/mealPrepTheme"
         tools:targetApi="31">
 
-        <activity android:name=".EditIngredientActivity"
-            android:exported="true" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/meal_prep_tracker_logo_transparent" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/black" />
 
-        <activity android:name=".MealDetailActivity"
-            android:exported="true" />
-
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".EditIngredientActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".MealDetailActivity"
+            android:exported="true"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -32,6 +43,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".FirebaseNotifications"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

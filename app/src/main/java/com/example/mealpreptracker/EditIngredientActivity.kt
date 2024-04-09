@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestHeaders
 import com.codepath.asynchttpclient.RequestParams
@@ -24,16 +20,11 @@ import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.google.gson.Gson
-import kotlinx.serialization.json.Json
 import okhttp3.Headers
 import org.json.JSONArray
 import org.json.JSONException
 
-fun createJson() = Json {
-    isLenient = true
-    ignoreUnknownKeys = true
-    useAlternativeNames = false
-}
+
 
 private const val TAG = "EditIngredientActivity"
 //private const val SEARCH_API_KEY: String = BuildConfig.API_KEY
