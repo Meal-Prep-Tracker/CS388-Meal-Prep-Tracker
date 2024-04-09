@@ -1,6 +1,8 @@
 package com.example.mealpreptracker
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
@@ -23,8 +25,19 @@ class UpdateProfileActivity : AppCompatActivity()  {
     private lateinit var formPasswordText: EditText
     private lateinit var formConfirmPasswordText: EditText
     private lateinit var updateButton: Button
-
+    lateinit var sharedpreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+        val darkMode = sharedpreferences.getBoolean("darkMode", false)
+        val notifications = sharedpreferences.getBoolean("notifications", true)
+
+        if (darkMode) {
+            // Apply dark theme
+            setTheme(R.style.mealPrepThemeDark)
+        } else {
+            // Apply light theme
+            setTheme(R.style.mealPrepTheme)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_profile)
 

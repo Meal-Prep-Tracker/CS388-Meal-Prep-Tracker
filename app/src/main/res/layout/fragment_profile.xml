@@ -36,7 +36,6 @@
                 android:shadowDx="0"
                 android:shadowDy="4"
                 android:shadowRadius="4"
-                android:textColor="#000000"
                 android:textSize="48sp"
                 android:fontFamily="@font/inter"
                 android:textStyle="normal"
@@ -44,7 +43,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/logo"
-                tools:text="Profile" />
+                android:text="Profile" />
 
             <TextView
                 android:id="@+id/welcomeTitle"
@@ -52,9 +51,8 @@
                 android:layout_height="32dp"
                 android:textStyle="normal"
                 android:textSize="24sp"
-                android:textColor="#000000"
                 android:gravity="center"
-                tools:text="Hi (name)!"
+                android:text="Hi (name)!"
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/inter"
@@ -79,9 +77,8 @@
                 android:layout_height="36dp"
                 android:textStyle="bold"
                 android:textSize="32sp"
-                android:textColor="#000000"
                 android:gravity="center"
-                tools:text="Favorites List"
+                android:text="Favorites List"
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/inter"

@@ -1,8 +1,11 @@
 package com.example.mealpreptracker
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.DataSnapshot
@@ -13,8 +16,23 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 private const val TAG = "MAIN"
+const val SHARED_PREFS = "SHARED_PREFS"
+
 class MainActivity : AppCompatActivity() {
+
+    lateinit var sharedpreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+        val darkMode = sharedpreferences.getBoolean("darkMode", false)
+        val notifications = sharedpreferences.getBoolean("notifications", false)
+
+        if (darkMode) {
+            // Apply dark theme
+            setTheme(R.style.mealPrepThemeDark)
+        } else {
+            // Apply light theme
+            setTheme(R.style.mealPrepTheme)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -64,7 +82,8 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        bottomNavigationView.selectedItemId = R.id.action_profile
+        bottomNavigationView.selectedItemId = R.id.action_settings
+
     }
 
     private fun replaceFragment(mealFragment: Fragment) {
@@ -73,4 +92,5 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.main_layout, mealFragment)
         fragmentTransaction.commit()
     }
+
 }
