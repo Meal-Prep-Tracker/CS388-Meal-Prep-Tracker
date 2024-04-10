@@ -104,6 +104,7 @@ class RegisterActivity : AppCompatActivity() {
                         ))
                         toastMsg(REGISTER_SUCCESS)
                         startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+                        finish()
                     }
                 }
                 .addOnFailureListener { e ->
@@ -169,6 +170,7 @@ class RegisterActivity : AppCompatActivity() {
                     MainActivity::class.java
                 )
                 startActivity(intent)
+                finish()
             }
             .addOnFailureListener { err ->
                 Log.d(REGISTER_ACTIVITY_TAG, "firebaseAuthWithGoogleAccount : ${err.message}")
