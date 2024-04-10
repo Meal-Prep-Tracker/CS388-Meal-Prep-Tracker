@@ -54,7 +54,12 @@ class ProfileFragment : Fragment() {
                 var fname = userData.map { it?.firstName }.joinToString(", ")
                 var lname = userData.map { it?.lastName }.joinToString(", ")
 
-                var welcomeMessage = "Hello $fname $lname!"
+                var welcomeMessage = "Hello!"
+
+                if (fname.length != 0 && lname.length != 0) {
+                    welcomeMessage = "Hello $fname $lname!"
+                }
+
                 welcomeTitle.text = welcomeMessage
             }
             .addOnFailureListener{
