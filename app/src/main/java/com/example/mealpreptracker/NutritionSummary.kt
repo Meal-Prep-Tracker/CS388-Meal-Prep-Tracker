@@ -24,7 +24,7 @@ data class NutritionSummary (
     val fiber: Double? = 0.0,
     @SerializedName("sugar_g")
     val sugar: Double? = 0.0
-):  java.io.Serializable
+)
 
 
 
