@@ -64,7 +64,7 @@ class EditIngredientActivity : AppCompatActivity(){
         val client = AsyncHttpClient()
 
         // update the ingredients list by pulling in all hte meals from the firebase db - can add a listener that listens to changes in the collection
-        val ingredientsReference = database.child("Ingredients").orderByChild("meal_id").equalTo(selected_meal.id)
+        val ingredientsReference = database.child(INGREDIENTS_COLLECTION).orderByChild("meal_id").equalTo(selected_meal.id)
         fetchIngredients(ingredientsReference, ingredientAdapter)
 
         // Set the add button onClickListener
@@ -125,7 +125,7 @@ class EditIngredientActivity : AppCompatActivity(){
             // update all ingredients
             val updates = ingredients.associateBy { it.id }
             Log.w(TAG, updates.toString())
-            database.child("Ingredients").updateChildren(updates)
+            database.child(INGREDIENTS_COLLECTION).updateChildren(updates)
         }
 
     }
@@ -175,6 +175,6 @@ class EditIngredientActivity : AppCompatActivity(){
 
         Log.w(TAG, ingredient.toString())
         // Add to the meals collection
-        database.child("Ingredients").child(key).setValue(ingredient)
+        database.child(INGREDIENTS_COLLECTION).child(key).setValue(ingredient)
     }
 }

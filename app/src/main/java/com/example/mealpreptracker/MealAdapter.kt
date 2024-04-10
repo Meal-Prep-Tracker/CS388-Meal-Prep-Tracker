@@ -19,7 +19,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
 import java.util.ArrayList
 
-const val MEAL_EXTRA = "MEAL_EXTRA"
 private const val TAG = "MealAdapter"
 class MealAdapter(private val context: Context, private val meals: List<Meal>, private val databaseReference: DatabaseReference) : RecyclerView.Adapter<MealAdapter.ViewHolder>(){
 

@@ -11,24 +11,22 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class EditMealActivity : AppCompatActivity() {
-    private var db: FirebaseDatabase = Firebase.database
-    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var db: FirebaseDatabase
+    private lateinit var auth: FirebaseAuth
 
-    private var mealName: EditText = findViewById(R.id.meal_name_input)
-    private var servings: EditText = findViewById(R.id.servings_input)
-    private var editIngredientsBtn: Button = findViewById(R.id.edit_ingredients_btn)
-    private var image: ImageButton = findViewById(R.id.food_image);
+    private lateinit var mealName: EditText
+    private lateinit var servings: EditText
+    private lateinit var editIngredientsBtn: Button
+    private lateinit var image: ImageButton
 
-    private val MEAL_ID = "meal_id"
-    private val MEALS_COLLECTION = "Meals"
     private val EDIT_MEAL_TAG = "EDIT_MEAL"
-    private val PIC_ID = 123;
+    private val CAMERA_RESULT_CODE = 123;
+    private val ACTIVITY_NAME = "EditMealActivity"
 
     private var imageRetaken = false;
 
@@ -36,26 +34,17 @@ class EditMealActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_meal)
 
-        auth.currentUser
-            ?.let { userLoggedInLogic }
-            ?: run {
-                startActivity(Intent(this@EditMealActivity, WelcomeActivity::class.java))
-                finish()
-            }
-    }
+        init()
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == PIC_ID) {
-            val takenPic: Bitmap? = data!!.extras!!["data"] as Bitmap?
-            image.setImageBitmap(takenPic)
-            imageRetaken = true
+        auth.currentUser ?: run {
+            val intent = Intent(this@EditMealActivity, WelcomeActivity::class.java)
+            intent.putExtra(SOURCE_EXTRA, ACTIVITY_NAME)
+            startActivity(intent)
+            finish()
         }
-    }
 
-    private val userLoggedInLogic: (FirebaseUser) -> Unit = { user ->
-        val uid = user.uid
-        val meal = intent.getSerializableExtra(MEAL_ID) as Meal
+        val uid = auth.currentUser!!.uid
+        val meal = intent.getSerializableExtra(MEAL_EXTRA) as Meal
         meal.user_id = uid
 
         mealName.setText(meal.name)
@@ -63,7 +52,7 @@ class EditMealActivity : AppCompatActivity() {
 
         image.setOnClickListener {
             val camIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(camIntent, PIC_ID)
+            startActivityForResult(camIntent, CAMERA_RESULT_CODE)
         }
 
         editIngredientsBtn.setOnClickListener {
@@ -81,33 +70,62 @@ class EditMealActivity : AppCompatActivity() {
             }
 
             val servingsInt = servingsStr.toInt()
+            if(servingsInt < 0) {
+                Toast.makeText(this@EditMealActivity, "Please enter a valid number of servings.", Toast.LENGTH_SHORT).show()
+                servings.error = "Number of servings cannot be negative!"
+                return@setOnClickListener
+            }
+
             meal.name = mealNameStr
             meal.servings = servingsInt
+            if(imageRetaken) {
+                val bitmapToSave = getImageBitmap(meal.id, uid)
+                meal.image_id = "" // TODO: set this to the id of the saved image somewhere
+            }
 
-            val mealCollection = db.getReference(MEALS_COLLECTION)
-            mealCollection.child(meal.id).setValue(meal)
-                .addOnSuccessListener {
-                    Log.v(EDIT_MEAL_TAG, "Successfuly saved meal ${meal.id} for user ${uid}.")
-                    Toast.makeText(this@EditMealActivity, "Successfully saved meal information!", Toast.LENGTH_SHORT).show()
-                    if(imageRetaken) {
-                        val imageId: String = saveImage(meal.id, uid)
-                        meal.image_id = imageId
-                    }
-                    startActivity(Intent(this@EditMealActivity, EditIngredientActivity::class.java))
-                    finish()
-                }
-                .addOnFailureListener { e ->
-                    Log.e(EDIT_MEAL_TAG, "Failed to save meal ${meal.id} for user ${uid}; exception: ${e}")
-                    Toast.makeText(this@EditMealActivity, "Failed to save meal information.", Toast.LENGTH_SHORT).show()
-                }
+            saveMeal(meal)
         }
     }
 
-    private fun saveImage(mealId: String, userId: String): String {
+    private fun init() {
+        auth = FirebaseAuth.getInstance()
+        db = Firebase.database
+
+        mealName = findViewById(R.id.meal_name_input)
+        servings = findViewById(R.id.servings_input)
+        editIngredientsBtn = findViewById(R.id.edit_ingredients_btn)
+        image = findViewById(R.id.food_image);
+    }
+
+    private fun saveMeal(meal: Meal) {
+        val mealCollection = db.getReference(MEALS_COLLECTION)
+        mealCollection.child(meal.id).setValue(meal)
+            .addOnSuccessListener {
+                Log.v(EDIT_MEAL_TAG, "Successfuly saved meal ${meal.id} for user ${meal.user_id}.")
+                val intent = Intent(this@EditMealActivity, EditIngredientActivity::class.java)
+                intent.putExtra(MEAL_EXTRA, meal)
+                startActivity(intent)
+                finish()
+            }
+            .addOnFailureListener { e ->
+                Log.e(EDIT_MEAL_TAG, "Failed to save meal ${meal.id} for user ${meal.user_id}; exception: ${e}")
+            }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == CAMERA_RESULT_CODE) {
+            val takenPic: Bitmap? = data!!.extras!!["data"] as Bitmap?
+            image.setImageBitmap(takenPic)
+            imageRetaken = true
+        }
+    }
+
+    private fun getImageBitmap(mealId: String, userId: String): Bitmap {
         val bitmap = Bitmap.createBitmap(image.drawingCache)
         image.isDrawingCacheEnabled = false
 
         // TODO insert bitmap into firebase, obtain the id of it and return it
-        return ""
+        return bitmap
     }
 }

@@ -52,6 +52,9 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
+        <activity
+            android:name=".EditMealActivity"
+            android:exported="true" />
         <service
             android:name=".FirebaseNotifications"
             android:exported="false">
