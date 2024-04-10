@@ -66,6 +66,29 @@
 
         <!--        android:fontFamily="@font/inter"-->
 
+        <TextView
+            android:id="@+id/mealDateLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="321dp"
+            tools:text="Date: " />
+
+        <TextView
+            android:id="@+id/mealDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="160dp"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="331dp" />
+
         <EditText
             android:id="@+id/mealName"
             android:layout_width="wrap_content"
@@ -125,6 +148,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/favoriteIcon"
             app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/pickDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="157dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginEnd="147dp"
+            android:backgroundTint="@color/dark_teal"
+            android:text="Pick date"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addMealBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

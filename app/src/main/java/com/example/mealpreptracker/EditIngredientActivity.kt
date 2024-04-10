@@ -23,7 +23,7 @@ import com.google.gson.Gson
 import okhttp3.Headers
 import org.json.JSONArray
 import org.json.JSONException
-
+import org.json.JSONObject
 
 
 private const val TAG = "EditIngredientActivity"
@@ -96,6 +96,7 @@ class EditIngredientActivity : AppCompatActivity(){
                         val summaryList = json.jsonObject.get("items") as JSONArray
 
                         // TODO: make a nutrition summary
+                        Log.w(TAG, "Summary: ${summaryList.get(0).toString()}")
 
                         val summary = Gson().fromJson(summaryList.get(0).toString(),NutritionSummary::class.java)
 
