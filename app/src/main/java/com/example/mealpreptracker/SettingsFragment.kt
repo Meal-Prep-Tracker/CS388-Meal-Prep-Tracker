@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import android.Manifest
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 
 
 class SettingsFragment : Fragment() {
@@ -25,6 +26,7 @@ class SettingsFragment : Fragment() {
     private lateinit var notificationButton: Button
     private lateinit var logoutButton: Button
     lateinit var sharedpreferences: SharedPreferences
+    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +46,7 @@ class SettingsFragment : Fragment() {
         val newThemeId = if (darkMode) R.style.mealPrepThemeDark else R.style.mealPrepTheme
         requireActivity().setTheme(newThemeId)
 
-//        Log.v("Settings", notifications.toString())
+        auth = FirebaseAuth.getInstance()
 
         return view
     }
@@ -106,7 +108,8 @@ class SettingsFragment : Fragment() {
 //        }
 
         logoutButton.setOnClickListener {
-//            startActivity(Intent(this, WelcomeActivity::class.java))
+            auth.signOut()
+            startActivity(Intent(requireActivity(), LoginActivity::class.java))
         }
     }
 
