@@ -96,122 +96,32 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lastNameText"/>
 
-            <TextView
-                android:id="@+id/emailText"
+            <Button
+                android:id="@+id/resetPasswordButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@+id/formLastNameText"
-                app:layout_constraintTop_toBottomOf="@+id/formLastNameText"/>
-
-            <EditText
-                android:id="@+id/formEmailText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:hint="Email"
-                android:inputType="text"
-                android:text=""
-                android:background="@drawable/rounded_outline_text"
-                android:textColor="?attr/editTextColor"
-                android:textColorHint="?attr/colorControlNormal"
+                android:layout_marginTop="36dp"
+                android:text="Reset Password"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/dark_teal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailText"/>
+                app:layout_constraintTop_toBottomOf="@+id/formLastNameText" />
 
-            <TextView
-                android:id="@+id/usernameText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Username"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@+id/formEmailText"
-                app:layout_constraintTop_toBottomOf="@+id/formEmailText"/>
-
-            <EditText
-                android:id="@+id/formUsernameText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:hint="Username"
-                android:inputType="text"
-                android:text=""
-                android:background="@drawable/rounded_outline_text"
-                android:textColor="?attr/editTextColor"
-                android:textColorHint="?attr/colorControlNormal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/usernameText"/>
-
-            <TextView
-                android:id="@+id/passwordText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@+id/formUsernameText"
-                app:layout_constraintTop_toBottomOf="@+id/formUsernameText"/>
-
-            <EditText
-                android:id="@+id/formPasswordText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="text"
-                android:text=""
-                android:background="@drawable/rounded_outline_text"
-                android:textColor="?attr/editTextColor"
-                android:textColorHint="?attr/colorControlNormal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordText"/>
-
-            <TextView
-                android:id="@+id/confirmPasswordText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Confirm Password"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="@+id/formPasswordText"
-                app:layout_constraintTop_toBottomOf="@+id/formPasswordText"/>
-
-            <EditText
-                android:id="@+id/formConfirmPasswordText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:layout_marginTop="4dp"
-                android:ems="10"
-                android:hint="Confirm Password"
-                android:inputType="text"
-                android:text=""
-                android:background="@drawable/rounded_outline_text"
-                android:textColor="?attr/editTextColor"
-                android:textColorHint="?attr/colorControlNormal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/confirmPasswordText"/>
 
             <Button
                 android:id="@+id/updateButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="96dp"
                 android:text="Submit"
                 android:textSize="16dp"
                 android:textColor="@color/black"
                 android:backgroundTint="@color/dark_teal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/formConfirmPasswordText" />
+                app:layout_constraintTop_toBottomOf="@+id/resetPasswordButton" />
 
             <View
                 android:layout_width="match_parent"

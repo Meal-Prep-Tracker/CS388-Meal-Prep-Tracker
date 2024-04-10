@@ -1,9 +1,8 @@
 package com.example.mealpreptracker
 import android.support.annotation.Keep
-import kotlinx.serialization.Serializable
+import com.google.firebase.database.IgnoreExtraProperties
 
-@Keep
-@Serializable
+@IgnoreExtraProperties
 data class Ingredient (
     val id: String = "",
     val meal_id: String? = null,
