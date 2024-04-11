@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.Firebase
@@ -44,6 +45,7 @@ class DashboardFragment : Fragment() {
     private lateinit var foodGroupsChart: PieChart
     lateinit var calorieEntries: ArrayList<Entry>
     lateinit var expensesEntries: ArrayList<Entry>
+    lateinit var foodGroupEntries: ArrayList<PieEntry>
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -235,36 +237,25 @@ class DashboardFragment : Fragment() {
         }
     }
     private fun fetchFoodGroupData() {
-        lifecycleScope.launch(IO) {
-            val foodGroups = 0 // DAO to get food groups for this month
+        lifecycleScope.launch(Dispatchers.Main) {
+            val foodGroupEntries = ArrayList<PieEntry>()
+            foodGroupEntries.add(PieEntry(35f, "Fruit"))
+            foodGroupEntries.add(PieEntry(40f, "Vegetables"))
+            foodGroupEntries.add(PieEntry(80f, "Protein"))
+            foodGroupEntries.add(PieEntry(60f, "Dairy"))
+            foodGroupEntries.add(PieEntry(25f, "Grains"))
 
-//            val foodGroupEntries = foodGroups.map { Entry(it.id.toFloat(), it.foodGroup) }
+            val foodGroupDataSet = PieDataSet(foodGroupEntries, "")
+            val foodGroupPieData = PieData(foodGroupDataSet)
 
-//            val foodGroupDataSet = PieDataSet(foodGroupEntires, "Food Groups")
+            foodGroupDataSet.setColors(*ColorTemplate.JOYFUL_COLORS)
+            foodGroupPieData.setValueTextSize(14f)
 
-//            foodGroupDataSet.setColors(ColorTemplate.MATERIAL_COLORS)
-
-//            val foodGroupPieData = PieData(foodGroupDataSet)
-
-//            foodGroupPieData.setValueTextSize(12f)
-//
-//            foodGroupsChart.description.isEnabled = false
-//            foodGroupsChart.setTouchEnabled(true)
-//            foodGroupsChart.setPinchZoom(true)
-//
-//            val legend = foodGroupsChart.legend
-//            legend.textSize = 16f
-//
-//            val xAxis: XAxis = foodGroupsChart.xAxis
-//            xAxis.position = XAxis.XAxisPosition.BOTTOM
-//
-//            val yAxis: YAxis = foodGroupsChart.axisLeft
-//            yAxis.setDrawGridLines(false)
-//
-//            foodGroupsChart.data = calorieLineData
-//
-//            foodGroupsChart.invalidate()
-
+            foodGroupsChart.setEntryLabelColor(Color.BLACK)
+            foodGroupsChart.data = foodGroupPieData
+            foodGroupsChart.getDescription().setEnabled(false)
+            foodGroupsChart.animateY(1000)
+            foodGroupsChart.invalidate()
 
         }
     }
