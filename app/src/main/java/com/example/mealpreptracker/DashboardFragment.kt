@@ -90,6 +90,8 @@ class DashboardFragment : Fragment() {
                 // Sorts meals by their epoch time
                 val sortedMeals = mealsForCurrentMonth.sortedBy { it.date }
 
+                var count = 1
+
                 sortedMeals.forEach { meal ->
                     // Assuming each Meal has a calorie and expense property
                     var epochTime = meal.date ?: 0L // Default to 0 if date is null
@@ -97,8 +99,9 @@ class DashboardFragment : Fragment() {
                     var calories = meal.calories!!.toFloat()
                     var price = meal.price!!.toFloat()
                     Log.v(TAG, "$date | $calories | $price | $uid")
-                    calorieEntries.add(Entry(epochTime.toFloat(), calories))
-                    expensesEntries.add(Entry(epochTime.toFloat(), price))
+                    calorieEntries.add(Entry(count.toFloat(), calories))
+                    expensesEntries.add(Entry(count.toFloat(), price))
+                    count += 1
                 }
 
                 fetchCalorieData()
@@ -169,14 +172,14 @@ class DashboardFragment : Fragment() {
 
             val xAxis: XAxis = caloriesChart.xAxis
 
-            xAxis.valueFormatter = object : ValueFormatter() {
-                private val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
-
-                override fun getFormattedValue(value: Float): String {
-                    // Convert value (which is epoch time) to formatted date string
-                    return dateFormat.format(Date(value.toLong()))
-                }
-            }
+//            xAxis.valueFormatter = object : ValueFormatter() {
+//                private val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+//
+//                override fun getFormattedValue(value: Float): String {
+//                    // Convert value (which is epoch time) to formatted date string
+//                    return dateFormat.format(Date(value.toLong()))
+//                }
+//            }
 
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.setLabelCount(calorieEntries.size, true)
@@ -213,13 +216,13 @@ class DashboardFragment : Fragment() {
 
             val xAxis: XAxis = expensesChart.xAxis
 
-            xAxis.valueFormatter = object : ValueFormatter() {
-                private val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
-
-                override fun getFormattedValue(value: Float): String {
-                    return dateFormat.format(Date(value.toLong()))
-                }
-            }
+//            xAxis.valueFormatter = object : ValueFormatter() {
+//                private val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+//
+//                override fun getFormattedValue(value: Float): String {
+//                    return dateFormat.format(Date(value.toLong()))
+//                }
+//            }
 
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.setLabelCount(expensesEntries.size, true)
