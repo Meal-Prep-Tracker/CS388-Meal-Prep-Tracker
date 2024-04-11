@@ -9,6 +9,8 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -27,7 +29,11 @@ class MainActivity : AppCompatActivity() {
         val darkMode = sharedpreferences.getBoolean("darkMode", false)
         val notifications = sharedpreferences.getBoolean("notifications", false)
 
-        this.startActivity(Intent(this, WelcomeActivity::class.java))
+        val auth = FirebaseAuth.getInstance()
+        if(auth.currentUser == null)
+        {
+            this.startActivity(Intent(this, WelcomeActivity::class.java))
+        }
 
         if (darkMode) {
             // Apply dark theme
@@ -38,28 +44,6 @@ class MainActivity : AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        val database = Firebase.database
-//        val myRef = database.getReference("message")
-//
-//        myRef.setValue(listOf("Hello, World!"))
-//        // [END write_message]
-//
-//        // [START read_message]
-//        // Read from the database
-//        myRef.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                val value = dataSnapshot.getValue<List<String>>()
-//                Log.d(TAG, "Value is: $value")
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                // Failed to read value
-//                Log.w(TAG, "Failed to read value.", error.toException())
-//            }
-//        })
 
         val dashboardFragment: Fragment = DashboardFragment()
         val mealsListFragment: Fragment = MealListFragment()
