@@ -84,6 +84,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     startActivity(intent)
+                    finish()
                 }
             }
         }
@@ -129,6 +130,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.v(LOGIN_ACTIVITY_TAG, result.toString())
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }
             .addOnFailureListener { err ->
                 Log.e(LOGIN_ACTIVITY_TAG, err.toString())

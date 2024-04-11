@@ -36,7 +36,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var googleSignUpBtn: ImageButton
 
     private val EMAIL_REGEX = Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}\$")
-    private val USERS_COLLECTION = "users"
 
     private val REGISTER_ACTIVITY_TAG = "REGISTER_ACTIVITY"
     private val REGISTER_SUCCESS = "Successfully signed up!"
@@ -104,6 +103,7 @@ class RegisterActivity : AppCompatActivity() {
                         ))
                         toastMsg(REGISTER_SUCCESS)
                         startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
+                        finish()
                     }
                 }
                 .addOnFailureListener { e ->
@@ -169,6 +169,7 @@ class RegisterActivity : AppCompatActivity() {
                     MainActivity::class.java
                 )
                 startActivity(intent)
+                finish()
             }
             .addOnFailureListener { err ->
                 Log.d(REGISTER_ACTIVITY_TAG, "firebaseAuthWithGoogleAccount : ${err.message}")
