@@ -9,6 +9,7 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -27,7 +28,10 @@ class MainActivity : AppCompatActivity() {
         val darkMode = sharedpreferences.getBoolean("darkMode", false)
         val notifications = sharedpreferences.getBoolean("notifications", false)
 
-        this.startActivity(Intent(this, WelcomeActivity::class.java))
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser == null) {
+            this.startActivity(Intent(this, WelcomeActivity::class.java))
+        }
 
         if (darkMode) {
             // Apply dark theme
