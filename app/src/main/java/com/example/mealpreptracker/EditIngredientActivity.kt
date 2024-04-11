@@ -1,5 +1,7 @@
 package com.example.mealpreptracker
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -33,7 +35,20 @@ private const val INGREDIENT_SEARCH_URL =
 class EditIngredientActivity : AppCompatActivity(){
     lateinit var ingredients: MutableList<Ingredient>
     private lateinit var database: DatabaseReference
+    lateinit var sharedpreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+        val darkMode = sharedpreferences.getBoolean("darkMode", false)
+        val notifications = sharedpreferences.getBoolean("notifications", true)
+
+        if (darkMode) {
+            // Apply dark theme
+            setTheme(R.style.mealPrepThemeDark)
+        } else {
+            // Apply light theme
+            setTheme(R.style.mealPrepTheme)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_ingredient)
         // Lookup the RecyclerView in activity layout

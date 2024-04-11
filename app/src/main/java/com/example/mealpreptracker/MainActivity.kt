@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        bottomNavigationView.selectedItemId = R.id.action_settings
+        bottomNavigationView.selectedItemId = R.id.action_profile
 
     }
 
