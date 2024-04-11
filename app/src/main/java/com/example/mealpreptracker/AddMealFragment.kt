@@ -1,6 +1,7 @@
 package com.example.mealpreptracker
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 import java.text.SimpleDateFormat
@@ -26,16 +28,25 @@ class AddMealFragment : Fragment() {
     private lateinit var servingsEditText: EditText
     private lateinit var addMealBtn: Button
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     lateinit var mealDate: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = FirebaseAuth.getInstance()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        auth.currentUser ?: run {
+            val intent = Intent(activity, WelcomeActivity::class.java)
+            intent.putExtra(SOURCE_EXTRA, "AddMealFragment")
+            startActivity(intent)
+            activity?.finish()
+        }
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_meal, container, false)
         return view
@@ -59,6 +70,7 @@ class AddMealFragment : Fragment() {
 
         // Make a new meal, nutritionSummary and add it to the realtime DB
         val meal = Meal(
+            user_id = auth.currentUser!!.uid,
             id = key,
             name = mealNameEditText.text.toString(),
             servings = servingsEditText.text.toString().toInt(),

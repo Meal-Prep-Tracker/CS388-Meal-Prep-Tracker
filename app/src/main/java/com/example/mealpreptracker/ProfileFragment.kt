@@ -27,8 +27,17 @@ class ProfileFragment : Fragment() {
     private lateinit var updateProfileBtn: Button
     private lateinit var database: DatabaseReference
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+        auth.currentUser ?: run {
+            val intent = Intent(activity, WelcomeActivity::class.java)
+            intent.putExtra(SOURCE_EXTRA, "ProfileFragment")
+            startActivity(intent)
+            activity?.finish()
+        }
     }
 
     override fun onCreateView(
@@ -40,7 +49,7 @@ class ProfileFragment : Fragment() {
         title = view.findViewById(R.id.title)
         welcomeTitle = view.findViewById(R.id.welcomeTitle)
 
-        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        val uid = auth.currentUser!!.uid
         database = Firebase.database.reference
 
         database.child("users").orderByChild("uid").equalTo(uid).get()
