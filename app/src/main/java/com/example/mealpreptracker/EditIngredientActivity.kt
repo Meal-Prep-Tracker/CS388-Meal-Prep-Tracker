@@ -126,6 +126,7 @@ class EditIngredientActivity : AppCompatActivity(){
             val updates = ingredients.associateBy { it.id }
             Log.w(TAG, updates.toString())
             database.child(INGREDIENTS_COLLECTION).updateChildren(updates)
+            this.finish()
         }
 
     }

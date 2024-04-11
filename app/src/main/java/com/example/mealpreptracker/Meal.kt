@@ -12,6 +12,5 @@ data class Meal (
     var price: Double? = 0.0,
     val calories: Double? = 0.0,
     val date: Long? = 0L,
-
     var image_id: String? = null,
 ):  java.io.Serializable

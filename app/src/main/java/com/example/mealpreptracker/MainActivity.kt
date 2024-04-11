@@ -43,28 +43,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val database = Firebase.database
-//        val myRef = database.getReference("message")
-//
-//        myRef.setValue(listOf("Hello, World!"))
-//        // [END write_message]
-//
-//        // [START read_message]
-//        // Read from the database
-//        myRef.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//                val value = dataSnapshot.getValue<List<String>>()
-//                Log.d(TAG, "Value is: $value")
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                // Failed to read value
-//                Log.w(TAG, "Failed to read value.", error.toException())
-//            }
-//        })
-
         val dashboardFragment: Fragment = DashboardFragment()
         val mealsListFragment: Fragment = MealListFragment()
         val addMealFragment: Fragment = AddMealFragment()
@@ -83,7 +61,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_add_meal -> fragment = addMealFragment
                 R.id.action_profile -> fragment = profileFragment
                 R.id.action_settings -> fragment = settingsFragment
-
             }
             replaceFragment(fragment)
             true
