@@ -30,6 +30,14 @@ class SettingsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        auth = FirebaseAuth.getInstance()
+        auth.currentUser ?: run {
+            val intent = Intent(activity, WelcomeActivity::class.java)
+            intent.putExtra(SOURCE_EXTRA, "SettingsFragment")
+            startActivity(intent)
+            activity?.finish()
+        }
     }
 
     override fun onCreateView(

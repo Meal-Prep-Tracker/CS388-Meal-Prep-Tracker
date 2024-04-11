@@ -1,5 +1,6 @@
 package com.example.mealpreptracker
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -47,9 +48,11 @@ class DashboardFragment : Fragment() {
     lateinit var expensesEntries: ArrayList<Entry>
     lateinit var foodGroupEntries: ArrayList<PieEntry>
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = FirebaseAuth.getInstance()
     }
 
     override fun onCreateView(
@@ -57,6 +60,13 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+
+        auth.currentUser ?: run {
+            val intent = Intent(activity, WelcomeActivity::class.java)
+            intent.putExtra(SOURCE_EXTRA, "ProfileFragment")
+            startActivity(intent)
+            activity?.finish()
+        }
 
         mealsEnteredText = view.findViewById(R.id.mealEnteredText)
         caloriesChart = view.findViewById(R.id.caloriesChart)

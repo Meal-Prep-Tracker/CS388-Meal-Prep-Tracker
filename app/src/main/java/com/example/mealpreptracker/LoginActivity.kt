@@ -19,7 +19,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : AppCompatActivity() {
-
     private lateinit var auth: FirebaseAuth
 
     private lateinit var email: EditText;

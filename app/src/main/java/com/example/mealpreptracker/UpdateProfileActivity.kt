@@ -58,10 +58,11 @@ class UpdateProfileActivity : AppCompatActivity()  {
         database = Firebase.database.reference
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid
-        uid?.let {
-//            Toast.makeText(this, "user with id ${uid} is logged in!", Toast.LENGTH_LONG).show()
-        } ?: run {
-//            Toast.makeText(this, "user is NOT logged in!", Toast.LENGTH_LONG).show()
+        uid ?: run {
+            val intent = Intent(this, WelcomeActivity::class.java)
+            intent.putExtra(SOURCE_EXTRA, "UpdateProfileActivity")
+            startActivity(intent)
+            finish()
         }
 
         var email = ""
