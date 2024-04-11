@@ -61,14 +61,12 @@
         android:id="@+id/food_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toTopOf="@+id/edit_ingredients_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/servings_input"
-        app:layout_constraintVertical_bias="0.176"
-        tools:src="@tools:sample/avatars" />
+        tools:src="@drawable/baseline_camera_alt_24" />
 
     <Button
         android:id="@+id/edit_ingredients_btn"

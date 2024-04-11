@@ -36,7 +36,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var googleSignUpBtn: ImageButton
 
     private val EMAIL_REGEX = Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}\$")
-    private val USERS_COLLECTION = "users"
 
     private val REGISTER_ACTIVITY_TAG = "REGISTER_ACTIVITY"
     private val REGISTER_SUCCESS = "Successfully signed up!"
