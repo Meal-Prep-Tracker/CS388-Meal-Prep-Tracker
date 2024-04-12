@@ -37,14 +37,13 @@
             android:shadowDy="4"
             android:fontFamily="@font/inter"
             android:shadowRadius="4"
-            android:textColor="#000000"
             android:textSize="48sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Add Meal" />
+            android:text="Add Meal" />
 
         <!--        android:fontFamily="@font/inter"-->
 
@@ -62,7 +61,7 @@
             app:layout_constraintEnd_toStartOf="@+id/mealName"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="201dp"
-            tools:text="Name: " />
+            android:text="Name: " />
 
         <!--        android:fontFamily="@font/inter"-->
 
@@ -71,7 +70,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
-            android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +81,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="160dp"
-            android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +94,8 @@
             android:layout_marginEnd="120dp"
             android:hint="Name"
             android:inputType="text"
-            android:textColor="@color/black"
+            android:textColor="?attr/editTextColor"
+            android:textColorHint="?attr/colorControlNormal"
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +108,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
             android:layout_marginEnd="22dp"
-            android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/mealServings"
@@ -126,7 +123,8 @@
             android:layout_marginEnd="150dp"
             android:hint="4"
             android:inputType="numberDecimal"
-            android:textColor="@color/black"
+            android:textColor="?attr/editTextColor"
+            android:textColorHint="?attr/colorControlNormal"
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
