@@ -14,13 +14,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="40sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Roasted Vegetables" />
+        android:text="Roasted Vegetables" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mealIngredientsRv"
@@ -43,6 +42,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:textSize="15sp"
+        android:textColor="?attr/editTextColor"
+        android:textColorHint="?attr/colorControlNormal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mealIngredientsRv"
         android:hint="Ingredient" />
@@ -54,9 +55,10 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/inter"
         android:hint="Grams"
-        android:textColor="#c7c7c7"
         android:textSize="15sp"
         android:textStyle="normal"
+        android:textColor="?attr/editTextColor"
+        android:textColorHint="?attr/colorControlNormal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ingredientPriceField"
         app:layout_constraintStart_toEndOf="@+id/ingredientNameField"
@@ -71,7 +73,8 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/inter"
         android:hint="Price"
-        android:textColor="#c7c7c7"
+        android:textColor="?attr/editTextColor"
+        android:textColorHint="?attr/colorControlNormal"
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"

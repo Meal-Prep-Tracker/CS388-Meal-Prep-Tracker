@@ -1,6 +1,8 @@
 package com.example.mealpreptracker
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -31,10 +33,20 @@ class MealDetailActivity : AppCompatActivity() {
     private lateinit var sugarHeaderTextView: TextView
     private  lateinit var summaryHeaderTextView: TextView
     private lateinit var database: DatabaseReference
+    lateinit var sharedpreferences: SharedPreferences
     private lateinit var auth: FirebaseAuth
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+        val darkMode = sharedpreferences.getBoolean("darkMode", false)
+        if (darkMode) {
+            // Apply dark theme
+            setTheme(R.style.mealPrepThemeDark)
+        } else {
+            // Apply light theme
+            setTheme(R.style.mealPrepTheme)
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meal_detail)
 

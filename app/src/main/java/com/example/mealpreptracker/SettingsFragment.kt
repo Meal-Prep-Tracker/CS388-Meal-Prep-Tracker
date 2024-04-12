@@ -117,7 +117,7 @@ class SettingsFragment : Fragment() {
 
         logoutButton.setOnClickListener {
             auth.signOut()
-            startActivity(Intent(requireActivity(), LoginActivity::class.java))
+            startActivity(Intent(requireActivity(), WelcomeActivity::class.java))
         }
     }
 
