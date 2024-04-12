@@ -9,6 +9,10 @@ android {
     namespace = "com.example.mealpreptracker"
     compileSdk = 34
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.mealpreptracker"
         minSdk = 24

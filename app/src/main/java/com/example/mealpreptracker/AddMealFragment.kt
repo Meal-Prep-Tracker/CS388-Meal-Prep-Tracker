@@ -11,12 +11,15 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 import java.text.SimpleDateFormat
 import java.util.Calendar
+
 
 private const val TAG = "AddMealFragment"
 @SuppressLint("SimpleDateFormat")
@@ -67,7 +70,7 @@ class AddMealFragment : Fragment() {
             date = dateFormat.parse(mealDate.text.toString())?.time
         )
         // Add to the meals collection
-        database.child("Meals").child(key).setValue(meal)
+        database.child(MEALS_COLLECTION).child(key).setValue(meal)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -95,8 +98,14 @@ class AddMealFragment : Fragment() {
                         val meal: Meal? = it.getValue(Meal::class.java)
                         val intent = Intent(activity, EditIngredientActivity::class.java)
                         intent.putExtra(MEAL_EXTRA, meal)
-                        // Route to the EditIngredientActivity
+                        // Add the MealsList to the stack so you can pop it off back later
+//                        val fts: FragmentTransaction = parentFragmentManager.beginTransaction()
+//                        fts.replace(R.id.main_layout, MealListFragment())
+//                        fts.addToBackStack("optional tag");
+//                        // Commit the changes
+//                        fts.commit()
                         startActivity(intent)
+
                     }.addOnFailureListener {
                         Log.e("firebase", "Error getting last inserted Meal", it)
                     }

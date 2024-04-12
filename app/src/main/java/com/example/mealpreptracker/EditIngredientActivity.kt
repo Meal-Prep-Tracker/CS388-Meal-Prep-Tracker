@@ -142,12 +142,19 @@ class EditIngredientActivity : AppCompatActivity(){
             val updates = ingredients.associateBy { it.id }
             Log.w(TAG, updates.toString())
             database.child(INGREDIENTS_COLLECTION).updateChildren(updates)
+
+            val intent = Intent(this, MealListFragment::class.java)
+            startActivity(intent)
+//            val fragmentManager = supportFragmentManager
+//            val fragmentTransaction = fragmentManager.beginTransaction()
+//            fragmentTransaction.replace(R.id.main_layout, MealListFragment())
+//            fragmentTransaction.commit()
+
             // Route to MealsListFragment
-            val fragmentManager: FragmentManager = supportFragmentManager // For support library
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            val mealFragment: Fragment = MealListFragment()
-            fragmentTransaction.replace(R.id.main_layout, mealFragment)
-            fragmentTransaction.commit()
+//            val fragmentManager: FragmentManager = supportFragmentManager // For support library
+//            if (fragmentManager.backStackEntryCount > 0) {
+//                fragmentManager.popBackStack();
+//            }
         }
 
     }
