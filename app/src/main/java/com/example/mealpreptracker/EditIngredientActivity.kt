@@ -2,6 +2,7 @@ package com.example.mealpreptracker
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -15,6 +16,7 @@ import com.codepath.asynchttpclient.RequestHeaders
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -36,6 +38,7 @@ class EditIngredientActivity : AppCompatActivity(){
     lateinit var ingredients: MutableList<Ingredient>
     private lateinit var database: DatabaseReference
     lateinit var sharedpreferences: SharedPreferences
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
@@ -51,6 +54,15 @@ class EditIngredientActivity : AppCompatActivity(){
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_ingredient)
+
+        auth = FirebaseAuth.getInstance()
+        auth.currentUser ?: run {
+            val intent = Intent(this, WelcomeActivity::class.java)
+            intent.putExtra(SOURCE_EXTRA, "ProfileFragment")
+            startActivity(intent)
+            finish()
+        }
+
         // Lookup the RecyclerView in activity layout
         val mealIngredientsRv = findViewById<RecyclerView>(R.id.mealIngredientsRv)
         // Make empty list of mealIngredients

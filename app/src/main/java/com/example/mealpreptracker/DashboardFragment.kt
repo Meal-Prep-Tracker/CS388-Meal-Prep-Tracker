@@ -2,6 +2,7 @@ package com.example.mealpreptracker
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -50,6 +51,8 @@ class DashboardFragment : Fragment() {
     lateinit var expensesEntries: ArrayList<Entry>
 //    lateinit var foodGroupEntries: ArrayList<PieEntry>
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
+
     lateinit var sharedpreferences: SharedPreferences
     var darkMode: Boolean = false
 
@@ -58,6 +61,7 @@ class DashboardFragment : Fragment() {
 
         sharedpreferences = requireActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         darkMode = sharedpreferences.getBoolean("darkMode", false)
+        auth = FirebaseAuth.getInstance()
     }
 
     override fun onCreateView(
@@ -65,6 +69,13 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+
+        auth.currentUser ?: run {
+            val intent = Intent(activity, WelcomeActivity::class.java)
+            intent.putExtra(SOURCE_EXTRA, "ProfileFragment")
+            startActivity(intent)
+            activity?.finish()
+        }
 
         mealsEnteredText = view.findViewById(R.id.mealEnteredText)
         caloriesChart = view.findViewById(R.id.caloriesChart)

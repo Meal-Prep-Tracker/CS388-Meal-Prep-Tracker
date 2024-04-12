@@ -3,6 +3,7 @@ package com.example.mealpreptracker
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 
@@ -32,6 +34,7 @@ class MealDetailActivity : AppCompatActivity() {
     private  lateinit var summaryHeaderTextView: TextView
     private lateinit var database: DatabaseReference
     lateinit var sharedpreferences: SharedPreferences
+    private lateinit var auth: FirebaseAuth
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +49,14 @@ class MealDetailActivity : AppCompatActivity() {
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meal_detail)
+
+        auth = FirebaseAuth.getInstance()
+        auth.currentUser ?: run {
+            val intent = Intent(this, WelcomeActivity::class.java)
+            intent.putExtra(SOURCE_EXTRA, "MealDetailActivity")
+            startActivity(intent)
+            finish()
+        }
 
         // Get the database reference
         database = Firebase.database.reference

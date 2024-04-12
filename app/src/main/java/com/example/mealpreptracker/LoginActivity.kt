@@ -17,17 +17,18 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
-
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseDatabase
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     private lateinit var email: EditText;
     private lateinit var password: EditText;
     private lateinit var normalLoginBtn: Button;
     private lateinit var googleLoginBtn: ImageButton
-
-    private lateinit var googleSignInClient: GoogleSignInClient
 
     private val LOGIN_ACTIVITY_TAG = "LOGIN_ACTIVITY"
 
@@ -38,6 +39,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
+        db = Firebase.database
 
         email = findViewById(R.id.login_email_input)
         password = findViewById(R.id.login_password_input)
@@ -128,9 +130,26 @@ class LoginActivity : AppCompatActivity() {
             .addOnSuccessListener {result ->
                 Toast.makeText(this@LoginActivity, "Successfully logged in with Google!", Toast.LENGTH_SHORT).show()
                 Log.v(LOGIN_ACTIVITY_TAG, result.toString())
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                val firebaseUser = result.user!!
+                val uid = firebaseUser.uid
+                val email = firebaseUser.email!!
+                val userInDb = db.getReference(USERS_COLLECTION).child(uid)
+                val userToSave = User(uid = firebaseUser.uid, email = firebaseUser.email!!)
+                userInDb.get()
+                    .addOnSuccessListener {snapshot ->
+                        val fetchedUser = snapshot.getValue(User::class.java)
+                        fetchedUser ?: run {
+                            userToSave.firstName = account.givenName ?: ""
+                            userToSave.lastName = account.familyName ?: ""
+                            userInDb.setValue(userToSave)
+                        }
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this@LoginActivity, "Failed to login using Google!", Toast.LENGTH_SHORT).show()
+                    }
             }
             .addOnFailureListener { err ->
                 Log.e(LOGIN_ACTIVITY_TAG, err.toString())
