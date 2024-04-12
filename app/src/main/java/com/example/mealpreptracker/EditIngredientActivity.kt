@@ -158,8 +158,12 @@ class EditIngredientActivity : AppCompatActivity(){
             Log.w(TAG, updates.toString())
             database.child(INGREDIENTS_COLLECTION).updateChildren(updates)
 
-            val intent = Intent(this, MealListFragment::class.java)
-            startActivity(intent)
+//            super.onBackPressed()
+            finish()
+
+//            val intent = Intent(this, MealListFragment::class.java)
+//            startActivity(intent)
+
 //            val fragmentManager = supportFragmentManager
 //            val fragmentTransaction = fragmentManager.beginTransaction()
 //            fragmentTransaction.replace(R.id.main_layout, MealListFragment())

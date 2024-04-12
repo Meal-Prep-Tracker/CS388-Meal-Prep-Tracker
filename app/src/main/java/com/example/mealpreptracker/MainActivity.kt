@@ -5,18 +5,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.mealpreptracker.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.getValue
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 private const val TAG = "MAIN"
 const val SHARED_PREFS = "SHARED_PREFS"
@@ -48,9 +40,20 @@ class MainActivity : AppCompatActivity() {
             setTheme(R.style.mealPrepTheme)
         }
 
+
+
         val dashboardFragment: Fragment = DashboardFragment()
         val mealsListFragment: Fragment = MealListFragment()
-        val addMealFragment: Fragment = AddMealFragment()
+
+        val addMealListener = object : AddMealFragment.SetOnAddMealListener {
+            override fun onAddMealClick() {
+                replaceFragment(mealsListFragment)
+            }
+        }
+
+        val addMealFragment: Fragment = AddMealFragment(addMealListener)
+
+
         val profileFragment: Fragment = ProfileFragment()
         val settingsFragment: Fragment = SettingsFragment()
 

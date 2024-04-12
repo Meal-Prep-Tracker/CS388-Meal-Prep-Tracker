@@ -11,8 +11,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -22,10 +20,11 @@ import java.util.Calendar
 
 
 private const val TAG = "AddMealFragment"
+
 @SuppressLint("SimpleDateFormat")
 val dateFormat = SimpleDateFormat("MM/dd/yyyy")
 
-class AddMealFragment : Fragment() {
+class AddMealFragment(val listener: SetOnAddMealListener) : Fragment() {
     private lateinit var mealNameEditText: EditText
     private lateinit var servingsEditText: EditText
     private lateinit var addMealBtn: Button
@@ -33,6 +32,10 @@ class AddMealFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
 
     lateinit var mealDate: TextView
+    interface SetOnAddMealListener {
+        fun onAddMealClick()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
@@ -52,12 +55,6 @@ class AddMealFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_meal, container, false)
         return view
-    }
-
-    companion object {
-        fun newInstance(): AddMealFragment {
-            return AddMealFragment()
-        }
     }
 
     private fun addNewMeal(key: String) {
@@ -87,8 +84,7 @@ class AddMealFragment : Fragment() {
             // error log
             if (key == null) {
                 Log.w(TAG, "Couldn't get push key for meals")
-            }
-            else {
+            } else {
                 // Add new meal
                 addNewMeal(key)
                 // Get the last inserted Meal
@@ -96,6 +92,8 @@ class AddMealFragment : Fragment() {
                     .addOnSuccessListener {
                         Log.i("firebase", "Got value ${it.value}")
                         val meal: Meal? = it.getValue(Meal::class.java)
+
+
                         val intent = Intent(activity, EditIngredientActivity::class.java)
                         intent.putExtra(MEAL_EXTRA, meal)
                         // Add the MealsList to the stack so you can pop it off back later
@@ -105,6 +103,9 @@ class AddMealFragment : Fragment() {
 //                        // Commit the changes
 //                        fts.commit()
                         startActivity(intent)
+
+                        listener.onAddMealClick()
+
 
                     }.addOnFailureListener {
                         Log.e("firebase", "Error getting last inserted Meal", it)
@@ -116,7 +117,9 @@ class AddMealFragment : Fragment() {
             val cc = object : DatePickerFragment.OnDateSelectListener {
                 @SuppressLint("SetTextI18n")
                 override fun onDateSelect(c: Calendar) {
-                    mealDate.text =  "${c.get(Calendar.MONTH) + 1}/${c.get(Calendar.DAY_OF_MONTH)}/${c.get(Calendar.YEAR)}"
+                    mealDate.text = "${c.get(Calendar.MONTH) + 1}/${c.get(Calendar.DAY_OF_MONTH)}/${
+                        c.get(Calendar.YEAR)
+                    }"
                 }
             }
             val newFragment = DatePickerFragment(cc)

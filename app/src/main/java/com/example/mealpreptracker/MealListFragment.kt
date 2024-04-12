@@ -39,6 +39,12 @@ class MealListFragment: Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val mealsReference = database.child("Meals").orderByChild("user_id").equalTo(auth.currentUser!!.uid)
+        fetchMeals(mealsReference)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,8 +74,7 @@ class MealListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Call the new method within onViewCreated
-        val mealsReference = database.child("Meals").orderByChild("user_id").equalTo(auth.currentUser!!.uid)
-        fetchMeals(mealsReference)
+
     }
 
     private fun fetchMeals(mealsReference: Query) {
