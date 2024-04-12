@@ -9,9 +9,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+<!--        android:fontFamily="@font/inter"-->
 
+        <!--        android:fontFamily="@font/inter"-->
+
+        <!--        android:fontFamily="@font/inter"-->
         <ImageView
-            android:id="@+id/food_image"
+            android:id="@+id/favoriteIcon"
             android:layout_width="31.3dp"
             android:layout_height="33dp"
             android:layout_marginStart="16dp"
@@ -24,25 +28,22 @@
 
         <TextView
             android:id="@+id/addMealHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="243dp"
+            android:layout_height="61dp"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/inter"
             android:gravity="center_horizontal"
             android:shadowColor="#40000000"
             android:shadowDx="0"
             android:shadowDy="4"
+            android:fontFamily="@font/inter"
             android:shadowRadius="4"
-            android:textColor="#000000"
             android:textSize="48sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Add Meal" />
-
-        <!--        android:fontFamily="@font/inter"-->
+            android:text="Add Meal" />
 
         <!--        android:fontFamily="@font/inter"-->
 
@@ -53,80 +54,82 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="192dp"
+            android:layout_marginEnd="26dp"
             android:textColor="#000000"
             android:textSize="24sp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/mealName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Name: " />
+            tools:layout_editor_absoluteY="201dp"
+            android:text="Name: " />
+
+        <!--        android:fontFamily="@font/inter"-->
 
         <TextView
-                android:id="@+id/mealDateLbl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="120dp"
-                android:layout_marginTop="20dp"
-                android:textColor="#000000"
-                android:textSize="24sp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mealServingsLbl"
-                tools:text="Date: " />
+            android:id="@+id/mealDateLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="321dp"
+            tools:text="Date: " />
 
         <TextView
             android:id="@+id/mealDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="52dp"
-            android:textColor="@color/black"
+            android:layout_marginEnd="160dp"
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mealServings"
-            tools:text="Some Date" />
+            tools:layout_editor_absoluteY="331dp" />
 
         <EditText
             android:id="@+id/mealName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="192dp"
-            android:layout_marginEnd="96dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="120dp"
             android:hint="Name"
             android:inputType="text"
-            android:textColor="@color/black"
+            android:textColor="?attr/editTextColor"
+            android:textColorHint="?attr/colorControlNormal"
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/mealNameLbl"
+            tools:layout_editor_absoluteY="189dp" />
 
         <TextView
             android:id="@+id/mealServingsLbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="20dp"
-            android:textColor="#000000"
+            android:layout_marginEnd="22dp"
             android:textSize="24sp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/mealServings"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mealNameLbl"
+            tools:layout_editor_absoluteY="264dp"
             tools:text="Servings:" />
 
         <EditText
             android:id="@+id/mealServings"
-            android:layout_width="48dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="120dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="150dp"
             android:hint="4"
             android:inputType="numberDecimal"
-            android:textColor="@color/black"
+            android:textColor="?attr/editTextColor"
+            android:textColorHint="?attr/colorControlNormal"
             android:textSize="24sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mealName" />
+            app:layout_constraintStart_toEndOf="@+id/mealServingsLbl"
+            tools:layout_editor_absoluteY="254dp" />
 
         <Button
             android:id="@+id/addMealBtn"
@@ -141,7 +144,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/food_image"
+            app:layout_constraintTop_toBottomOf="@+id/favoriteIcon"
             app:layout_constraintVertical_bias="1.0" />
 
         <Button
