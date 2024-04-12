@@ -3,7 +3,6 @@ import com.google.firebase.database.IgnoreExtraProperties
 import kotlinx.serialization.Serializable
 
 @IgnoreExtraProperties
-@Serializable
 data class Meal (
     val id: String = "",
     var user_id: String? = null, // TODO: this should not be null

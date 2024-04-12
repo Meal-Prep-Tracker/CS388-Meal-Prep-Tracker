@@ -11,7 +11,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -58,16 +57,7 @@ class AddMealFragment : Fragment() {
         }
     }
 
-    private fun AddNewMeal() {
-        val key = database.child("Meals").push().key
-
-        // error log
-        if (key == null) {
-            Log.w(TAG, "Couldn't get push key for meals")
-            return
-        }
-
-
+    private fun addNewMeal(key: String) {
         // Make a new meal, nutritionSummary and add it to the realtime DB
         val meal = Meal(
             user_id = auth.currentUser!!.uid,
@@ -90,11 +80,26 @@ class AddMealFragment : Fragment() {
         addMealBtn = view.findViewById(R.id.addMealBtn)
         mealDate = view.findViewById(R.id.mealDate)
         addMealBtn.setOnClickListener {
-            AddNewMeal()
-            // Route to the MealListFragment
-            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
-            if (fragmentManager.getBackStackEntryCount() > 0) {
-                fragmentManager.popBackStack()
+            val key = database.child(MEALS_COLLECTION).push().key
+            // error log
+            if (key == null) {
+                Log.w(TAG, "Couldn't get push key for meals")
+            }
+            else {
+                // Add new meal
+                addNewMeal(key)
+                // Get the last inserted Meal
+                database.child(MEALS_COLLECTION).child(key).get()
+                    .addOnSuccessListener {
+                        Log.i("firebase", "Got value ${it.value}")
+                        val meal: Meal? = it.getValue(Meal::class.java)
+                        val intent = Intent(activity, EditIngredientActivity::class.java)
+                        intent.putExtra(MEAL_EXTRA, meal)
+                        // Route to the EditIngredientActivity
+                        startActivity(intent)
+                    }.addOnFailureListener {
+                        Log.e("firebase", "Error getting last inserted Meal", it)
+                    }
             }
         }
 

@@ -56,6 +56,8 @@ class MealAdapter(private val context: Context, private val meals: List<Meal>, p
                     }
                     Log.w(TAG, "Setting total cals and price of meal")
 
+//                    ingredients.map { ingredient -> ingredient?.nutritionSummary?.calories ?: 0.0 }
+
                     priceTextView.text = "Price: \$${ingredients.sumOf { it?.price ?: 0.0 }}"
                     caloriesTextView.text = "Calories: ${ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 }}"
 

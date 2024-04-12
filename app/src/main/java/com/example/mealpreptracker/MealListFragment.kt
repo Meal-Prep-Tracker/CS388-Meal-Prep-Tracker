@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
@@ -67,11 +68,11 @@ class MealListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Call the new method within onViewCreated
-        val mealsReference = database.child("Meals")
+        val mealsReference = database.child("Meals").orderByChild("user_id").equalTo(auth.currentUser!!.uid)
         fetchMeals(mealsReference)
     }
 
-    private fun fetchMeals(mealsReference: DatabaseReference) {
+    private fun fetchMeals(mealsReference: Query) {
         // Time to call the DB!!!!!!!!!!
         val mealListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {

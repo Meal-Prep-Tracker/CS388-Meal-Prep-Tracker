@@ -7,6 +7,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
@@ -25,7 +28,6 @@ import com.google.gson.Gson
 import okhttp3.Headers
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
 
 
 private const val TAG = "EditIngredientActivity"
@@ -65,18 +67,18 @@ class EditIngredientActivity : AppCompatActivity(){
         val done_button = findViewById<Button>(R.id.doneBtn)
 
         // Get the extra from the Intent
-        val selected_meal = intent.getSerializableExtra(MEAL_EXTRA) as Meal
+        val selected_meal = intent.getSerializableExtra(MEAL_EXTRA) as Meal?
 
         // Set the header to the name of the meal
         val mealNameHeaderTextView = findViewById<TextView>(R.id.mealNameHeader)
-        mealNameHeaderTextView.text = "${selected_meal.name}"
+        mealNameHeaderTextView.text = "${selected_meal?.name}"
 
 //        Log.w(TAG, selected_meal.toString())
         // Set up the API request code
         val client = AsyncHttpClient()
 
         // update the ingredients list by pulling in all hte meals from the firebase db - can add a listener that listens to changes in the collection
-        val ingredientsReference = database.child(INGREDIENTS_COLLECTION).orderByChild("meal_id").equalTo(selected_meal.id)
+        val ingredientsReference = database.child(INGREDIENTS_COLLECTION).orderByChild("meal_id").equalTo(selected_meal?.id)
         fetchIngredients(ingredientsReference, ingredientAdapter)
 
         // Set the add button onClickListener
@@ -122,7 +124,9 @@ class EditIngredientActivity : AppCompatActivity(){
                         }
 
                         // add an ingredient
-                        addIngredient(key, selected_meal, name, quantity, price, summary)
+                        if (selected_meal != null) {
+                            addIngredient(key, selected_meal, name, quantity, price, summary)
+                        }
 
                     } catch (e: JSONException) {
                         Log.e(TAG, "Exception: $e")
@@ -138,7 +142,12 @@ class EditIngredientActivity : AppCompatActivity(){
             val updates = ingredients.associateBy { it.id }
             Log.w(TAG, updates.toString())
             database.child(INGREDIENTS_COLLECTION).updateChildren(updates)
-            this.finish()
+            // Route to MealsListFragment
+            val fragmentManager: FragmentManager = supportFragmentManager // For support library
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            val mealFragment: Fragment = MealListFragment()
+            fragmentTransaction.replace(R.id.main_layout, mealFragment)
+            fragmentTransaction.commit()
         }
 
     }
