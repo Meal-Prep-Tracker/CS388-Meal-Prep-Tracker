@@ -20,14 +20,13 @@
         android:shadowDx="0"
         android:shadowDy="4"
         android:shadowRadius="4"
-        android:textColor="#000000"
         android:textSize="48sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toTopOf="@+id/mealName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Meal Details" />
+        android:text="Meal Details" />
 
 <!--    android:fontFamily="@font/inter"-->
 
@@ -37,13 +36,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mealDetailsHeader"
-        tools:text="Roasted Vegetables" />
+        android:text="Roasted Vegetables" />
 
 <!--    android:fontFamily="@font/inter"-->
 
@@ -53,12 +51,11 @@
         android:layout_height="wrap_content"
         android:textStyle="normal"
         android:textSize="20sp"
-        android:textColor="#000000"
         android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mealName"
-        tools:text="$13.50"/>
+        android:text="$13.50"/>
 
 <!--    android:fontFamily="@font/inter"-->
     <TextView
@@ -67,12 +64,11 @@
         android:layout_height="wrap_content"
         android:textStyle="normal"
         android:textSize="20sp"
-        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mealPrice"
         android:gravity="center_horizontal"
-        tools:text="4 servings"/>
+        android:text="4 servings"/>
 
     <!--    android:fontFamily="@font/inter"-->
 
@@ -93,7 +89,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="450dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toTopOf="@id/miniMealIngredientsRv"
@@ -101,7 +96,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.854"
-        tools:text="Ingredients" />
+        android:text="Ingredients" />
 
     <TextView
         android:id="@+id/summaryHeader"
@@ -109,7 +104,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +111,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintBottom_toTopOf="@id/calHeader"
-        tools:text="Nutrition Summary" />
+        android:text="Nutrition Summary" />
 
     <TextView
         android:id="@+id/calHeader"
@@ -125,12 +119,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/summaryHeader"
-        tools:text="Calories: 90" />
+        android:text="Calories: 90" />
 
     <TextView
         android:id="@+id/fatHeader"
@@ -138,12 +131,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/calHeader"
-        tools:text="Fat: 3.6g" />
+        android:text="Fat: 3.6g" />
 
     <TextView
         android:id="@+id/satFatHeader"
@@ -151,12 +143,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fatHeader"
-        tools:text="Saturated Fat: 3.6g" />
+        android:text="Saturated Fat: 3.6g" />
 
     <TextView
         android:id="@+id/proteinHeader"
@@ -164,12 +155,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/satFatHeader"
-        tools:text="Protein: 1.4g" />
+        android:text="Protein: 1.4g" />
 
     <TextView
         android:id="@+id/sodiumHeader"
@@ -177,12 +167,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/proteinHeader"
-        tools:text="Sodium: 45mg" />
+        android:text="Sodium: 45mg" />
 
     <TextView
         android:id="@+id/potassiumHeader"
@@ -190,12 +179,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sodiumHeader"
-        tools:text="Potassium: 36mg" />
+        android:text="Potassium: 36mg" />
 
     <TextView
         android:id="@+id/cholesterolHeader"
@@ -216,12 +204,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cholesterolHeader"
-        tools:text="Carbohydrates: 13.1g" />
+        android:text="Carbohydrates: 13.1g" />
 
     <TextView
         android:id="@+id/fiberHeader"
@@ -229,12 +216,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/carbsHeader"
-        tools:text="Fiber: 2.3g" />
+        android:text="Fiber: 2.3g" />
 
     <TextView
         android:id="@+id/sugarHeader"
@@ -242,12 +228,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
         android:gravity="center_horizontal"
-        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fiberHeader"
-        tools:text="Sugar: 2.8g" />
+        android:text="Sugar: 2.8g" />
 
 
     <androidx.recyclerview.widget.RecyclerView
