@@ -5,19 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.Query
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.getValue
-import java.util.ArrayList
 
 private const val TAG = "MealAdapter"
 class MealAdapter(private val context: Context, private val meals: List<Meal>, private val databaseReference: DatabaseReference) : RecyclerView.Adapter<MealAdapter.ViewHolder>(){
@@ -113,7 +106,7 @@ class MealAdapter(private val context: Context, private val meals: List<Meal>, p
             val meal = meals[absoluteAdapterPosition]
 
             // Navigate to Meal Details screen and pass selected meal and its ingredients
-            val intent = Intent(context, EditIngredientActivity::class.java)
+            val intent = Intent(context, EditMealActivity::class.java)
             intent.putExtra(MEAL_EXTRA, meal)
             context.startActivity(intent)
             return true
