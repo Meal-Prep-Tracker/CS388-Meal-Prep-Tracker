@@ -91,7 +91,7 @@
                 android:fontFamily="@font/inter"
                 app:layout_constraintTop_toBottomOf="@+id/dashboardStats" />
 
-            <com.github.mikephil.charting.charts.BarChart
+            <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/caloriesChart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
@@ -112,7 +112,7 @@
                 android:fontFamily="@font/inter"
                 app:layout_constraintTop_toBottomOf="@+id/caloriesChart" />
 
-            <com.github.mikephil.charting.charts.BarChart
+            <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/expensesChart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"

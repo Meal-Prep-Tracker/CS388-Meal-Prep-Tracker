@@ -28,6 +28,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.Firebase
@@ -48,10 +49,11 @@ private const val TAG = "Dashboard"
 
 class DashboardFragment : Fragment() {
     private lateinit var mealsEnteredText: TextView
-    private lateinit var caloriesChart: BarChart
-    private lateinit var expensesChart: BarChart
-    lateinit var calorieEntries: ArrayList<BarEntry>
-    lateinit var expensesEntries: ArrayList<BarEntry>
+    private lateinit var caloriesChart: LineChart
+    private lateinit var expensesChart: LineChart
+    lateinit var calorieEntries: ArrayList<Entry>
+    lateinit var expensesEntries: ArrayList<Entry>
+    private lateinit var mealNames: List<String>
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
@@ -60,6 +62,7 @@ class DashboardFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mealNames = listOf()
 
         sharedpreferences = requireActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         darkMode = sharedpreferences.getBoolean("darkMode", false)
@@ -112,8 +115,9 @@ class DashboardFragment : Fragment() {
 
                 // Sorts meals by their epoch time
                 val sortedMeals = mealsForCurrentMonth.sortedBy { it.date }
+                mealNames = sortedMeals.map { meal -> meal.name!! }
 
-                var count = 1
+                var count = 0
 
                 sortedMeals.forEach { meal ->
 
@@ -132,8 +136,8 @@ class DashboardFragment : Fragment() {
                             var epochTime = meal.date ?: 0L // Default to 0 if date is null
                             var date = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Date(epochTime))
 
-                            calorieEntries.add(BarEntry(count.toFloat(), calories))
-                            expensesEntries.add(BarEntry(count.toFloat(), price))
+                            calorieEntries.add(Entry(count.toFloat(), calories))
+                            expensesEntries.add(Entry(count.toFloat(), price))
                             Log.v(TAG, "Date: $date | Calories: $calories | Price: $price | Servings: $servings | uid: $uid")
 
                             count += 1
@@ -200,10 +204,11 @@ class DashboardFragment : Fragment() {
 
     private fun updateCalorieChart() {
         lifecycleScope.launch(IO) {
-            val calorieDataSet = BarDataSet(calorieEntries, "Calories")
-            val calorieLineData = BarData(calorieDataSet)
+            val calorieDataSet = LineDataSet(calorieEntries, "Calories")
+            val calorieLineData = LineData(calorieDataSet)
 
             caloriesChart.data = calorieLineData
+            caloriesChart.legend.isEnabled = false
 
             if (darkMode) {
                 calorieDataSet.valueTextColor = Color.WHITE
@@ -233,7 +238,6 @@ class DashboardFragment : Fragment() {
             calorieDataSet.setColors(*ColorTemplate.JOYFUL_COLORS)
             calorieDataSet.valueTextSize = 16f
             calorieDataSet.color = ContextCompat.getColor(requireActivity(), R.color.secondary)
-//            calorieDataSet.setDrawFilled(true)
             calorieDataSet.setValueTypeface(Typeface.DEFAULT_BOLD)
 
             caloriesChart.axisRight.isEnabled = false
@@ -257,6 +261,8 @@ class DashboardFragment : Fragment() {
 //                }
 //            }
 
+            xAxis.valueFormatter = IndexAxisValueFormatter(mealNames)
+            xAxis.labelRotationAngle = 45f
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.setLabelCount(calorieEntries.size, true)
 
@@ -270,10 +276,11 @@ class DashboardFragment : Fragment() {
 
     private fun updateExpenseChart() {
         lifecycleScope.launch(IO) {
-            val expensesDataSet = BarDataSet(expensesEntries, "Price")
-            val expensesLineData = BarData(expensesDataSet)
+            val expensesDataSet = LineDataSet(expensesEntries, "Price")
+            val expensesLineData = LineData(expensesDataSet)
 
             expensesChart.data = expensesLineData
+            caloriesChart.legend.isEnabled = false
 
             if (darkMode) {
                 expensesDataSet.valueTextColor = Color.WHITE
@@ -327,6 +334,8 @@ class DashboardFragment : Fragment() {
 //            }
 
             xAxis.position = XAxis.XAxisPosition.BOTTOM
+            xAxis.valueFormatter = IndexAxisValueFormatter(mealNames)
+            xAxis.labelRotationAngle = 45f
             xAxis.setLabelCount(expensesEntries.size, true)
 
             val yAxis: YAxis = expensesChart.axisLeft
