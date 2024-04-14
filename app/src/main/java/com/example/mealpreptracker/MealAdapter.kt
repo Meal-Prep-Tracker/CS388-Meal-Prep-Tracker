@@ -11,10 +11,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
-import kotlin.math.round
+import com.google.firebase.storage.StorageReference
 
 private const val TAG = "MealAdapter"
-class MealAdapter(private val context: Context, private val meals: List<Meal>, private val databaseReference: DatabaseReference) : RecyclerView.Adapter<MealAdapter.ViewHolder>(){
+class MealAdapter(
+    private val context: Context,
+    private val meals: List<Meal>,
+    private val databaseReference: DatabaseReference,
+    private val storageRef: StorageReference
+) : RecyclerView.Adapter<MealAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_meal, parent, false)
@@ -74,6 +79,7 @@ class MealAdapter(private val context: Context, private val meals: List<Meal>, p
                 // Query to find ingredients with matching meal_id
                 val deleteIngredientsQuery = databaseReference.child("Ingredients").orderByChild("meal_id").equalTo(mealToDelete.id)
 
+                // Delete all ingredients for this meal
                 deleteIngredientsQuery.get()
                     .addOnSuccessListener {
                     snapshot -> snapshot.children.forEach {
@@ -85,24 +91,15 @@ class MealAdapter(private val context: Context, private val meals: List<Meal>, p
                         Log.e("firebase", "Error deleteing ingredients", it)
                     }
 
-                /* deleteIngredientsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        // Loop through the results and delete each node
-                        for (ingredientSnapshot in dataSnapshot.children){
-                            ingredientSnapshot.ref.removeValue()
-                                .addOnSuccessListener {
-                                    println("Ingredient deleted successfully.")
-                                }
-                                .addOnFailureListener { error ->
-                                    println("Error deleting ingredient: $error")
-                                }
-                        }
-                    }
+                // Delete the image for this meal
+                mealToDelete.image_id?.let { it1 -> storageRef.child(it1).delete()
+                    .addOnSuccessListener {
+                    Log.w("firebase", "File deleted!")
+                }
+                    .addOnFailureListener {
+                    Log.w("firebase", "Error occured while deleting file") }
+                }
 
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        println("Error querying ingredients: $databaseError")
-                    }
-                }) */
             }
         }
 
