@@ -69,27 +69,8 @@ class DashboardFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
-
-        auth.currentUser ?: run {
-            val intent = Intent(activity, WelcomeActivity::class.java)
-            intent.putExtra(SOURCE_EXTRA, "ProfileFragment")
-            startActivity(intent)
-            activity?.finish()
-        }
-
-        mealsEnteredText = view.findViewById(R.id.mealEnteredText)
-        caloriesChart = view.findViewById(R.id.caloriesChart)
-        expensesChart = view.findViewById(R.id.expensesChart)
-//        foodGroupsChart = view.findViewById(R.id.foodGroupsChart)
-
-        calorieEntries = ArrayList()
-        expensesEntries = ArrayList()
-
+    override fun onResume() {
+        super.onResume()
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         database = Firebase.database.reference
 
@@ -180,6 +161,28 @@ class DashboardFragment : Fragment() {
             .addOnFailureListener {
                 Log.e(TAG, "Error getting meal data", it)
             }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+
+        auth.currentUser ?: run {
+            val intent = Intent(activity, WelcomeActivity::class.java)
+            intent.putExtra(SOURCE_EXTRA, "ProfileFragment")
+            startActivity(intent)
+            activity?.finish()
+        }
+
+        mealsEnteredText = view.findViewById(R.id.mealEnteredText)
+        caloriesChart = view.findViewById(R.id.caloriesChart)
+        expensesChart = view.findViewById(R.id.expensesChart)
+//        foodGroupsChart = view.findViewById(R.id.foodGroupsChart)
+
+        calorieEntries = ArrayList()
+        expensesEntries = ArrayList()
 
         return view
     }
