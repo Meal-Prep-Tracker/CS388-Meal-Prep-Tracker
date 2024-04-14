@@ -83,6 +83,8 @@ class MealDetailActivity : AppCompatActivity() {
         mealNameHeaderTextView.text = meal.name
         mealServingsTextView.text = "${meal.servings.toString()} servings"
 
+        val servings =  meal.servings
+
         // TODO: setup the Recycler View
         val miniIngredientsRv = findViewById<RecyclerView>(R.id.miniMealIngredientsRv)
 
@@ -103,17 +105,28 @@ class MealDetailActivity : AppCompatActivity() {
                     Log.w(TAG, "Details of ${meal} will be shown now")
 
                     // Calculate all the details of the meal
-                    calHeaderTextView.text = "Calories: ${ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 }}"
-                    proteinHeaderTextView.text = "Protein: ${ingredients.sumOf { it?.nutritionSummary?.protein ?: 0.0 }}g"
-                    carbsHeaderTextView.text = "Carbs: ${ingredients.sumOf { it?.nutritionSummary?.carbohydrates ?: 0.0 }}g"
-                    fatHeaderTextView.text = "Fat: ${ingredients.sumOf { it?.nutritionSummary?.fat ?: 0.0 }}g"
-                    fiberHeaderTextView.text = "Fiber: ${ingredients.sumOf { it?.nutritionSummary?.fiber ?: 0.0 }}g"
-                    sugarHeaderTextView.text = "Sugar: ${ingredients.sumOf { it?.nutritionSummary?.sugar ?: 0.0 }}g"
-                    satFatHeaderTextView.text = "Saturated Fat: ${ingredients.sumOf { it?.nutritionSummary?.saturatedFat ?: 0.0 }}g"
-                    sodiumHeaderTextView.text = "Sodium: ${ingredients.sumOf { it?.nutritionSummary?.sodium ?: 0.0 }}mg"
-                    potassiumHeaderTextView.text = "Potassium: ${ingredients.sumOf { it?.nutritionSummary?.potassium ?: 0.0 }}mg"
-                    cholesterolHeaderTextView.text = "Cholesterol: ${ingredients.sumOf { it?.nutritionSummary?.cholesterol ?: 0.0 }}mg"
-                    mealPriceTextView.text = "\$${ingredients.sumOf { it?.price ?: 0.0 }}"
+                    val calories = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 } / servings!!).toFloat())
+                    val protein = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.protein ?: 0.0 } / servings).toFloat())
+                    val carbs = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.carbohydrates ?: 0.0 } / servings).toFloat())
+                    val fat = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.fat ?: 0.0 } / servings).toFloat())
+                    val fiber = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.fiber ?: 0.0 } / servings).toFloat())
+                    val sugar = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.sugar ?: 0.0 } / servings).toFloat())
+                    val satFat = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.saturatedFat ?: 0.0 } / servings).toFloat())
+                    val sodium = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.sodium ?: 0.0 } / servings).toFloat())
+                    val potassium = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.potassium ?: 0.0 } / servings).toFloat())
+                    val cholesterol = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.cholesterol ?: 0.0 } / servings).toFloat())
+
+                    calHeaderTextView.text = "Calories: $calories"
+                    proteinHeaderTextView.text = "Protein: ${protein}g"
+                    carbsHeaderTextView.text = "Carbs: ${carbs}g"
+                    fatHeaderTextView.text = "Fat: ${fat}g"
+                    fiberHeaderTextView.text = "Fiber: ${fiber}g"
+                    sugarHeaderTextView.text = "Sugar: ${sugar}g"
+                    satFatHeaderTextView.text = "Saturated Fat: ${satFat}g"
+                    sodiumHeaderTextView.text = "Sodium: ${sodium}mg"
+                    potassiumHeaderTextView.text = "Potassium: ${potassium}mg"
+                    cholesterolHeaderTextView.text = "Cholesterol: ${cholesterol}mg"
+                    mealPriceTextView.text = "Total Price: \$${ingredients.sumOf { it?.price ?: 0.0 }}"
             }
             .addOnFailureListener{
                 Log.e(TAG, "Error getting summary data", it)

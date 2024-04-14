@@ -1,247 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MealDetailActivity">
+    android:layout_height="match_parent">
 
-<!--    android:fontFamily="@font/inter"-->
-
-    <TextView
-        android:id="@+id/mealDetailsHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_horizontal"
-        android:shadowColor="#40000000"
-        android:shadowDx="0"
-        android:shadowDy="4"
-        android:shadowRadius="4"
-        android:textSize="48sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/mealName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Meal Details" />
-
-<!--    android:fontFamily="@font/inter"-->
-
-    <TextView
-        android:id="@+id/mealName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealDetailsHeader"
-        android:text="Roasted Vegetables" />
-
-<!--    android:fontFamily="@font/inter"-->
-
-    <TextView
-        android:id="@+id/mealPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="normal"
-        android:textSize="20sp"
-        android:gravity="center_horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealName"
-        android:text="$13.50"/>
-
-<!--    android:fontFamily="@font/inter"-->
-    <TextView
-        android:id="@+id/mealServings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="normal"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealPrice"
-        android:gravity="center_horizontal"
-        android:text="4 servings"/>
-
-    <!--    android:fontFamily="@font/inter"-->
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="176dp"
-        android:layout_height="104dp"
-        android:layout_marginTop="184dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/ingredientsHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@id/miniMealIngredientsRv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.854"
-        android:text="Ingredients" />
-
-    <TextView
-        android:id="@+id/summaryHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
-        app:layout_constraintBottom_toTopOf="@id/calHeader"
-        android:text="Nutrition Summary" />
-
-    <TextView
-        android:id="@+id/calHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summaryHeader"
-        android:text="Calories: 90" />
-
-    <TextView
-        android:id="@+id/fatHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/calHeader"
-        android:text="Fat: 3.6g" />
-
-    <TextView
-        android:id="@+id/satFatHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fatHeader"
-        android:text="Saturated Fat: 3.6g" />
-
-    <TextView
-        android:id="@+id/proteinHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/satFatHeader"
-        android:text="Protein: 1.4g" />
-
-    <TextView
-        android:id="@+id/sodiumHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/proteinHeader"
-        android:text="Sodium: 45mg" />
-
-    <TextView
-        android:id="@+id/potassiumHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sodiumHeader"
-        android:text="Potassium: 36mg" />
-
-    <TextView
-        android:id="@+id/cholesterolHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/potassiumHeader"
-        tools:text="Cholesterol: 0mg" />
-
-    <TextView
-        android:id="@+id/carbsHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cholesterolHeader"
-        android:text="Carbohydrates: 13.1g" />
-
-    <TextView
-        android:id="@+id/fiberHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/carbsHeader"
-        android:text="Fiber: 2.3g" />
-
-    <TextView
-        android:id="@+id/sugarHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:gravity="center_horizontal"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fiberHeader"
-        android:text="Sugar: 2.8g" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/miniMealIngredientsRv"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="550dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_mini_ingredient"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MealDetailActivity">
+
+            <TextView
+                android:id="@+id/mealDetailsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal"
+                android:shadowColor="#40000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:textSize="48sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/mealName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="Meal Details" />
+
+        <!--    android:fontFamily="@font/inter"-->
+
+            <TextView
+                android:id="@+id/mealName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mealDetailsHeader"
+                android:text="Roasted Vegetables" />
+
+        <!--    android:fontFamily="@font/inter"-->
+
+            <TextView
+                android:id="@+id/mealPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="20sp"
+                android:gravity="center_horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mealName"
+                android:text="$13.50"/>
+
+        <!--    android:fontFamily="@font/inter"-->
+            <TextView
+                android:id="@+id/mealServings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mealPrice"
+                android:gravity="center_horizontal"
+                android:text="4 servings"/>
+
+            <!--    android:fontFamily="@font/inter"-->
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="176dp"
+                android:layout_height="104dp"
+                android:layout_marginTop="184dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.506"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/ingredientsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="550dp"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@id/miniMealIngredientsRv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.854"
+                android:text="Ingredients" />
+
+            <TextView
+                android:id="@+id/summaryHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView"
+                app:layout_constraintBottom_toTopOf="@id/calHeader"
+                android:text="Nutrition Summary (per serving)" />
+
+            <TextView
+                android:id="@+id/calHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/summaryHeader"
+                android:text="Calories: 90" />
+
+            <TextView
+                android:id="@+id/fatHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calHeader"
+                android:text="Fat: 3.6g" />
+
+            <TextView
+                android:id="@+id/satFatHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fatHeader"
+                android:text="Saturated Fat: 3.6g" />
+
+            <TextView
+                android:id="@+id/proteinHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/satFatHeader"
+                android:text="Protein: 1.4g" />
+
+            <TextView
+                android:id="@+id/sodiumHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/proteinHeader"
+                android:text="Sodium: 45mg" />
+
+            <TextView
+                android:id="@+id/potassiumHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sodiumHeader"
+                android:text="Potassium: 36mg" />
+
+            <TextView
+                android:id="@+id/cholesterolHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/potassiumHeader"
+                tools:text="Cholesterol: 0mg" />
+
+            <TextView
+                android:id="@+id/carbsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cholesterolHeader"
+                android:text="Carbohydrates: 13.1g" />
+
+            <TextView
+                android:id="@+id/fiberHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/carbsHeader"
+                android:text="Fiber: 2.3g" />
+
+            <TextView
+                android:id="@+id/sugarHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:gravity="center_horizontal"
+                android:textSize="15sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fiberHeader"
+                android:text="Sugar: 2.8g" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/miniMealIngredientsRv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="550dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_mini_ingredient"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_delete_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealPriceLbl"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="15dp"
         android:layout_marginEnd="16dp"/>
 
     <TextView
@@ -30,12 +31,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/inter"
         android:textColor="#000000"
         android:textSize="15sp"
         android:gravity="left"
-        android:textStyle="normal"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Roasted Vegetables" />
@@ -44,14 +45,15 @@
         android:id="@+id/mealCaloriesLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/inter"
-        android:gravity="right"
+        android:gravity="left"
         android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Calories: 90" />
 
@@ -62,10 +64,11 @@
         android:fontFamily="@font/inter"
         android:textColor="#000000"
         android:textSize="15sp"
-        android:gravity="right"
+        android:layout_marginStart="16dp"
+        android:gravity="left"
         android:layout_marginEnd="16dp"
         android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mealCaloriesLbl"
         tools:text="Price: $13.50" />
 

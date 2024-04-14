@@ -18,19 +18,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var sharedpreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         val darkMode = sharedpreferences.getBoolean("darkMode", false)
         val notifications = sharedpreferences.getBoolean("notifications", false)
-
-        val auth = FirebaseAuth.getInstance()
-        if (auth.currentUser == null) {
-            this.startActivity(Intent(this, WelcomeActivity::class.java))
-        }
 
         if (darkMode) {
             // Apply dark theme
@@ -40,7 +30,15 @@ class MainActivity : AppCompatActivity() {
             setTheme(R.style.mealPrepTheme)
         }
 
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser == null) {
+            this.startActivity(Intent(this, WelcomeActivity::class.java))
+        }
 
         val dashboardFragment: Fragment = DashboardFragment()
         val mealsListFragment: Fragment = MealListFragment()

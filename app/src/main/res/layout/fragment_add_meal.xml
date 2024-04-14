@@ -39,7 +39,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name: "
-                android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="normal" />
 
@@ -75,7 +74,7 @@
                 android:id="@+id/mealServings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="4"
+                android:hint="Amount"
                 android:inputType="numberDecimal"
                 android:textColor="?attr/editTextColor"
                 android:textColorHint="?attr/colorControlNormal"
@@ -101,7 +100,7 @@
                 android:id="@+id/mealDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Some Date"
+                android:text=""
                 android:textSize="24sp"
                 android:textStyle="normal" />
         </LinearLayout>
@@ -116,6 +115,18 @@
             android:src="@drawable/baseline_camera_alt_24" />
 
         <Button
+            android:id="@+id/pickDate"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/dark_teal"
+            android:text="Pick Date"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <Button
             android:id="@+id/addMealBtn"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -125,17 +136,6 @@
             android:text="Add Meal"
             android:textColor="@color/black"
             android:textSize="16sp" />
-
-
-        <Button
-            android:id="@+id/pickDate"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/dark_teal"
-            android:text="Pick date"
-            android:textColor="@color/black" />
 
     </LinearLayout>
 </FrameLayout>
