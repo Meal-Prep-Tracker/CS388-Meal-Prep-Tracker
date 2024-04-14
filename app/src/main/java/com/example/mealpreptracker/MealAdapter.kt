@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DatabaseReference
+import kotlin.math.round
 
 private const val TAG = "MealAdapter"
 class MealAdapter(private val context: Context, private val meals: List<Meal>, private val databaseReference: DatabaseReference) : RecyclerView.Adapter<MealAdapter.ViewHolder>(){
@@ -40,6 +41,7 @@ class MealAdapter(private val context: Context, private val meals: List<Meal>, p
         @SuppressLint("SetTextI18n")
         fun bind(meal: Meal) {
             mealNameTextView.text = meal.name
+            val servings = meal.servings
             // Make DB call here to set total pice and calories
             databaseReference.child("Ingredients").orderByChild("meal_id").equalTo(meal.id).get()
                 .addOnSuccessListener { snapshot ->
@@ -51,8 +53,11 @@ class MealAdapter(private val context: Context, private val meals: List<Meal>, p
 
 //                    ingredients.map { ingredient -> ingredient?.nutritionSummary?.calories ?: 0.0 }
 
-                    priceTextView.text = "Price: \$${ingredients.sumOf { it?.price ?: 0.0 }}"
-                    caloriesTextView.text = "Calories: ${ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 }}"
+                    val calories = (ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 } / servings!!).toFloat()
+                    val roundedCalories = "%.1f".format(calories)
+
+                    priceTextView.text = "Total Price: \$${ingredients.sumOf { it?.price ?: 0.0 }} for $servings servings"
+                    caloriesTextView.text = "Calories (per serving): $roundedCalories"
 
                 }
                 .addOnFailureListener {

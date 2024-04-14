@@ -6,20 +6,14 @@ import android.content.SharedPreferences
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
-import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.ktx.storage
-import com.google.firebase.storage.storage
 
 private const val TAG = "MealDetailActivity"
 
@@ -38,10 +32,8 @@ class MealDetailActivity : AppCompatActivity() {
     private lateinit var fiberHeaderTextView: TextView
     private lateinit var sugarHeaderTextView: TextView
     private  lateinit var summaryHeaderTextView: TextView
-    private lateinit var foodImageView: ImageView
     private lateinit var database: DatabaseReference
-    private lateinit var storage: StorageReference
-    private lateinit var sharedpreferences: SharedPreferences
+    lateinit var sharedpreferences: SharedPreferences
     private lateinit var auth: FirebaseAuth
 
     @SuppressLint("SetTextI18n")
@@ -69,7 +61,6 @@ class MealDetailActivity : AppCompatActivity() {
         // Get the database reference
         database = Firebase.database.reference
 
-
         // TODO: Find the views for the screen
         mealNameHeaderTextView = findViewById(R.id.mealName)
         mealPriceTextView = findViewById(R.id.mealPrice)
@@ -85,12 +76,14 @@ class MealDetailActivity : AppCompatActivity() {
         fiberHeaderTextView = findViewById(R.id.fiberHeader)
         sugarHeaderTextView = findViewById(R.id.sugarHeader)
         sodiumHeaderTextView = findViewById(R.id.sodiumHeader)
-        foodImageView = findViewById(R.id.foodImageView)
+
         // TODO: Get the extra from the Intent
         val meal = intent.getSerializableExtra(MEAL_EXTRA) as Meal
         // TODO: Set the mealNameHeader, meal details, and nutrition summary of the meal
         mealNameHeaderTextView.text = meal.name
         mealServingsTextView.text = "${meal.servings.toString()} servings"
+
+        val servings =  meal.servings
 
         // TODO: setup the Recycler View
         val miniIngredientsRv = findViewById<RecyclerView>(R.id.miniMealIngredientsRv)
@@ -112,41 +105,28 @@ class MealDetailActivity : AppCompatActivity() {
                     Log.w(TAG, "Details of ${meal} will be shown now")
 
                     // Calculate all the details of the meal
-                    calHeaderTextView.text = "Calories: ${ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 }}"
-                    proteinHeaderTextView.text = "Protein: ${ingredients.sumOf { it?.nutritionSummary?.protein ?: 0.0 }}g"
-                    carbsHeaderTextView.text = "Carbs: ${ingredients.sumOf { it?.nutritionSummary?.carbohydrates ?: 0.0 }}g"
-                    fatHeaderTextView.text = "Fat: ${ingredients.sumOf { it?.nutritionSummary?.fat ?: 0.0 }}g"
-                    fiberHeaderTextView.text = "Fiber: ${ingredients.sumOf { it?.nutritionSummary?.fiber ?: 0.0 }}g"
-                    sugarHeaderTextView.text = "Sugar: ${ingredients.sumOf { it?.nutritionSummary?.sugar ?: 0.0 }}g"
-                    satFatHeaderTextView.text = "Saturated Fat: ${ingredients.sumOf { it?.nutritionSummary?.saturatedFat ?: 0.0 }}g"
-                    sodiumHeaderTextView.text = "Sodium: ${ingredients.sumOf { it?.nutritionSummary?.sodium ?: 0.0 }}mg"
-                    potassiumHeaderTextView.text = "Potassium: ${ingredients.sumOf { it?.nutritionSummary?.potassium ?: 0.0 }}mg"
-                    cholesterolHeaderTextView.text = "Cholesterol: ${ingredients.sumOf { it?.nutritionSummary?.cholesterol ?: 0.0 }}mg"
-                    mealPriceTextView.text = "\$${ingredients.sumOf { it?.price ?: 0.0 }}"
+                    val calories = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 } / servings!!).toFloat())
+                    val protein = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.protein ?: 0.0 } / servings).toFloat())
+                    val carbs = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.carbohydrates ?: 0.0 } / servings).toFloat())
+                    val fat = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.fat ?: 0.0 } / servings).toFloat())
+                    val fiber = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.fiber ?: 0.0 } / servings).toFloat())
+                    val sugar = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.sugar ?: 0.0 } / servings).toFloat())
+                    val satFat = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.saturatedFat ?: 0.0 } / servings).toFloat())
+                    val sodium = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.sodium ?: 0.0 } / servings).toFloat())
+                    val potassium = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.potassium ?: 0.0 } / servings).toFloat())
+                    val cholesterol = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.cholesterol ?: 0.0 } / servings).toFloat())
 
-                    // Set the image of the meal if it even exists
-                    if (meal.image_id != null)
-                    {
-                        // Get the storage reference
-                        storage = com.google.firebase.ktx.Firebase.storage.reference
-                        val imageRef = storage.child(meal.image_id!!)
-                        imageRef.downloadUrl
-                            .addOnSuccessListener { uri ->
-                                try {
-                                    Glide
-                                        .with(this)
-                                        .load(uri)
-                                        .apply(RequestOptions().override(300))
-                                        .into(foodImageView)
-                                }
-                                catch(e: Exception) {
-                                    Log.e(TAG, "Uri ${uri} is invalid!")
-                                }
-                            }
-                            .addOnFailureListener {
-                                Log.e(TAG, "Could not download image from Firebase!")
-                            }
-                    }
+                    calHeaderTextView.text = "Calories: $calories"
+                    proteinHeaderTextView.text = "Protein: ${protein}g"
+                    carbsHeaderTextView.text = "Carbs: ${carbs}g"
+                    fatHeaderTextView.text = "Fat: ${fat}g"
+                    fiberHeaderTextView.text = "Fiber: ${fiber}g"
+                    sugarHeaderTextView.text = "Sugar: ${sugar}g"
+                    satFatHeaderTextView.text = "Saturated Fat: ${satFat}g"
+                    sodiumHeaderTextView.text = "Sodium: ${sodium}mg"
+                    potassiumHeaderTextView.text = "Potassium: ${potassium}mg"
+                    cholesterolHeaderTextView.text = "Cholesterol: ${cholesterol}mg"
+                    mealPriceTextView.text = "Total Price: \$${ingredients.sumOf { it?.price ?: 0.0 }}"
             }
             .addOnFailureListener{
                 Log.e(TAG, "Error getting summary data", it)
