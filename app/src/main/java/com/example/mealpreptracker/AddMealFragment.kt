@@ -17,6 +17,8 @@ import android.widget.TextView
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toBitmapOrNull
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -102,6 +104,7 @@ class AddMealFragment(val listener: SetOnAddMealListener) : Fragment() {
         addMealBtn = view.findViewById(R.id.addMealBtn)
         mealDate = view.findViewById(R.id.mealDate)
         imageButton = view.findViewById(R.id.food_image)
+//        imageButton.background = null
         // Set event handlers
         addMealBtn.setOnClickListener {
             val key = database.getReference(MEALS_COLLECTION).push().key
@@ -246,7 +249,11 @@ class AddMealFragment(val listener: SetOnAddMealListener) : Fragment() {
         if(requestCode == CAMERA_RESULT_CODE) {
             // A food image was taken so we can assume a bitmap for it exists
             val takenPic: Bitmap? = data!!.extras!!["data"] as Bitmap?
-            imageButton.setImageBitmap(takenPic)
+            Glide
+                .with(this)
+                .asBitmap()
+                .load(takenPic)
+                .into(imageButton)
             // Image is taken
             imageTaken = true
         }
