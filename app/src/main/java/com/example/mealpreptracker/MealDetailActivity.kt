@@ -6,14 +6,18 @@ import android.content.SharedPreferences
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
+import com.google.firebase.storage.ktx.storage
 
 private const val TAG = "MealDetailActivity"
 
@@ -32,6 +36,7 @@ class MealDetailActivity : AppCompatActivity() {
     private lateinit var fiberHeaderTextView: TextView
     private lateinit var sugarHeaderTextView: TextView
     private  lateinit var summaryHeaderTextView: TextView
+    private lateinit var foodmageView: ImageView
     private lateinit var database: DatabaseReference
     lateinit var sharedpreferences: SharedPreferences
     private lateinit var auth: FirebaseAuth
@@ -62,6 +67,7 @@ class MealDetailActivity : AppCompatActivity() {
         database = Firebase.database.reference
 
         // TODO: Find the views for the screen
+        foodmageView = findViewById(R.id.imageView)
         mealNameHeaderTextView = findViewById(R.id.mealName)
         mealPriceTextView = findViewById(R.id.mealPrice)
         mealServingsTextView = findViewById(R.id.mealServings)
@@ -79,9 +85,31 @@ class MealDetailActivity : AppCompatActivity() {
 
         // TODO: Get the extra from the Intent
         val meal = intent.getSerializableExtra(MEAL_EXTRA) as Meal
-        // TODO: Set the mealNameHeader, meal details, and nutrition summary of the meal
+        // TODO: Set the mealNameHeader, meal details, picture and nutrition summary of the meal
         mealNameHeaderTextView.text = meal.name
         mealServingsTextView.text = "${meal.servings.toString()} servings"
+
+        // Load the food image
+        if (meal.image_id != null) {
+            val storage = com.google.firebase.ktx.Firebase.storage.reference
+            val imageId = meal.image_id!!
+            val imageRef = storage.child(imageId)
+            imageRef.downloadUrl
+                .addOnSuccessListener { uri ->
+                    try {
+                        Glide
+                            .with(this)
+                            .load(uri)
+                            .into(foodmageView)
+                    }
+                    catch(e: Exception) {
+                        Log.e(TAG, "Uri ${uri} is invalid!")
+                    }
+                }
+                .addOnFailureListener {
+                    Log.e(TAG, "Could not download image from Firebase!")
+                }
+        }
 
         val servings =  meal.servings
 

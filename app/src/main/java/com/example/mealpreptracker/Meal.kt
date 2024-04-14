@@ -10,6 +10,6 @@ data class Meal (
     var servings: Int? = 0,
     var price: Double? = 0.0,
     val calories: Double? = 0.0,
-    val date: Long? = 0L,
+    var date: Long? = System.currentTimeMillis(),
     var image_id: String? = null,
 ):  java.io.Serializable
