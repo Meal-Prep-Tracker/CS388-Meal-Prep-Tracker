@@ -8,9 +8,11 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
 import android.util.Log
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
@@ -170,30 +172,18 @@ class EditMealActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == CAMERA_RESULT_CODE) {
             val takenPic: Bitmap? = data!!.extras!!["data"] as Bitmap?
-            imageButton.setImageBitmap(takenPic)
+            imageButton.background = null
+            Glide
+                .with(this)
+                .asBitmap()
+                .load(takenPic)
+                .apply(RequestOptions().override(300))
+                .into(imageButton)
             imageRetaken = true
         }
     }
 
-    private fun uriToBitmap(uri: Uri): Bitmap? {
-        var imageStream: InputStream? = null
-        var bitmap: Bitmap? = null
-        try {
-            imageStream = contentResolver.openInputStream(uri)
-            bitmap = BitmapFactory.decodeStream(imageStream)
-            Log.v(EDIT_MEAL_TAG, "Successfully loaded image!")
-        }
-        catch(e: Exception) {
-            Log.e(EDIT_MEAL_TAG, "Failed to load image: ${e}")
-        }
-        finally {
-            imageStream?.close()
-        }
-        return bitmap
-    }
-
     private fun getImageBitmap(): Bitmap {
-        val bitmap = imageButton.drawable.toBitmap()
-        return bitmap
+        return imageButton.drawable.toBitmap()
     }
 }
