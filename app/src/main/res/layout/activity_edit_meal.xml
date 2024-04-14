@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".EditMealActivity">
 
     <TextView
         android:id="@+id/edit_meal_title"
@@ -84,6 +85,20 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/pickDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:backgroundTint="@color/dark_teal"
+        android:text="Pick date"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_ingredients_btn"
+        app:layout_constraintVertical_bias="0.0" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -108,4 +123,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meal_name_input" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date: "
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/servings_input"
+        app:layout_constraintHorizontal_bias="0.132"
+        android:layout_marginTop="25dp"
+        />
+
+    <TextView
+        android:id="@+id/mealDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Some Date"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/servings_input"
+        app:layout_constraintHorizontal_bias="0.40"
+        android:layout_marginTop="25dp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

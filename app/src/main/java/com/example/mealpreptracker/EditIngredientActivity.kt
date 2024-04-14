@@ -88,7 +88,7 @@ class EditIngredientActivity : AppCompatActivity(){
         val mealNameHeaderTextView = findViewById<TextView>(R.id.mealNameHeader)
         mealNameHeaderTextView.text = "${selected_meal?.name}"
 
-//        Log.w(TAG, selected_meal.toString())
+        Log.w(TAG, selected_meal.toString())
         // Set up the API request code
         val client = AsyncHttpClient()
 

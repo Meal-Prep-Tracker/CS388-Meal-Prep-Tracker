@@ -6,14 +6,20 @@ import android.content.SharedPreferences
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
+import com.google.firebase.storage.storage
 
 private const val TAG = "MealDetailActivity"
 
@@ -32,8 +38,10 @@ class MealDetailActivity : AppCompatActivity() {
     private lateinit var fiberHeaderTextView: TextView
     private lateinit var sugarHeaderTextView: TextView
     private  lateinit var summaryHeaderTextView: TextView
+    private lateinit var foodImageView: ImageView
     private lateinit var database: DatabaseReference
-    lateinit var sharedpreferences: SharedPreferences
+    private lateinit var storage: StorageReference
+    private lateinit var sharedpreferences: SharedPreferences
     private lateinit var auth: FirebaseAuth
 
     @SuppressLint("SetTextI18n")
@@ -61,6 +69,7 @@ class MealDetailActivity : AppCompatActivity() {
         // Get the database reference
         database = Firebase.database.reference
 
+
         // TODO: Find the views for the screen
         mealNameHeaderTextView = findViewById(R.id.mealName)
         mealPriceTextView = findViewById(R.id.mealPrice)
@@ -76,7 +85,7 @@ class MealDetailActivity : AppCompatActivity() {
         fiberHeaderTextView = findViewById(R.id.fiberHeader)
         sugarHeaderTextView = findViewById(R.id.sugarHeader)
         sodiumHeaderTextView = findViewById(R.id.sodiumHeader)
-
+        foodImageView = findViewById(R.id.foodImageView)
         // TODO: Get the extra from the Intent
         val meal = intent.getSerializableExtra(MEAL_EXTRA) as Meal
         // TODO: Set the mealNameHeader, meal details, and nutrition summary of the meal
@@ -114,6 +123,30 @@ class MealDetailActivity : AppCompatActivity() {
                     potassiumHeaderTextView.text = "Potassium: ${ingredients.sumOf { it?.nutritionSummary?.potassium ?: 0.0 }}mg"
                     cholesterolHeaderTextView.text = "Cholesterol: ${ingredients.sumOf { it?.nutritionSummary?.cholesterol ?: 0.0 }}mg"
                     mealPriceTextView.text = "\$${ingredients.sumOf { it?.price ?: 0.0 }}"
+
+                    // Set the image of the meal if it even exists
+                    if (meal.image_id != null)
+                    {
+                        // Get the storage reference
+                        storage = com.google.firebase.ktx.Firebase.storage.reference
+                        val imageRef = storage.child(meal.image_id!!)
+                        imageRef.downloadUrl
+                            .addOnSuccessListener { uri ->
+                                try {
+                                    Glide
+                                        .with(this)
+                                        .load(uri)
+                                        .apply(RequestOptions().override(300))
+                                        .into(foodImageView)
+                                }
+                                catch(e: Exception) {
+                                    Log.e(TAG, "Uri ${uri} is invalid!")
+                                }
+                            }
+                            .addOnFailureListener {
+                                Log.e(TAG, "Could not download image from Firebase!")
+                            }
+                    }
             }
             .addOnFailureListener{
                 Log.e(TAG, "Error getting summary data", it)
