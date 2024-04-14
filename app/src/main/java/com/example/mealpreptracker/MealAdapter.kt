@@ -53,9 +53,11 @@ class MealAdapter(private val context: Context, private val meals: List<Meal>, p
 
 //                    ingredients.map { ingredient -> ingredient?.nutritionSummary?.calories ?: 0.0 }
 
-                    val calories = round((ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 } / servings!!)).toInt()
-                    priceTextView.text = "Price: \$${ingredients.sumOf { it?.price ?: 0.0 }}"
-                    caloriesTextView.text = "Calories: ${calories}"
+                    val calories = (ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 } / servings!!).toFloat()
+                    val roundedCalories = "%.1f".format(calories)
+
+                    priceTextView.text = "Total Price: \$${ingredients.sumOf { it?.price ?: 0.0 }} for $servings servings"
+                    caloriesTextView.text = "Calories (per serving): $roundedCalories"
 
                 }
                 .addOnFailureListener {
