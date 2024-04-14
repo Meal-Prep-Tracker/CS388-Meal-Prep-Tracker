@@ -14,10 +14,14 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
@@ -44,12 +48,10 @@ private const val TAG = "Dashboard"
 
 class DashboardFragment : Fragment() {
     private lateinit var mealsEnteredText: TextView
-    private lateinit var caloriesChart: LineChart
-    private lateinit var expensesChart: LineChart
-//    private lateinit var foodGroupsChart: PieChart
-    lateinit var calorieEntries: ArrayList<Entry>
-    lateinit var expensesEntries: ArrayList<Entry>
-//    lateinit var foodGroupEntries: ArrayList<PieEntry>
+    private lateinit var caloriesChart: BarChart
+    private lateinit var expensesChart: BarChart
+    lateinit var calorieEntries: ArrayList<BarEntry>
+    lateinit var expensesEntries: ArrayList<BarEntry>
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
@@ -130,8 +132,8 @@ class DashboardFragment : Fragment() {
                             var epochTime = meal.date ?: 0L // Default to 0 if date is null
                             var date = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Date(epochTime))
 
-                            calorieEntries.add(Entry(count.toFloat(), calories))
-                            expensesEntries.add(Entry(count.toFloat(), price))
+                            calorieEntries.add(BarEntry(count.toFloat(), calories))
+                            expensesEntries.add(BarEntry(count.toFloat(), price))
                             Log.v(TAG, "Date: $date | Calories: $calories | Price: $price | Servings: $servings | uid: $uid")
 
                             count += 1
@@ -198,8 +200,8 @@ class DashboardFragment : Fragment() {
 
     private fun updateCalorieChart() {
         lifecycleScope.launch(IO) {
-            val calorieDataSet = LineDataSet(calorieEntries, "Calories")
-            val calorieLineData = LineData(calorieDataSet)
+            val calorieDataSet = BarDataSet(calorieEntries, "Calories")
+            val calorieLineData = BarData(calorieDataSet)
 
             caloriesChart.data = calorieLineData
 
@@ -231,7 +233,7 @@ class DashboardFragment : Fragment() {
             calorieDataSet.setColors(*ColorTemplate.JOYFUL_COLORS)
             calorieDataSet.valueTextSize = 16f
             calorieDataSet.color = ContextCompat.getColor(requireActivity(), R.color.secondary)
-            calorieDataSet.setDrawFilled(true)
+//            calorieDataSet.setDrawFilled(true)
             calorieDataSet.setValueTypeface(Typeface.DEFAULT_BOLD)
 
             caloriesChart.axisRight.isEnabled = false
@@ -268,8 +270,8 @@ class DashboardFragment : Fragment() {
 
     private fun updateExpenseChart() {
         lifecycleScope.launch(IO) {
-            val expensesDataSet = LineDataSet(expensesEntries, "Price")
-            val expensesLineData = LineData(expensesDataSet)
+            val expensesDataSet = BarDataSet(expensesEntries, "Price")
+            val expensesLineData = BarData(expensesDataSet)
 
             expensesChart.data = expensesLineData
 
@@ -301,7 +303,7 @@ class DashboardFragment : Fragment() {
             expensesDataSet.setColors(*ColorTemplate.JOYFUL_COLORS)
             expensesDataSet.valueTextSize = 16f
             expensesDataSet.color = ContextCompat.getColor(requireActivity(), R.color.secondary)
-            expensesDataSet.setDrawFilled(true)
+//            expensesDataSet.setDrawFilled(true)
             expensesDataSet.setValueTypeface(Typeface.DEFAULT_BOLD)
 
             expensesChart.axisRight.isEnabled = false
