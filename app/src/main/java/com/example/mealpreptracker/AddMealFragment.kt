@@ -38,7 +38,7 @@ private const val TAG = "AddMealFragment"
 private const val CAMERA_RESULT_CODE = 123
 
 @SuppressLint("SimpleDateFormat")
-val dateFormat = SimpleDateFormat("MM/dd/yyyy")
+private val dateFormat = SimpleDateFormat("MM/dd/yyyy")
 
 class AddMealFragment(val listener: SetOnAddMealListener) : Fragment() {
     private lateinit var mealNameEditText: EditText

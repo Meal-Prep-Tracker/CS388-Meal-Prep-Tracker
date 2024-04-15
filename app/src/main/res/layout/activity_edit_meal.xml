@@ -78,14 +78,17 @@
         android:id="@+id/edit_ingredients_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="37dp"
         android:backgroundTint="@color/dark_teal"
         android:text="Edit Ingredients"
         android:textColor="@color/black"
         android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="646dp" />
+        app:layout_constraintTop_toBottomOf="@+id/pickDate" />
 
     <Button
         android:id="@+id/pickDate"
@@ -126,27 +129,27 @@
         app:layout_constraintTop_toBottomOf="@+id/meal_name_input" />
 
     <TextView
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:text="Date: "
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/servings_input"
-        app:layout_constraintHorizontal_bias="0.132"
-        android:layout_marginTop="25dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/servings_input" />
 
     <TextView
         android:id="@+id/mealDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_outline_text"
+        android:padding="10dp"
         android:text="Some Date"
-        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/servings_input"
-        app:layout_constraintHorizontal_bias="0.40"
-        android:layout_marginTop="25dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 </androidx.constraintlayout.widget.ConstraintLayout>

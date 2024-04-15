@@ -37,6 +37,8 @@ import java.util.Date
 import java.util.Locale
 import java.util.UUID
 
+@SuppressLint("SimpleDateFormat")
+private val dateFormat = SimpleDateFormat("MM/dd/yyyy")
 class EditMealActivity : AppCompatActivity() {
     private lateinit var db: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
@@ -86,12 +88,14 @@ class EditMealActivity : AppCompatActivity() {
         mealName.setText(meal.name)
         servings.setText(meal.servings.toString())
 
-        // Set the data to current date
-        // Get the current date
-        val currentDate = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Date())
+        // Convert epoch time to Date
+        val date = meal.date?.let { Date(it) }
 
-        // Set the current date to the TextView
-        mealDate.text = currentDate
+        // Format the date
+        val formattedDate = date?.let { dateFormat.format(it) }
+
+        // Set the date in the TextView
+        mealDate.text = formattedDate
 
         if(meal.image_id != null && meal.image_id!!.isNotEmpty()) {
             val storage = Firebase.storage.reference
@@ -142,6 +146,10 @@ class EditMealActivity : AppCompatActivity() {
 
             meal.name = mealNameStr
             meal.servings = servingsInt
+
+            // Set the date of the meal from mealDate TextView
+            meal.date = dateFormat.parse(mealDate.text.toString())?.time
+
             if(imageRetaken) {
                 val storage = Firebase.storage.reference
                 val bitmapToSave = getImageBitmap()
@@ -191,6 +199,7 @@ class EditMealActivity : AppCompatActivity() {
         servings = findViewById(R.id.servings_input)
         editIngredientsBtn = findViewById(R.id.edit_ingredients_btn)
         imageButton = findViewById(R.id.food_image);
+        mealDate = findViewById(R.id.mealDate)
     }
 
     private fun saveMeal(meal: Meal) {
@@ -212,7 +221,7 @@ class EditMealActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == CAMERA_RESULT_CODE) {
             val takenPic: Bitmap? = data!!.extras!!["data"] as Bitmap?
-            imageButton.background = null
+//            imageButton.background = null
             Glide
                 .with(this)
                 .asBitmap()

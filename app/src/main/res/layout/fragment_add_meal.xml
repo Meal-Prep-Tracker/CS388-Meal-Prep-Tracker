@@ -26,24 +26,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/mealNameLbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name: "
+                android:layout_marginStart="40dp"
                 android:textSize="24sp"
                 android:textStyle="normal" />
 
-
             <EditText
                 android:id="@+id/mealName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Carbonara"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_outline_text"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:ems="10"
+                android:hint="Meal Name"
                 android:inputType="text"
                 android:textColor="?attr/editTextColor"
                 android:textColorHint="?attr/colorControlNormal"
@@ -54,8 +60,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_marginTop="25dp">
 
 
             <TextView
@@ -63,14 +69,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Servings:"
+                android:layout_marginStart="40dp"
                 android:textSize="24sp"
                 android:textStyle="normal" />
 
             <EditText
                 android:id="@+id/mealServings"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Amount"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_outline_text"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:ems="10"
+                android:hint="Servings"
                 android:inputType="numberDecimal"
                 android:textColor="?attr/editTextColor"
                 android:textColorHint="?attr/colorControlNormal"
@@ -82,13 +95,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:orientation="vertical"
+            android:layout_marginTop="25dp">
 
             <TextView
                 android:id="@+id/mealDateLbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date: "
+                android:layout_marginStart="40dp"
                 android:textSize="24sp"
                 android:textStyle="normal" />
 
@@ -96,8 +111,11 @@
                 android:id="@+id/mealDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="24sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="40dp"
+                android:background="@drawable/rounded_outline_text"
+                android:padding="10dp"
+                android:text="Some Date"
                 android:textStyle="normal" />
         </LinearLayout>
 
@@ -106,32 +124,33 @@
             android:id="@+id/food_image"
             android:layout_width="195dp"
             android:layout_height="98dp"
-            android:scaleType="fitXY"
             android:layout_gravity="center"
-            android:layout_marginVertical="50dp"
-            android:src="@drawable/baseline_camera_alt_24"
-            android:background="@android:color/transparent"/>
+            android:layout_marginTop="35dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/baseline_camera_alt_24" />
+
 
         <Button
             android:id="@+id/pickDate"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginVertical="10dp"
             android:backgroundTint="@color/dark_teal"
             android:text="Pick Date"
+            android:layout_marginTop="22dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
 
         <Button
             android:id="@+id/addMealBtn"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginVertical="10dp"
             android:backgroundTint="@color/dark_teal"
             android:text="Add Meal"
+            android:layout_marginTop="19dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
