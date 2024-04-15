@@ -258,6 +258,7 @@ this section]
 - [x] Implement edit ingredient activity
 
 [Add video/gif of your current application that shows build progress]
+<img src="mealpreptracker-demo.gif" width=600>
 
 ## App Demo Video
 
