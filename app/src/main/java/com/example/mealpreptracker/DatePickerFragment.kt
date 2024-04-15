@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.widget.DatePicker
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import java.util.Calendar
 
@@ -21,7 +22,14 @@ class DatePickerFragment(val listener: OnDateSelectListener) : DialogFragment(),
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         // Create a new instance of DatePickerDialog and return it.
-        return DatePickerDialog(requireContext(), this, year, month, day)
+        val datePickerDialog = DatePickerDialog(requireContext(), this, year, month, day)
+
+        datePickerDialog.setOnShowListener {
+            datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+            datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        }
+
+        return datePickerDialog
 
     }
 
