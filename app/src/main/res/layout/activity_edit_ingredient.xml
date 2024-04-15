@@ -11,7 +11,7 @@
     <TextView
         android:id="@+id/mealNameHeader"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
         android:textSize="40sp"
@@ -29,8 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mealNameHeader"
-        android:layout_marginBottom="200dp"
-        android:layout_marginTop="125dp"
+        android:layout_marginBottom="150dp"
+        android:layout_marginTop="100dp"
         tools:listitem="@layout/item_ingredient"/>
 
 <!--    android:fontFamily="@font/inter"-->
@@ -83,14 +83,12 @@
         android:id="@+id/addBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/dark_teal"
         android:text="Add"
         android:textColor="@color/black"
-        android:backgroundTint="@color/dark_teal"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientPriceField" />
 
@@ -99,16 +97,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/dark_teal"
         android:text="Done"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredientNameField"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/ingredientNameField" />
 
     <TextView
         android:id="@+id/ingredientTitle"
