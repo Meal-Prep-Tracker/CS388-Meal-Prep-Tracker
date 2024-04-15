@@ -64,9 +64,9 @@
         android:layout_height="98dp"
         android:layout_gravity="center"
         android:layout_marginVertical="50dp"
-        android:src="@drawable/baseline_camera_alt_24"
-        android:scaleType="fitXY"
         android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/baseline_camera_alt_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
@@ -78,7 +78,8 @@
         android:id="@+id/edit_ingredients_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="37dp"
         android:backgroundTint="@color/dark_teal"
         android:text="Edit Ingredients"
         android:textColor="@color/black"
@@ -86,21 +87,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pickDate" />
 
     <Button
         android:id="@+id/pickDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="104dp"
         android:backgroundTint="@color/dark_teal"
         android:text="Pick date"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_ingredients_btn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/food_image" />
 
     <TextView
         android:id="@+id/textView4"
@@ -127,27 +129,27 @@
         app:layout_constraintTop_toBottomOf="@+id/meal_name_input" />
 
     <TextView
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:text="Date: "
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/servings_input"
-        app:layout_constraintHorizontal_bias="0.132"
-        android:layout_marginTop="25dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/servings_input" />
 
     <TextView
         android:id="@+id/mealDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_outline_text"
+        android:padding="10dp"
         android:text="Some Date"
-        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/servings_input"
-        app:layout_constraintHorizontal_bias="0.40"
-        android:layout_marginTop="25dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 </androidx.constraintlayout.widget.ConstraintLayout>

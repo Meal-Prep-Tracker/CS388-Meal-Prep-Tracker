@@ -1,5 +1,6 @@
 package com.example.mealpreptracker
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,6 +16,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
@@ -29,8 +31,14 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import java.util.UUID
 
+@SuppressLint("SimpleDateFormat")
+private val dateFormat = SimpleDateFormat("MM/dd/yyyy")
 class EditMealActivity : AppCompatActivity() {
     private lateinit var db: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
@@ -39,6 +47,7 @@ class EditMealActivity : AppCompatActivity() {
     private lateinit var servings: EditText
     private lateinit var editIngredientsBtn: Button
     private lateinit var imageButton: ImageButton
+    private lateinit var mealDate: TextView
 
     private val EDIT_MEAL_TAG = "EDIT_MEAL"
     private val CAMERA_RESULT_CODE = 123;
@@ -79,6 +88,15 @@ class EditMealActivity : AppCompatActivity() {
         mealName.setText(meal.name)
         servings.setText(meal.servings.toString())
 
+        // Convert epoch time to Date
+        val date = meal.date?.let { Date(it) }
+
+        // Format the date
+        val formattedDate = date?.let { dateFormat.format(it) }
+
+        // Set the date in the TextView
+        mealDate.text = formattedDate
+
         if(meal.image_id != null && meal.image_id!!.isNotEmpty()) {
             val storage = Firebase.storage.reference
             val imageId = meal.image_id!!
@@ -105,7 +123,6 @@ class EditMealActivity : AppCompatActivity() {
             val camIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(camIntent, CAMERA_RESULT_CODE)
         }
-
         editIngredientsBtn.setOnClickListener {
             val mealNameStr = mealName.text.toString()
             val servingsStr = servings.text.toString()
@@ -129,6 +146,10 @@ class EditMealActivity : AppCompatActivity() {
 
             meal.name = mealNameStr
             meal.servings = servingsInt
+
+            // Set the date of the meal from mealDate TextView
+            meal.date = dateFormat.parse(mealDate.text.toString())?.time
+
             if(imageRetaken) {
                 val storage = Firebase.storage.reference
                 val bitmapToSave = getImageBitmap()
@@ -156,6 +177,18 @@ class EditMealActivity : AppCompatActivity() {
                 saveMeal(meal)
             }
         }
+        findViewById<Button>(R.id.pickDate).setOnClickListener {
+            val cc = object : DatePickerFragment.OnDateSelectListener {
+                @SuppressLint("SetTextI18n")
+                override fun onDateSelect(c: Calendar) {
+                    mealDate.text = "${c.get(Calendar.MONTH) + 1}/${c.get(Calendar.DAY_OF_MONTH)}/${
+                        c.get(Calendar.YEAR)
+                    }"
+                }
+            }
+            val newFragment = DatePickerFragment(cc)
+            newFragment.show(supportFragmentManager, "datePicker")
+        }
     }
 
     private fun init() {
@@ -166,6 +199,7 @@ class EditMealActivity : AppCompatActivity() {
         servings = findViewById(R.id.servings_input)
         editIngredientsBtn = findViewById(R.id.edit_ingredients_btn)
         imageButton = findViewById(R.id.food_image);
+        mealDate = findViewById(R.id.mealDate)
     }
 
     private fun saveMeal(meal: Meal) {
@@ -187,7 +221,7 @@ class EditMealActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == CAMERA_RESULT_CODE) {
             val takenPic: Bitmap? = data!!.extras!!["data"] as Bitmap?
-            imageButton.background = null
+//            imageButton.background = null
             Glide
                 .with(this)
                 .asBitmap()

@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.storage
 
 private const val TAG = "MealListFragment"
 
@@ -26,6 +28,7 @@ class MealListFragment: Fragment() {
     private lateinit var mealsRecyclerView: RecyclerView
     private lateinit var mealAdapter: MealAdapter
     private lateinit var database: DatabaseReference
+    private lateinit var storageRef: StorageReference
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +59,10 @@ class MealListFragment: Fragment() {
         val layoutManager = LinearLayoutManager(context)
         mealsRecyclerView = view.findViewById(R.id.mealsRv)
         database = Firebase.database.reference
+        storageRef = Firebase.storage.reference
         mealsRecyclerView.layoutManager = layoutManager
         mealsRecyclerView.setHasFixedSize(true)
-        mealAdapter = MealAdapter(view.context, meals, database)
+        mealAdapter = MealAdapter(view.context, meals, database, storageRef)
         mealsRecyclerView.adapter = mealAdapter
 
         // Update the return statement to return the inflated view from above

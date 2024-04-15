@@ -38,7 +38,7 @@ private const val TAG = "AddMealFragment"
 private const val CAMERA_RESULT_CODE = 123
 
 @SuppressLint("SimpleDateFormat")
-val dateFormat = SimpleDateFormat("MM/dd/yyyy")
+private val dateFormat = SimpleDateFormat("MM/dd/yyyy")
 
 class AddMealFragment(val listener: SetOnAddMealListener) : Fragment() {
     private lateinit var mealNameEditText: EditText
@@ -48,9 +48,10 @@ class AddMealFragment(val listener: SetOnAddMealListener) : Fragment() {
     private lateinit var storage: StorageReference
     private lateinit var imageButton: ImageButton
     private lateinit var auth: FirebaseAuth
+    private lateinit var mealDate: TextView
+
     private var imageTaken = false
 
-    private lateinit var mealDate: TextView
     interface SetOnAddMealListener {
         fun onAddMealClick()
     }
@@ -148,73 +149,18 @@ class AddMealFragment(val listener: SetOnAddMealListener) : Fragment() {
                                 meal.image_id = objLocation
                                 // Add new meal
                                 addNewMeal(key, meal)
-                                // Get the last inserted Meal
-                                /*database.child(MEALS_COLLECTION).child(key).get()
-                                    .addOnSuccessListener {
-                                        Log.i("firebase", "Got value ${it.value}")
-                                        val meal: Meal? = it.getValue(Meal::class.java)
-
-                                        // Route to EditIngredientActivity
-                                        val intent = Intent(activity, EditIngredientActivity::class.java)
-                                        intent.putExtra(MEAL_EXTRA, meal)
-                                        startActivity(intent)
-                                        // Put MealListFragment on stack so user can be routed back to it onc hitting done
-                                        listener.onAddMealClick()
-
-
-                                    }
-                                    .addOnFailureListener {
-                                        Log.e("firebase", "Error getting last inserted Meal", it)
-                                    }*/
                             }
                         }
                         .addOnFailureListener { e ->
                             Log.e(TAG, "Failed to save image to Firebase Storage: ${e}")
                             // Add new meal
                             addNewMeal(key, meal)
-                            // Get the last inserted Meal
-                            /*database.child(MEALS_COLLECTION).child(key).get()
-                                .addOnSuccessListener {
-                                    Log.i("firebase", "Got value ${it.value}")
-                                    val meal: Meal? = it.getValue(Meal::class.java)
-
-                                    // Route to EditIngredientActivity
-                                    val intent = Intent(activity, EditIngredientActivity::class.java)
-                                    intent.putExtra(MEAL_EXTRA, meal)
-                                    startActivity(intent)
-                                    // Put MealListFragment on stack so user can be routed back to it onc hitting done
-                                    listener.onAddMealClick()
-
-
-                                }
-                                .addOnFailureListener {
-                                    Log.e("firebase", "Error getting last inserted Meal", it)
-                                }
-
-                             */
                         }
 
                 }
                 else {
                     // Add new meal
                     addNewMeal(key, meal)
-                    // Get the last inserted Meal
-                    /* database.child(MEALS_COLLECTION).child(key).get()
-                        .addOnSuccessListener {
-                            Log.i("firebase", "Got value ${it.value}")
-                            val meal: Meal? = it.getValue(Meal::class.java)
-
-                            // Route to EditIngredientActivity
-                            val intent = Intent(activity, EditIngredientActivity::class.java)
-                            intent.putExtra(MEAL_EXTRA, meal)
-                            startActivity(intent)
-                            // Put MealListFragment on stack so user can be routed back to it onc hitting done
-                            listener.onAddMealClick()
-                        }
-                        .addOnFailureListener {
-                            Log.e("firebase", "Error getting last inserted Meal", it)
-                        }
-                     */
                 }
 
             }
