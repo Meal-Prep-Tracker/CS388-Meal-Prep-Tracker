@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/inter"
-        android:hint="Broccoli"
+        android:hint="Ingredient"
         android:inputType="text"
         android:textColor="@color/black"
         android:textSize="15sp"
@@ -72,7 +72,7 @@
         app:layout_constraintStart_toEndOf="@+id/gramsText"
         app:layout_constraintTop_toBottomOf="@+id/ingredientName"
         android:inputType="numberDecimal"
-        android:hint="100" />
+        android:hint="Grams" />
 
 
     <TextView
@@ -94,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter"
-        android:hint="5.50"
+        android:hint="Price"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="normal"
