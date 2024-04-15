@@ -1,158 +1,166 @@
-<!-- fragment_dashboard.xml -->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddMealFragment">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/addMealHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter"
-            android:gravity="center_horizontal"
-            android:shadowColor="#40000000"
-            android:text="Add Meal"
-            android:textSize="48sp"
-            android:textStyle="normal" />
-
+        android:layout_marginBottom="40dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <TextView
-                android:id="@+id/mealNameLbl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name: "
-                android:layout_marginStart="40dp"
-                android:textSize="24sp"
-                android:textStyle="normal" />
-
-            <EditText
-                android:id="@+id/mealName"
+                android:id="@+id/addMealHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/rounded_outline_text"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:ems="10"
-                android:hint="Meal Name"
-                android:inputType="text"
-                android:textColor="?attr/editTextColor"
-                android:textColorHint="?attr/colorControlNormal"
-                android:textSize="24sp"
-                android:textStyle="normal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="25dp">
-
-
-            <TextView
-                android:id="@+id/mealServingsLbl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Servings:"
-                android:layout_marginStart="40dp"
-                android:textSize="24sp"
+                android:fontFamily="@font/inter"
+                android:gravity="center_horizontal"
+                android:shadowColor="#40000000"
+                android:text="Add Meal"
+                android:textSize="48sp"
                 android:textStyle="normal" />
 
-            <EditText
-                android:id="@+id/mealServings"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/rounded_outline_text"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:ems="10"
-                android:hint="Servings"
-                android:inputType="numberDecimal"
-                android:textColor="?attr/editTextColor"
-                android:textColorHint="?attr/colorControlNormal"
-                android:textSize="24sp"
-                android:textStyle="normal" />
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="25dp">
+                <TextView
+                    android:id="@+id/mealNameLbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name: "
+                    android:layout_marginStart="40dp"
+                    android:textSize="24sp"
+                    android:textStyle="normal" />
 
-            <TextView
-                android:id="@+id/mealDateLbl"
+                <EditText
+                    android:id="@+id/mealName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rounded_outline_text"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:ems="10"
+                    android:hint="Meal Name"
+                    android:inputType="text"
+                    android:textColor="?attr/editTextColor"
+                    android:textColorHint="?attr/colorControlNormal"
+                    android:textSize="24sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp">
+
+
+                <TextView
+                    android:id="@+id/mealServingsLbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Servings:"
+                    android:layout_marginStart="40dp"
+                    android:textSize="24sp"
+                    android:textStyle="normal" />
+
+                <EditText
+                    android:id="@+id/mealServings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rounded_outline_text"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:ems="10"
+                    android:hint="Servings"
+                    android:inputType="numberDecimal"
+                    android:textColor="?attr/editTextColor"
+                    android:textColorHint="?attr/colorControlNormal"
+                    android:textSize="24sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp">
+
+                <TextView
+                    android:id="@+id/mealDateLbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date: "
+                    android:layout_marginStart="40dp"
+                    android:textSize="24sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/mealDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="40dp"
+                    android:background="@drawable/rounded_outline_text"
+                    android:padding="10dp"
+                    android:text="Some Date"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+
+            <ImageButton
+                android:id="@+id/food_image"
+                android:layout_width="195dp"
+                android:layout_height="98dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/baseline_camera_alt_24" />
+
+
+            <Button
+                android:id="@+id/pickDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date: "
-                android:layout_marginStart="40dp"
-                android:textSize="24sp"
-                android:textStyle="normal" />
+                android:layout_gravity="center"
+                android:backgroundTint="@color/dark_teal"
+                android:text="Pick Date"
+                android:layout_marginTop="22dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/mealDate"
+
+            <Button
+                android:id="@+id/addMealBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="40dp"
-                android:background="@drawable/rounded_outline_text"
-                android:padding="10dp"
-                android:text="Some Date"
-                android:textStyle="normal" />
+                android:layout_gravity="center"
+                android:backgroundTint="@color/dark_teal"
+                android:text="Add Meal"
+                android:layout_marginTop="19dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
         </LinearLayout>
-
-
-        <ImageButton
-            android:id="@+id/food_image"
-            android:layout_width="195dp"
-            android:layout_height="98dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="35dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/baseline_camera_alt_24" />
-
-
-        <Button
-            android:id="@+id/pickDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/dark_teal"
-            android:text="Pick Date"
-            android:layout_marginTop="22dp"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-
-        <Button
-            android:id="@+id/addMealBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/dark_teal"
-            android:text="Add Meal"
-            android:layout_marginTop="19dp"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-</FrameLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
