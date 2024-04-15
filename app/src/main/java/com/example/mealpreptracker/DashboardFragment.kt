@@ -79,6 +79,9 @@ class DashboardFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        calorieEntries = ArrayList()
+        expensesEntries = ArrayList()
+
         progressBar.visibility = View.VISIBLE
         caloriesChart.visibility = View.GONE
         expensesChart.visibility = View.GONE
@@ -119,7 +122,8 @@ class DashboardFragment : Fragment() {
                 var count = 0
 
                 sortedMeals.forEach { meal ->
-                    var servings = meal.servings
+                    val servings = meal.servings ?: 1 // Default to 1 if servings is null
+
                     // Assuming each Meal has a calorie and expense property
                     val ingredientsSnapshot = withContext(IO) {
                         database.child("Ingredients").orderByChild("meal_id").equalTo(meal.id).get().await()
