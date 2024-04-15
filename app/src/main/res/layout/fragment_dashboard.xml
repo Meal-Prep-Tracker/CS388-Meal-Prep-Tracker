@@ -5,6 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -38,6 +49,7 @@
                 android:id="@+id/dashboardStats"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/title">
 
                 <View
@@ -89,12 +101,14 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/inter"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/dashboardStats" />
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/caloriesChart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/caloriesTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
@@ -110,12 +124,14 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/inter"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/caloriesChart" />
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/expensesChart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/expensesTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>

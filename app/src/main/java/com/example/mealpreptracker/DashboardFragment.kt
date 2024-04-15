@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -40,6 +42,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
+import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -56,6 +59,10 @@ class DashboardFragment : Fragment() {
     private lateinit var mealNames: List<String>
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var progressBar: ProgressBar
+    private lateinit var stats: FrameLayout
+    private lateinit var caloriesTitle: TextView
+    private lateinit var expensesTitle: TextView
 
     lateinit var sharedpreferences: SharedPreferences
     var darkMode: Boolean = false
@@ -67,10 +74,18 @@ class DashboardFragment : Fragment() {
         sharedpreferences = requireActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         darkMode = sharedpreferences.getBoolean("darkMode", false)
         auth = FirebaseAuth.getInstance()
+
     }
 
     override fun onResume() {
         super.onResume()
+        progressBar.visibility = View.VISIBLE
+        caloriesChart.visibility = View.GONE
+        expensesChart.visibility = View.GONE
+        stats.visibility = View.GONE
+        caloriesTitle.visibility = View.GONE
+        expensesTitle.visibility = View.GONE
+
         val uid = FirebaseAuth.getInstance().currentUser?.uid
         database = Firebase.database.reference
 
@@ -81,13 +96,16 @@ class DashboardFragment : Fragment() {
         val firstDayOfMonth = getFirstDayOfMonth(currentTime)
         val lastDayOfMonth = getLastDayOfMonth(currentTime)
 
-        // This retrieves all meals for the current month
-        database.child("Meals")
-            .orderByChild("user_id")
-            .equalTo(uid)
-            .get()
-            .addOnSuccessListener { snapshot ->
-                val mealsList = snapshot.children.mapNotNull { it.getValue(Meal::class.java) }
+        lifecycleScope.launch(IO) {
+            try {
+                val mealsSnapshot = withContext(IO) {
+                    database.child("Meals")
+                        .orderByChild("user_id")
+                        .equalTo(uid)
+                        .get()
+                        .await()
+                }
+                val mealsList = mealsSnapshot.children.mapNotNull { it.getValue(Meal::class.java) }
 
                 //Filter meals for the current month
                 val mealsForCurrentMonth = mealsList.filter { meal ->
@@ -101,73 +119,66 @@ class DashboardFragment : Fragment() {
                 var count = 0
 
                 sortedMeals.forEach { meal ->
-
                     var servings = meal.servings
                     // Assuming each Meal has a calorie and expense property
-                    database.child("Ingredients").orderByChild("meal_id").equalTo(meal.id).get()
-                        .addOnSuccessListener { snapshot ->
-                            // Get the ingredients of the meal u pass from Main Activity in your Intent
-                            val ingredients = snapshot.children.map { dataSnapshot ->
-                                dataSnapshot.getValue(Ingredient::class.java)
-                            }
+                    val ingredientsSnapshot = withContext(IO) {
+                        database.child("Ingredients").orderByChild("meal_id").equalTo(meal.id).get().await()
+                    }
+                    val ingredients = ingredientsSnapshot.children.map { dataSnapshot ->
+                        dataSnapshot.getValue(Ingredient::class.java)
+                    }
 
-                            var calories = ((ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 }) / servings!!).toFloat()
-                            var price = ingredients.sumOf { it?.price ?: 0.0 }.toFloat()
+                    var calories = ((ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 }) / servings!!).toFloat()
+                    var price = ingredients.sumOf { it?.price ?: 0.0 }.toFloat()
 
-                            var epochTime = meal.date ?: 0L // Default to 0 if date is null
-                            var date = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Date(epochTime))
+                    var epochTime = meal.date ?: 0L // Default to 0 if date is null
+                    var date = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Date(epochTime))
 
-                            calorieEntries.add(Entry(count.toFloat(), calories))
-                            expensesEntries.add(Entry(count.toFloat(), price))
-                            Log.v(TAG, "Date: $date | Calories: $calories | Price: $price | Servings: $servings | uid: $uid")
+                    calorieEntries.add(Entry(count.toFloat(), calories))
+                    expensesEntries.add(Entry(count.toFloat(), price))
+                    Log.v(TAG, "Date: $date | Calories: $calories | Price: $price | Servings: $servings | uid: $uid")
 
-                            count += 1
-
-                            Log.v(TAG, calorieEntries.toString())
-                            updateCalorieChart()
-                            updateExpenseChart()
-
-                        }
-                        .addOnFailureListener {
-                            Log.e(TAG, "Error getting total cals and price of meal")
-                        }
-//                    var epochTime = meal.date ?: 0L // Default to 0 if date is null
-//                    var date =
-//                        SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(Date(epochTime))
-//                    var calories = meal.calories!!.toFloat()
-//                    var price = meal.price!!.toFloat()
-//                    Log.v(TAG, "$date | $calories | $price | $uid")
-//                    calorieEntries.add(Entry(count.toFloat(), calories))
-//                    expensesEntries.add(Entry(count.toFloat(), price))
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.e(TAG, "Error getting meal data", exception)
-            }
-
-        // Gets total number of meals
-        database.child("Meals").orderByChild("user_id").equalTo(uid).get()
-            .addOnSuccessListener { snapshot ->
-
-                val mealsList = snapshot.children.mapNotNull { it.getValue(Meal::class.java) }
-
-                mealsList.forEach { _ ->
-                    totalEntries += 1
+                    count += 1
                 }
 
+                // Get total number of meals
+                val mealsCountSnapshot = withContext(IO) {
+                    database.child("Meals").orderByChild("user_id").equalTo(uid).get().await()
+                }
+                val mealsCountList = mealsCountSnapshot.children.mapNotNull { it.getValue(Meal::class.java) }
+                totalEntries = mealsCountList.size
+
+                withContext(Dispatchers.Main) {
+                    // Hide progress bar and show charts
+                    progressBar.visibility = View.GONE
+                    caloriesChart.visibility = View.VISIBLE
+                    expensesChart.visibility = View.VISIBLE
+                    stats.visibility = View.VISIBLE
+                    caloriesTitle.visibility = View.VISIBLE
+                    expensesTitle.visibility = View.VISIBLE
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error retrieving data: ${e.message}")
+            }
+
+            // Update UI on the main thread
+            withContext(Dispatchers.Main) {
                 mealsEnteredText.text = totalEntries.toString()
-
+                updateCalorieChart()
+                updateExpenseChart()
             }
-            .addOnFailureListener {
-                Log.e(TAG, "Error getting meal data", it)
-            }
+        }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+
+        progressBar = view.findViewById(R.id.progressBar)
+        stats = view.findViewById(R.id.dashboardStats)
+        caloriesTitle = view.findViewById(R.id.caloriesTitle)
+        expensesTitle = view.findViewById(R.id.expensesTitle)
 
         auth.currentUser ?: run {
             val intent = Intent(activity, WelcomeActivity::class.java)
@@ -247,6 +258,9 @@ class DashboardFragment : Fragment() {
             caloriesChart.description.isEnabled = false
             caloriesChart.setTouchEnabled(true)
             caloriesChart.setPinchZoom(true)
+            caloriesChart.extraBottomOffset = 64f
+            caloriesChart.extraLeftOffset = 12f
+            caloriesChart.extraRightOffset = 12f
 
             calorieLineData.setValueTextSize(12f)
 
@@ -283,7 +297,7 @@ class DashboardFragment : Fragment() {
             val expensesLineData = LineData(expensesDataSet)
 
             expensesChart.data = expensesLineData
-            caloriesChart.legend.isEnabled = false
+            expensesChart.legend.isEnabled = false
 
             if (darkMode) {
                 expensesDataSet.valueTextColor = Color.WHITE
@@ -320,6 +334,9 @@ class DashboardFragment : Fragment() {
             expensesChart.description.isEnabled = false
             expensesChart.setTouchEnabled(true)
             expensesChart.setPinchZoom(true)
+            expensesChart.extraBottomOffset = 64f
+            expensesChart.extraRightOffset = 12f
+            expensesChart.extraLeftOffset = 12f
 
             expensesLineData.setValueTextSize(12f)
 
