@@ -82,7 +82,11 @@ class AddMealFragment(val listener: SetOnAddMealListener) : Fragment() {
         val mealCollection = database.getReference(MEALS_COLLECTION)
         mealCollection.child(key).setValue(meal)
             .addOnSuccessListener {
-//                Log.i("firebase", "Got value ${it.value}")
+
+                mealNameEditText.text.clear()
+                servingsEditText.text.clear()
+                mealDate.text = ""
+
                 val intent = Intent(activity, EditIngredientActivity::class.java)
                 intent.putExtra(MEAL_EXTRA, meal)
                 startActivity(intent)
