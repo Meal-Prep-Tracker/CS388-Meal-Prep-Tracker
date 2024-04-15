@@ -232,13 +232,30 @@ this section]
 
 ## GitHub Project board
 
-[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+[Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.]
+![milestone3board](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/71194959/7169227d-8839-4ab6-b104-4e0f3f99f256)
+
+## Issue cards
+![milestone3](https://github.com/Meal-Prep-Tracker/CS388-Meal-Prep-Tracker/assets/71194959/9e4e28bb-1a58-4a8b-a2df-2f865c279b25)
 
 ## Completed user stories
 
-- List the completed user stories from this unit
-- List any pending user stories / any user stories you decided to cut
-from the original requirements
+- [x] Create database schema
+- [x] Implement login activity
+- [x] Implement Meal View Detail Activity
+- [x] Implement Register Activity
+- [x] Create data access objects to perform CRUD operations
+- [x] Implement welcome activity
+- [x] Implement edit meal activity
+- [x] Create Firebase DB and connection class that connects to the database
+- [x] Implement Update Profile Activity
+- [x] Implement settings Fragment
+- [x] Implement dashboard Fragment
+- [x] Implement profile Fragment
+- [x] Set up navbar on activity main
+- [x] Implement add meal fragment
+- [x] Implement meals list fragment
+- [x] Implement edit ingredient activity
 
 [Add video/gif of your current application that shows build progress]
 
