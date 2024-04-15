@@ -57,6 +57,7 @@
         android:textStyle="normal"
         android:textColor="?attr/editTextColor"
         android:textColorHint="?attr/colorControlNormal"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ingredientPriceField"
         app:layout_constraintStart_toEndOf="@+id/ingredientNameField"
@@ -70,6 +71,7 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/inter"
         android:hint="Price"
+        android:inputType="numberDecimal"
         android:textColor="?attr/editTextColor"
         android:textColorHint="?attr/colorControlNormal"
         android:textSize="15sp"
@@ -107,6 +109,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredientNameField"
         app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/ingredientTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingredient:"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/ingredientNameField"
+        app:layout_constraintStart_toStartOf="@+id/ingredientNameField"/>
+
+    <TextView
+        android:id="@+id/amountTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amount:"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/ingredientAmt"
+        app:layout_constraintStart_toStartOf="@+id/ingredientAmt" />
+
+    <TextView
+        android:id="@+id/priceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price:"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/ingredientPriceField"
+        app:layout_constraintStart_toStartOf="@+id/ingredientPriceField" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -100,8 +100,11 @@ class EditIngredientActivity : AppCompatActivity(){
         add_button.setOnClickListener{
             // Get the quantity of the ingredient you want to add and it's name
             val quantity = findViewById<EditText>(R.id.ingredientAmt).text.toString()
+            findViewById<EditText>(R.id.ingredientAmt).text.clear()
             val name = findViewById<EditText>(R.id.ingredientNameField).text.toString()
+            findViewById<EditText>(R.id.ingredientNameField).text.clear()
             val price = findViewById<EditText>(R.id.ingredientPriceField).text.toString()
+            findViewById<EditText>(R.id.ingredientPriceField).text.clear()
             val params = RequestParams()
             params.put("query", "${quantity}g of ${name}")
 
