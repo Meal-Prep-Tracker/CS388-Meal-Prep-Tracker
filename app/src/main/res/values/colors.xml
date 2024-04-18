@@ -7,4 +7,5 @@
     <color name="dark_teal">#4CCD99</color>
     <color name="gray">#3B3B3B</color>
     <color name="lightGray">#7F7F7F</color>
+    <color name="darkModeBackground">#001715</color>
 </resources>
