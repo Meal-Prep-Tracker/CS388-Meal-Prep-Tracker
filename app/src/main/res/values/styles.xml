@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="mealPrepTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    <style name="mealPrepTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/secondary</item>
         <item name="colorPrimaryDark">@color/secondary</item>
         <item name="android:textColor">@color/black</item>
         <item name="editTextColor">@color/black</item>
         <item name="colorControlNormal">@color/lightGray</item>
     </style>
-    <style name="mealPrepThemeDark" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    <style name="mealPrepThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/secondary</item>
         <item name="colorPrimaryDark">@color/secondary</item>
         <item name="android:windowBackground">@color/black</item>
