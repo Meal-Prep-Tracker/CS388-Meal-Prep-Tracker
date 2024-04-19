@@ -6,46 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".EditIngredientActivity">
 
-<!--    android:fontFamily="@font/inter"-->
+    <!--    android:fontFamily="@font/inter"-->
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@color/secondary"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/mealNameHeader">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Ingredients"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/mealNameHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
+        android:text="Roasted Vegetables"
         android:textSize="40sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Roasted Vegetables" />
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mealIngredientsRv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealNameHeader"
-        android:layout_marginBottom="150dp"
-        android:layout_marginTop="100dp"
-        tools:listitem="@layout/item_ingredient"/>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:listitem="@layout/item_ingredient" />
 
-<!--    android:fontFamily="@font/inter"-->
-<!--    android:textColor="#c7c7c7"-->
+    <!--    android:fontFamily="@font/inter"-->
+    <!--    android:textColor="#c7c7c7"-->
     <EditText
         android:id="@+id/ingredientNameField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textSize="15sp"
+        android:hint="Ingredient"
         android:textColor="?attr/editTextColor"
         android:textColorHint="?attr/colorControlNormal"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealIngredientsRv"
-        android:hint="Ingredient" />
+        app:layout_constraintTop_toBottomOf="@+id/ingredientTitle" />
 
     <EditText
         android:id="@+id/ingredientAmt"
@@ -53,15 +74,16 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/inter"
         android:hint="Grams"
-        android:textSize="15sp"
-        android:textStyle="normal"
+        android:inputType="numberDecimal"
         android:textColor="?attr/editTextColor"
         android:textColorHint="?attr/colorControlNormal"
-        android:inputType="numberDecimal"
+        android:textSize="15sp"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ingredientPriceField"
-        app:layout_constraintStart_toEndOf="@+id/ingredientNameField"
-        app:layout_constraintTop_toBottomOf="@+id/mealIngredientsRv"
+        app:layout_constraintHorizontal_bias="0.598"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amountTitle"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -77,7 +99,7 @@
         android:textSize="15sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealIngredientsRv" />
+        app:layout_constraintTop_toBottomOf="@+id/priceTitle" />
 
     <Button
         android:id="@+id/addBtn"
@@ -109,34 +131,38 @@
         android:id="@+id/ingredientTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Ingredient:"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/ingredientNameField"
-        app:layout_constraintStart_toStartOf="@+id/ingredientNameField"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mealIngredientsRv" />
 
     <TextView
         android:id="@+id/amountTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Amount:"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/ingredientAmt"
-        app:layout_constraintStart_toStartOf="@+id/ingredientAmt" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mealIngredientsRv" />
 
     <TextView
         android:id="@+id/priceTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Price:"
         android:textSize="16dp"
         android:textStyle="bold"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/ingredientPriceField"
-        app:layout_constraintStart_toStartOf="@+id/ingredientPriceField" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mealIngredientsRv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
