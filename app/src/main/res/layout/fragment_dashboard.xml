@@ -28,29 +28,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp">
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:shadowColor="#40000000"
-                android:shadowDx="0"
-                android:shadowDy="4"
-                android:shadowRadius="4"
-                android:textSize="48sp"
-                android:fontFamily="@font/inter"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="Dashboard" />
-
             <FrameLayout
                 android:id="@+id/dashboardStats"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/title">
+                android:visibility="gone">
 
                 <View
                     android:layout_width="match_parent"
@@ -58,8 +40,7 @@
                     android:background="#ececec"
                     android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title" />
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <TextView
                     android:id="@+id/mealEnteredTitle"
