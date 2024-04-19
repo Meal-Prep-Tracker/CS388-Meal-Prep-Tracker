@@ -1,10 +1,12 @@
 package com.example.mealpreptracker
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.mealpreptracker.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var sharedpreferences: SharedPreferences
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
         val darkMode = sharedpreferences.getBoolean("darkMode", false)
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         val addMealListener = object : AddMealFragment.SetOnAddMealListener {
             override fun onAddMealClick() {
+                binding.tvTitle.text = "Meals List"
                 replaceFragment(mealsListFragment)
             }
         }
@@ -62,11 +66,26 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             lateinit var fragment: Fragment
             when (item.itemId) {
-                R.id.action_dashboard -> fragment = dashboardFragment
-                R.id.action_meals_list -> fragment = mealsListFragment
-                R.id.action_add_meal -> fragment = addMealFragment
-                R.id.action_profile -> fragment = profileFragment
-                R.id.action_settings -> fragment = settingsFragment
+                R.id.action_dashboard -> {
+                    binding.tvTitle.text = "Dashboard"
+                    fragment = dashboardFragment
+                }
+                R.id.action_meals_list -> {
+                    binding.tvTitle.text = "Meals List"
+                    fragment = mealsListFragment
+                }
+                R.id.action_add_meal -> {
+                    binding.tvTitle.text = "Add Meal"
+                    fragment = addMealFragment
+                }
+                R.id.action_profile -> {
+                    binding.tvTitle.text = "Profile"
+                    fragment = profileFragment
+                }
+                R.id.action_settings -> {
+                    binding.tvTitle.text = "Settings"
+                    fragment = settingsFragment
+                }
             }
             replaceFragment(fragment)
             true
