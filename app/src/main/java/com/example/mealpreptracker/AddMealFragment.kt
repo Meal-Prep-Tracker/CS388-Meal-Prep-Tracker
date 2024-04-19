@@ -173,7 +173,7 @@ class AddMealFragment(val listener: SetOnAddMealListener) : Fragment() {
             val camIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(camIntent, CAMERA_RESULT_CODE)
         }
-        view.findViewById<Button>(R.id.pickDate).setOnClickListener {
+        mealDate.setOnClickListener {
             val cc = object : DatePickerFragment.OnDateSelectListener {
                 @SuppressLint("SetTextI18n")
                 override fun onDateSelect(c: Calendar) {

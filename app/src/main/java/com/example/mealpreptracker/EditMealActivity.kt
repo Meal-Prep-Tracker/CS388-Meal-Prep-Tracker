@@ -177,7 +177,7 @@ class EditMealActivity : AppCompatActivity() {
                 saveMeal(meal)
             }
         }
-        findViewById<Button>(R.id.pickDate).setOnClickListener {
+        mealDate.setOnClickListener {
             val cc = object : DatePickerFragment.OnDateSelectListener {
                 @SuppressLint("SetTextI18n")
                 override fun onDateSelect(c: Calendar) {

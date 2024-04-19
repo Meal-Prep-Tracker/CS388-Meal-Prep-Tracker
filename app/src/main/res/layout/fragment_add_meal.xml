@@ -111,7 +111,7 @@
                     android:layout_marginStart="40dp"
                     android:background="@drawable/rounded_outline_text"
                     android:padding="10dp"
-                    android:text="Some Date"
+                    android:text="MM/DD/YYYY"
                     android:textStyle="normal" />
             </LinearLayout>
 
@@ -121,22 +121,11 @@
                 android:layout_width="195dp"
                 android:layout_height="98dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="30dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitXY"
                 android:src="@drawable/baseline_camera_alt_24" />
 
-
-            <Button
-                android:id="@+id/pickDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/dark_teal"
-                android:text="Pick Date"
-                android:layout_marginTop="22dp"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
 
 
             <Button
