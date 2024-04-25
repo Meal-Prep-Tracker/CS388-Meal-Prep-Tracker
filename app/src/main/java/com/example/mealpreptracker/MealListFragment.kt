@@ -95,7 +95,6 @@ class MealListFragment: Fragment() {
                         }
                 }
                 mealAdapter.notifyDataSetChanged()
-//                Log.w(TAG, meals.toString())
             }
 
 

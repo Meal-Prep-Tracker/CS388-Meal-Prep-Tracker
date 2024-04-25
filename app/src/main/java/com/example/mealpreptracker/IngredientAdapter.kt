@@ -125,7 +125,7 @@ class IngredientAdapter(private val context: Context, private val ingredients: L
                         }
 
                         // Update the corresponding item in the list
-                        ingredient.quantity = it.toString().toDouble()
+                        ingredient.quantity = it.toString().toInt()
                         // Update the summary
                         val params = RequestParams()
                         params.put("query", "${ingredient.quantity}g of ${ingredient.name}")

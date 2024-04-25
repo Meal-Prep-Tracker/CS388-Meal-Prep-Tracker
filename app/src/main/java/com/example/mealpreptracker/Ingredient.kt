@@ -7,7 +7,7 @@ data class Ingredient (
     val id: String = "",
     val meal_id: String? = null,
     var name: String? = null,
-    var quantity: Double? = null,
+    var quantity: Int? = null,
     var price: Double? = null,
     var nutritionSummary: NutritionSummary? = null
 ):  java.io.Serializable

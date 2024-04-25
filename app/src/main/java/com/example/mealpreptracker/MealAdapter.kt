@@ -61,7 +61,9 @@ class MealAdapter(
                     val calories = (ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 } / servings!!).toFloat()
                     val roundedCalories = "%.1f".format(calories)
 
-                    priceTextView.text = "Total Price: \$${ingredients.sumOf { it?.price ?: 0.0 }} for $servings servings"
+                    val totalPrice = "%.2f".format(ingredients.sumOf { it?.price ?: 0.0 })
+
+                    priceTextView.text = "Total Price: \$${totalPrice} for $servings servings"
                     caloriesTextView.text = "Calories (per serving): $roundedCalories"
 
                 }
