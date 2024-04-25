@@ -219,7 +219,7 @@ class EditIngredientActivity : AppCompatActivity(){
             id = key,
             meal_id = selected_meal.id,
             name = name,
-            quantity = quantity.toDouble(),
+            quantity = quantity.toInt(),
             price = price.toDouble(),
             nutritionSummary = summary
         )

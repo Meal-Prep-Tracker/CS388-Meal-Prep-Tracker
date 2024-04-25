@@ -132,29 +132,31 @@ class MealDetailActivity : AppCompatActivity() {
                     miniIngredientsRv.layoutManager = LinearLayoutManager(this@MealDetailActivity)
                     Log.w(TAG, "Details of ${meal} will be shown now")
 
-                    // Calculate all the details of the meal
-                    val calories = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 } / servings!!).toFloat())
-                    val protein = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.protein ?: 0.0 } / servings).toFloat())
-                    val carbs = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.carbohydrates ?: 0.0 } / servings).toFloat())
-                    val fat = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.fat ?: 0.0 } / servings).toFloat())
-                    val fiber = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.fiber ?: 0.0 } / servings).toFloat())
-                    val sugar = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.sugar ?: 0.0 } / servings).toFloat())
-                    val satFat = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.saturatedFat ?: 0.0 } / servings).toFloat())
-                    val sodium = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.sodium ?: 0.0 } / servings).toFloat())
-                    val potassium = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.potassium ?: 0.0 } / servings).toFloat())
-                    val cholesterol = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.cholesterol ?: 0.0 } / servings).toFloat())
+                    if(servings != null) {
+                        val calories = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.calories ?: 0.0 } / servings).toFloat())
+                        val protein = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.protein ?: 0.0 } / servings).toFloat())
+                        val carbs = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.carbohydrates ?: 0.0 } / servings).toFloat())
+                        val fat = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.fat ?: 0.0 } / servings).toFloat())
+                        val fiber = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.fiber ?: 0.0 } / servings).toFloat())
+                        val sugar = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.sugar ?: 0.0 } / servings).toFloat())
+                        val satFat = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.saturatedFat ?: 0.0 } / servings).toFloat())
+                        val sodium = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.sodium ?: 0.0 } / servings).toFloat())
+                        val potassium = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.potassium ?: 0.0 } / servings).toFloat())
+                        val cholesterol = "%.1f".format((ingredients.sumOf { it?.nutritionSummary?.cholesterol ?: 0.0 } / servings).toFloat())
 
-                    calHeaderTextView.text = "Calories: $calories"
-                    proteinHeaderTextView.text = "Protein: ${protein}g"
-                    carbsHeaderTextView.text = "Carbs: ${carbs}g"
-                    fatHeaderTextView.text = "Fat: ${fat}g"
-                    fiberHeaderTextView.text = "Fiber: ${fiber}g"
-                    sugarHeaderTextView.text = "Sugar: ${sugar}g"
-                    satFatHeaderTextView.text = "Saturated Fat: ${satFat}g"
-                    sodiumHeaderTextView.text = "Sodium: ${sodium}mg"
-                    potassiumHeaderTextView.text = "Potassium: ${potassium}mg"
-                    cholesterolHeaderTextView.text = "Cholesterol: ${cholesterol}mg"
-                    mealPriceTextView.text = "Total Price: \$${ingredients.sumOf { it?.price ?: 0.0 }}"
+                        calHeaderTextView.text = "Calories: $calories"
+                        proteinHeaderTextView.text = "Protein: ${protein}g"
+                        carbsHeaderTextView.text = "Carbs: ${carbs}g"
+                        fatHeaderTextView.text = "Fat: ${fat}g"
+                        fiberHeaderTextView.text = "Fiber: ${fiber}g"
+                        sugarHeaderTextView.text = "Sugar: ${sugar}g"
+                        satFatHeaderTextView.text = "Saturated Fat: ${satFat}g"
+                        sodiumHeaderTextView.text = "Sodium: ${sodium}mg"
+                        potassiumHeaderTextView.text = "Potassium: ${potassium}mg"
+                        cholesterolHeaderTextView.text = "Cholesterol: ${cholesterol}mg"
+                        mealPriceTextView.text = "Total Price: \$${ingredients.sumOf { it?.price ?: 0.0 }}"
+                    }
+                // Calculate all the details of the meal
             }
             .addOnFailureListener{
                 Log.e(TAG, "Error getting summary data", it)
